@@ -1,9 +1,10 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Player.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\FootDetection.cs">
     <Files>
       <File FileName="Assets\Scripts\Player.cs" Line="55" Column="21" />
-      <File FileName="Assets\Scripts\FootDetection.cs" Line="16" Column="51" />
+      <File FileName="Assets\Scripts\FootDetection.cs" Line="13" Column="1" />
+      <File FileName="Assets\Scripts\SideDetection.cs" Line="19" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
