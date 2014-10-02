@@ -57,6 +57,9 @@ public class Player : MonoBehaviour {
 		if (Input.GetButtonDown ("Jump") && grounded)
 			jumpsOver = false;
 
+		if (Input.GetButtonUp ("Jump"))
+			jumpsOver = true;
+
 		if (Input.GetButton ("Jump") && !jumpsOver) {
 			if (grounded) {
 				jumpOrigin = transform.position.y;
