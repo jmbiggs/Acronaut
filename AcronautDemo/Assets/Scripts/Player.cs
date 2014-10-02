@@ -3,17 +3,23 @@ using System.Collections;
 
 public class Player : MonoBehaviour {
 
-	private float speed = 35f;
-	private Vector2 maxVelocity = new Vector2(5, 5);
-	private bool grounded = true;
-	private float jumpSpeed = 300f;
-	private float jumpMaxHeight = 3.5f;
+	public float speed;
+	public Vector2 maxVelocity;
+	public bool grounded;
+	public float jumpSpeed;
+	public float jumpMaxHeight;
+
 	private float airSpeedMultiplier = 1f; //.3f;
 
 	private float jumpOrigin;
 	private bool jumpsOver = true;
 
 	//private bool facingRight = true;
+
+
+	public void KillJump() {
+		jumpsOver = true;
+	}
 
 	// Update is called once per frame
 	void Update () {
@@ -47,7 +53,8 @@ public class Player : MonoBehaviour {
 			}
 		}
 
-		if (Input.GetButtonDown ("Jump"))
+		// Handle the jump button
+		if (Input.GetButtonDown ("Jump") && grounded)
 			jumpsOver = false;
 
 		if (Input.GetButton ("Jump") && !jumpsOver) {
