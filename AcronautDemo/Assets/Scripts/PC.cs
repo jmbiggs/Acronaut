@@ -27,14 +27,16 @@ public class PC : MonoBehaviour {
 		// get the player's (possible) left/right input
 		// it will be between -1 and 1
 		var horizInput = Input.GetAxis ("Horizontal") * speed;
+
+		float translation = Time.deltaTime * speed;
 		
 		// right direction
-		if (Input.GetKey(KeyCode.RightArrow)) {
+		if (Input.GetKey (KeyCode.RightArrow)) {
 			transform.position = new Vector3(transform.position.x + (Time.deltaTime * speed), transform.position.y, transform.position.z);
 			transform.localScale = new Vector3(1, 1, 1);
 		}
 		// left direction
-		else if (Input.GetKey(KeyCode.LeftArrow)) {
+		else if (Input.GetKey(KeyCode.LeftArrow)) {		
 			transform.position = new Vector3(transform.position.x - (Time.deltaTime * speed), transform.position.y, transform.position.z);
 			transform.localScale = new Vector3(1, 1, 1);
 		}
