@@ -1216,7 +1216,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0
-  m_GravityScale: 4
+  m_GravityScale: 1
   m_FixedAngle: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -1288,8 +1288,10 @@ MonoBehaviour:
   speed: 20
   maxVelocity: {x: 15, y: 50}
   grounded: 1
-  jumpSpeed: 150
+  jumpSpeed: 45
   jumpMaxHeight: 1.5
+  jumpHang: .699999988
+  hoverMultiplier: 1
 --- !u!1001 &1333346785
 Prefab:
   m_ObjectHideFlags: 0
