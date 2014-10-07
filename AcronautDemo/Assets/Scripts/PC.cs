@@ -8,10 +8,14 @@ public class PC : MonoBehaviour {
 	public bool grounded;
 	public float jumpSpeed;
 	public float jumpMaxHeight;
-	
+	public float gravity;
+	public float currentJump;
+
+
 	private float jumpOrigin; // the y position of player when a jump first begins
 	private bool jumpsOver = true;  // whether or not the jump has run its course
-	
+	public bool hasDoubleJumped = false;
+
 	// ends any current jump
 	public void KillJump() {
 		jumpsOver = true;
@@ -38,26 +42,28 @@ public class PC : MonoBehaviour {
 		// left direction
 		else if (Input.GetKey(KeyCode.LeftArrow)) {		
 			transform.position = new Vector3(transform.position.x - (Time.deltaTime * speed), transform.position.y, transform.position.z);
-			transform.localScale = new Vector3(1, 1, 1);
+			transform.localScale = new Vector3(-1, 1, 1);
 		}
 		
-		
+
+
 		// Handle the jump button
 		if (Input.GetButtonDown ("Jump") && grounded) {
-			jumpOrigin = transform.position.y;
-			jumpsOver = false;
+			// grounded = false;
+			currentJump = jumpSpeed;
 		}
 		if (Input.GetButtonUp ("Jump"))
+			currentJump = 0f;
 			jumpsOver = true;
-		if (Input.GetButton ("Jump") && !jumpsOver) {
-			if (transform.position.y >= (jumpMaxHeight + jumpOrigin)) {
-				forceY = 0f;
-				jumpsOver = true;
-			} else {
-				// if (absVelY < maxVelocity.y)
-				//	forceY = jumpSpeed;
-			}
+		if (Input.GetButtonDown ("Jump") && jumpsOver && !hasDoubleJumped) {
+			currentJump = jumpSpeed;
+			hasDoubleJumped = true;
 		}
+		if (currentJump > -50f) {
+			currentJump -= gravity;
+		}
+		if (!grounded)
+			transform.position = new Vector3(transform.position.x, transform.position.y + (currentJump * Time.deltaTime), transform.position.z);
 		
 		// apply the new force to the player
 		// rigidbody2D.AddForce(new Vector2(forceX, forceY));
