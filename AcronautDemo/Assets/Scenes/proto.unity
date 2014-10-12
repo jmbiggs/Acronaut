@@ -1213,7 +1213,7 @@ Transform:
   m_PrefabInternal: {fileID: 1497636563}
   m_GameObject: {fileID: 1185325299}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.50609732, y: -2.21113873, z: 0}
+  m_LocalPosition: {x: -2.56751013, y: -2.13821149, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1064143987}
@@ -1236,10 +1236,10 @@ MonoBehaviour:
   speed: 20
   grounded: 0
   jumpSpeed: 45
-  jumpMaxHeight: 4.5
+  jumpMaxHeight: .00499999989
   hoverMax: 0
   hoverMultiplier: 0
-  gravity: .0500000007
+  gravity: .150000006
 --- !u!61 &1185325302
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1249,7 +1249,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 1185325299}
   m_Enabled: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Size: {x: .610000014, y: .699999988}
   m_Center: {x: 0, y: -.0500000007}
 --- !u!50 &1185325303
@@ -1394,11 +1394,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400002, guid: 26de065a9887ece47ab59d0ff562c7a1, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -2.50609732
+      value: -2.56751013
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 26de065a9887ece47ab59d0ff562c7a1, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -2.21113873
+      value: -2.13821149
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 26de065a9887ece47ab59d0ff562c7a1, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1422,7 +1422,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400002, guid: 26de065a9887ece47ab59d0ff562c7a1, type: 2}
       propertyPath: gravity
-      value: .0500000007
+      value: .150000006
+      objectReference: {fileID: 0}
+    - target: {fileID: 5000000, guid: 26de065a9887ece47ab59d0ff562c7a1, type: 2}
+      propertyPath: m_AngularDrag
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6100002, guid: 26de065a9887ece47ab59d0ff562c7a1, type: 2}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 26de065a9887ece47ab59d0ff562c7a1, type: 2}
+      propertyPath: jumpMaxHeight
+      value: .00499999989
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 26de065a9887ece47ab59d0ff562c7a1, type: 2}

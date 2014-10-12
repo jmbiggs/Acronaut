@@ -29,9 +29,13 @@ public class Player : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+		// reset translations
+		horizTranslation = 0f;
+		vertTranslation = 0f;		
+		
 		// apply gravity (if necessary)
 		if (!grounded) {
-			vertTranslation -= Time.deltaTime * gravity;
+			vertTranslation -= gravity;
 		}
 
 		// get the player's (possible) left/right input
@@ -53,7 +57,8 @@ public class Player : MonoBehaviour {
 		// Handle the jump button
 		if (Input.GetButtonDown ("Jump") && grounded) {
 			// initiate jump
-			jumpOrigin = transform.position.y;
+			//jumpOrigin = transform.position.y;
+			currentJump = 0f;
 			jumpIsOver = false;
 		}
 		if (Input.GetButtonUp ("Jump")) {
@@ -64,9 +69,9 @@ public class Player : MonoBehaviour {
 		if (Input.GetButton ("Jump") && !jumpIsOver) {
 
 			if (currentJump < jumpMaxHeight)
-				currentJump += jumpSpeed;
+				currentJump += Time.deltaTime * jumpSpeed;
 
-			vertTranslation += Time.deltaTime * currentJump;
+			vertTranslation += currentJump;
 		}
 
 		transform.Translate (horizTranslation, vertTranslation, 0);
