@@ -23,9 +23,7 @@ public class PC : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		// forces to be added to player's motion
-		var forceX = 0f;
-		var forceY = 0f;
+
 		
 		
 		// get the player's (possible) left/right input

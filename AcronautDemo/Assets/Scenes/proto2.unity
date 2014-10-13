@@ -85,7 +85,7 @@ GameObject:
   - 33: {fileID: 79768761}
   - 23: {fileID: 79768760}
   - 61: {fileID: 79768759}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Platform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -156,7 +156,7 @@ GameObject:
   - 33: {fileID: 123332742}
   - 23: {fileID: 123332741}
   - 61: {fileID: 123332740}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Platform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -267,7 +267,7 @@ GameObject:
   - 33: {fileID: 287595652}
   - 23: {fileID: 287595651}
   - 61: {fileID: 287595650}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Platform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -378,7 +378,7 @@ GameObject:
   - 33: {fileID: 461065265}
   - 23: {fileID: 461065264}
   - 61: {fileID: 461065263}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Platform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -449,7 +449,7 @@ GameObject:
   - 33: {fileID: 466338107}
   - 23: {fileID: 466338106}
   - 61: {fileID: 466338105}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Platform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -604,7 +604,7 @@ GameObject:
   - 33: {fileID: 749406211}
   - 23: {fileID: 749406210}
   - 61: {fileID: 749406209}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Platform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -759,7 +759,7 @@ GameObject:
   - 33: {fileID: 889628356}
   - 23: {fileID: 889628355}
   - 61: {fileID: 889628354}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Platform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -910,7 +910,7 @@ GameObject:
   - 33: {fileID: 992162117}
   - 23: {fileID: 992162116}
   - 61: {fileID: 992162115}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Platform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -981,7 +981,7 @@ GameObject:
   - 33: {fileID: 1084819512}
   - 23: {fileID: 1084819511}
   - 61: {fileID: 1084819510}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Platform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1090,8 +1090,9 @@ GameObject:
   m_Component:
   - 4: {fileID: 1185325300}
   - 212: {fileID: 1185325304}
-  - 54: {fileID: 1185325303}
-  - 65: {fileID: 1185325302}
+  - 50: {fileID: 1185325305}
+  - 61: {fileID: 1185325303}
+  - 114: {fileID: 1185325302}
   - 114: {fileID: 1185325301}
   m_Layer: 0
   m_Name: Player 1
@@ -1119,43 +1120,39 @@ MonoBehaviour:
   m_GameObject: {fileID: 1185325299}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c987222565cb09945b8361d2b9afd42d, type: 3}
+  m_Script: {fileID: 11500000, guid: c5a940b8bcedc5548b7a3eafc292d578, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
-  grounded: 0
-  jumpSpeed: 0
-  jumpMaxHeight: 0
+  gravity: 15
+  speed: 40
+  jumpSpeed: 20
+  jumpMaxHeight: 5
   hoverMax: 0
   hoverMultiplier: 0
-  gravity: .00499999989
---- !u!65 &1185325302
-BoxCollider:
+--- !u!114 &1185325302
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1185325299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef58037b54f0b5344af9c894c1e944d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grounded: 0
+  layerNumForCollisionMask: 8
+--- !u!61 &1185325303
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1185325299}
+  m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: .800000012, y: .800000012, z: .200000003}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &1185325303
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1185325299}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: .0500000007
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 126
-  m_CollisionDetection: 0
+  m_Size: {x: .800000012, y: .800000012}
+  m_Center: {x: 0, y: 0}
 --- !u!212 &1185325304
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1180,6 +1177,21 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_Sprite: {fileID: 21300000, guid: f3b172daf10435242a23fcc5db40cb63, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
+--- !u!50 &1185325305
+Rigidbody2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1185325299}
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: .0500000007
+  m_GravityScale: 0
+  m_FixedAngle: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
 --- !u!1001 &1333346785
 Prefab:
   m_ObjectHideFlags: 0
@@ -1448,7 +1460,7 @@ GameObject:
   - 33: {fileID: 1917110421}
   - 23: {fileID: 1917110419}
   - 61: {fileID: 1917110420}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Platform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1519,7 +1531,7 @@ GameObject:
   - 33: {fileID: 1920107610}
   - 23: {fileID: 1920107609}
   - 61: {fileID: 1920107608}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Platform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1590,7 +1602,7 @@ GameObject:
   - 33: {fileID: 1946471400}
   - 23: {fileID: 1946471399}
   - 61: {fileID: 1946471398}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Platform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1661,7 +1673,7 @@ GameObject:
   - 33: {fileID: 1994725119}
   - 23: {fileID: 1994725118}
   - 61: {fileID: 1994725117}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Platform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
