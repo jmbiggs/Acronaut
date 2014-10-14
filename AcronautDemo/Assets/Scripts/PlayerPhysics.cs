@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 
 [RequireComponent(typeof(BoxCollider2D))]
+[RequireComponent(typeof(PlayerController))]
 public class PlayerPhysics : MonoBehaviour {
 
 	public bool grounded;
@@ -13,12 +14,15 @@ public class PlayerPhysics : MonoBehaviour {
 	private Vector2 s;
 	private Vector2 c;
 
+	private PlayerController pc;
+
 	private int horizRays = 3;
 	//private int vertRays = 3;
 	private float rayBuffer = 0.005f;
 
 	void Start() {
 		coll = GetComponent<BoxCollider2D> ();
+		pc = GetComponent<PlayerController> ();
 		collisionMask = 1 << layerNumForCollisionMask;
 
 		// variables to make calculations easier to type
@@ -41,32 +45,45 @@ public class PlayerPhysics : MonoBehaviour {
 		// length of ray
 		float dist = (vertTranslation == 0)? 2 : Mathf.Abs (vertTranslation);
 
-		// check for a collision
 		RaycastHit2D hitInfo;
 
+		// detect vertical collisions
 		for (int i=0; i < horizRays; i++) {
 			
 			Ray2D ray = new Ray2D(new Vector2(x,y), new Vector2(0,dir));
 			Debug.DrawRay (ray.origin, ray.direction, Color.cyan);
 			
 			hitInfo = Physics2D.Raycast (ray.origin, ray.direction, dist, collisionMask);
-			
-			if (hitInfo.collider != null) {
 
+			if (hitInfo.collider != null) {
 				// distance between player and object
 				float d = Vector2.Distance (ray.origin, hitInfo.point);
 
-				if (d > rayBuffer){
-					vertTranslation = -d + rayBuffer;
-				}
-				else {
-					vertTranslation = 0;
+				// down
+				if (dir == -1){
+					if (d > rayBuffer){
+						vertTranslation = -d + rayBuffer;
+					}
+					else {
+						vertTranslation = 0;
+					}
+
+					grounded = true;
+					break;
 				}
 
-				grounded = true;
-				break;
+				// up
+				else{
+					if (d > rayBuffer){
+						vertTranslation = d - rayBuffer;
+					}
+					else {
+						vertTranslation = 0;
+					}
+					pc.KillJump();
+				}
 			}
-			
+
 			// adjust x coordinate for each iteration of the loop
 			x += s.x/(horizRays - 1);
 		}

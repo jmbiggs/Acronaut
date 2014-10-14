@@ -1123,12 +1123,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5a940b8bcedc5548b7a3eafc292d578, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravity: 15
+  gravity: 12
   speed: 40
-  jumpSpeed: 20
-  jumpMaxHeight: 5
+  jumpSpeed: 15
+  jumpMaxHeight: 100
   hoverMax: 0
   hoverMultiplier: 0
+  dashLength: 10
+  dashMultiplier: 5
 --- !u!114 &1185325302
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1151,8 +1153,8 @@ BoxCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Size: {x: .800000012, y: .800000012}
-  m_Center: {x: 0, y: 0}
+  m_Size: {x: .610000014, y: .699999988}
+  m_Center: {x: 0, y: -.050999999}
 --- !u!212 &1185325304
 SpriteRenderer:
   m_ObjectHideFlags: 0
