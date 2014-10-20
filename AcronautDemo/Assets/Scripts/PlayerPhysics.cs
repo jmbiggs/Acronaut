@@ -43,6 +43,10 @@ public class PlayerPhysics : MonoBehaviour {
 		float y = p.y + c.y + s.y/2 * dir;
 		
 		// length of ray
+		// I think we should scale the length of the ray by the current velocity of the player as they travel downwards
+		// Also, let's only have rays appear when the player is moving downwards.
+		// That way, if we decide to have a platform that the player can jump through from below,
+		// They don't immediately snap to the platform once they jump through it.
 		float dist = (vertTranslation == 0)? 2 : Mathf.Abs (vertTranslation);
 
 		RaycastHit2D hitInfo;

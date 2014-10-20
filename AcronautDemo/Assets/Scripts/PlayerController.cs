@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour {
 	public float dashMultiplier;
 	
 	private float horizTranslation = 0f;
-	private float vertTranslation = 0f;
+	public float vertTranslation = 0f;
 
 	private PlayerPhysics pPhysics;
 
@@ -41,6 +41,11 @@ public class PlayerController : MonoBehaviour {
 	void Update () {
 
 		// apply gravity
+		/* Gravity needs to compound on itself the longer the player is in the air, since it's acceleration.
+		 * Currently, gravity moves you down at a constant speed, but only once you let go of the jump button.
+		 * Instead, lets have gravity ALWAYS affect the player when they're jumping, whether you're holding the jump button or not.
+		 * This will give it a more natural look.
+		 */
 		if (!pPhysics.grounded && jumpIsOver)
 			vertTranslation -= gravity * Time.deltaTime;
 
@@ -74,6 +79,10 @@ public class PlayerController : MonoBehaviour {
 		}
 		if (Input.GetButton ("Jump") && !jumpIsOver) {
 
+			/* Lets remove jumpMaxHeight from this, I think it'll just cause problems later on.
+			 * Instead, lets have the max height of a jump come organically from your jump speed
+			 * and gravity.
+			 */
 			if (currentJump < jumpMaxHeight)
 				currentJump += jumpSpeed;
 			else
@@ -84,14 +93,14 @@ public class PlayerController : MonoBehaviour {
 
 		// Handle trick button
 
-		if (Input.GetButtonDown ("Fire2") && pPhysics.grounded) {
+		if ((Input.GetButtonDown ("Fire2") || Input.GetKeyDown(KeyCode.Z)) && pPhysics.grounded) {
 			// initiate dash
 			dashTimer = dashLength;
 			dashIsOver = false;
 		}
 		if (Input.GetButtonUp ("Fire2")) {
 		}
-		if (Input.GetButton ("Fire2") && !dashIsOver) {
+		if ((Input.GetButton ("Fire2") || Input.GetKey(KeyCode.X)) && !dashIsOver) {
 			dashTimer -= Time.deltaTime;
 			if (dashTimer > 0)
 				horizTranslation *= dashMultiplier;
