@@ -30,6 +30,7 @@ public class PlayerPhysics : MonoBehaviour {
 		c = coll.center;
 	}
 
+	// Apply movement to the player while checking for collisions
 	public void Move(float horizTranslation, float vertTranslation) {
 
 		grounded = false;

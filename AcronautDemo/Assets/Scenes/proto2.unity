@@ -1123,14 +1123,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5a940b8bcedc5548b7a3eafc292d578, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravity: 12
+  gravity: 2
   speed: 40
-  jumpSpeed: 15
-  jumpMaxHeight: 100
+  jumpSpeed: 80
   hoverMax: 0
   hoverMultiplier: 0
-  dashLength: 10
-  dashMultiplier: 5
+  dashLength: .25
+  dashSpeed: 2
+  horizTranslation: 0
+  vertTranslation: 0
 --- !u!114 &1185325302
 MonoBehaviour:
   m_ObjectHideFlags: 0
