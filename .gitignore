@@ -20,6 +20,11 @@ local.properties
 /AcronautDemo/Library/metadata/*
 AcronautDemo/Library/
 AcronautDemo/Library/*
+AcronautDemo/Library
+AcronautDemo/AcronautDemo-csharp.sln
+AcronautDemo/AcronautDemo.sln
+AcronautDemo/AcronautDemo.userprefs
+
 
 # External tool builders
 .externalToolBuilders/

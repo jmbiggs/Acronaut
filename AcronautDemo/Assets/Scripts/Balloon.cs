@@ -44,6 +44,7 @@ public class Balloon : MonoBehaviour {
 			}
 			else {
 				pc.vertVelocity = setSpeedFromAbove;
+				pc.gravityVelocity = 0f;
 			}
 
 			// Missing an animation for the balloon popping, but this will make the balloon disappear

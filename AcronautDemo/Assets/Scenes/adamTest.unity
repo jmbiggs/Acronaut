@@ -1356,13 +1356,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gravity: 9
-  speed: 40
-  jumpSpeed: 9
+  speed: 15
+  jumpSpeed: 20
   dashLength: 10
   dashSpeed: 0
   horizVelocity: 0
   horizTranslation: 0
   vertVelocity: 0
+  gravityVelocity: 0
 --- !u!114 &1185325302
 MonoBehaviour:
   m_ObjectHideFlags: 0

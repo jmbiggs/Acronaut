@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour {
 	private PlayerPhysics pPhysics;
 	private bool facingRight = true;
 
-	private float gravityVelocity = 0f; // the current velocity due to gravity
+	public float gravityVelocity = 0f; // the current velocity due to gravity
 
 	//private bool isJumping = false;
 	private bool isDashing = false;
@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour {
 		vertVelocity += jumpSpeed;
 	}
 	public void KillJump(){
-		vertVelocity -= jumpSpeed;
+		vertVelocity = 0f;
 	}
 
 	public void DoubleJump(){
@@ -130,7 +130,8 @@ public class PlayerController : MonoBehaviour {
 		// Update trick behavior based on time passed
 
 		if (isDashing) {
-			dashTimer -= Time.deltaTime;
+			if (pPhysics.grounded) 
+				dashTimer -= Time.deltaTime;
 			if (dashTimer <= 0)
 				KillDash();
 		}
