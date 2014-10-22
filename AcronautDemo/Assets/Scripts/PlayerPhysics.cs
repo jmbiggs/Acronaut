@@ -9,8 +9,9 @@ public class PlayerPhysics : MonoBehaviour {
 	public int layerNumForCollisionMask;
 
 	private int collisionMask;
-
 	private BoxCollider2D coll;
+
+	// variables to make calculations easier to type
 	private Vector2 s;
 	private Vector2 c;
 
@@ -25,7 +26,6 @@ public class PlayerPhysics : MonoBehaviour {
 		pc = GetComponent<PlayerController> ();
 		collisionMask = 1 << layerNumForCollisionMask;
 
-		// variables to make calculations easier to type
 		s = coll.size;
 		c = coll.center;
 	}
@@ -65,6 +65,7 @@ public class PlayerPhysics : MonoBehaviour {
 				float d = Vector2.Distance (ray.origin, hitInfo.point);
 
 				// down
+				// if detection below player, stop moving and set grounded
 				if (dir == -1){
 					if (d > rayBuffer){
 						vertTranslation = -d + rayBuffer;
@@ -78,6 +79,7 @@ public class PlayerPhysics : MonoBehaviour {
 				}
 
 				// up
+				// if detection above player, stop moving and clear player's vertical velocity
 				else{
 					if (d > rayBuffer){
 						vertTranslation = d - rayBuffer;
@@ -85,7 +87,7 @@ public class PlayerPhysics : MonoBehaviour {
 					else {
 						vertTranslation = 0;
 					}
-					pc.KillJump();
+					pc.vertVelocity = 0f;
 				}
 			}
 

@@ -6,50 +6,50 @@ public class PlayerController : MonoBehaviour {
 
 	public float gravity;
 	public float speed;
-
 	public float jumpSpeed;
-//	public float jumpMaxHeight;
-	public float hoverMax;
-	public float hoverMultiplier;
-
 	public float dashLength;
 	public float dashSpeed;
-	
+	//	public float hoverMax;
+	//	public float hoverMultiplier;
+
+	public float horizVelocity = 0f;
 	public float horizTranslation = 0f;
-	public float vertTranslation = 0f;
+	public float vertVelocity = 0f;
 
 	private PlayerPhysics pPhysics;
-
 	private bool facingRight = true;
 
 	private float gravityVelocity = 0f; // the current velocity due to gravity
 
-	private bool jumpIsOver = true;  // whether or not the jump has run its course
-	private float currentJump = 0f; // when in a jump
-	private float hoverCount; // TO ADD
-
-
+	//private bool isJumping = false;
 	private bool isDashing = false;
 	private float dashTimer;
+	
+	//private float currentJump = 0f; // when in a jump
+	//private float hoverCount; // TO ADD
 
+	public void Jump(){
+		vertVelocity += jumpSpeed;
+	}
 	public void KillJump(){
-		jumpIsOver = true;
-		currentJump = 0f;
+		vertVelocity -= jumpSpeed;
 	}
 
 	public void DoubleJump(){
 
 	}
 
-	// ground dash in given direction
-	// -1 for left, 1 for right
-	public void Dash(int direction){
+	// ground dash in direction player is facing
+	public void Dash(){
 		isDashing = true;
 		dashTimer = dashLength;
-		dashSpeed *= direction; // apply direction to dash speed
+		if (!facingRight)
+			dashSpeed *= -1;
+		horizVelocity += dashSpeed;
 	}
 	public void KillDash(){
 		isDashing = false;
+		horizVelocity -= dashSpeed;
 		dashSpeed = Mathf.Abs(dashSpeed); // reset dash speed to its absolute value
 	}
 
@@ -78,71 +78,46 @@ public class PlayerController : MonoBehaviour {
 	void Update () {
 
 		// apply gravity
-		/* Gravity needs to compound on itself the longer the player is in the air, since it's acceleration.
-		 * Currently, gravity moves you down at a constant speed, but only once you let go of the jump button.
-		 * Instead, lets have gravity ALWAYS affect the player when they're jumping, whether you're holding the jump button or not.
-		 * This will give it a more natural look.
-		 */
-		if (!pPhysics.grounded) { // && jumpIsOver)
+		if (!pPhysics.grounded) {
 			gravityVelocity += gravity * Time.deltaTime;
-			vertTranslation -= gravityVelocity;
+			vertVelocity -= gravityVelocity;
 		}
+		
 		if (pPhysics.grounded) {
 			gravityVelocity = 0f;
+			vertVelocity = 0f;
 		}
 
 		// get the player's (possible) left/right input
 		// it should be between -1 and 1
-		var horizInput = Input.GetAxis ("Horizontal") * speed;		
-		horizTranslation += Time.deltaTime * horizInput;
+		var horizInput = Input.GetAxis ("Horizontal");
 		
 		// right direction
 		if (horizInput > 0 && !isDashing) {
+			horizTranslation += horizInput * speed * Time.deltaTime;
 			transform.localScale = new Vector3(1, 1, 1); // face right
 			facingRight = true;
 		}
 		// left direction
 		else if (horizInput < 0 && !isDashing) {
-			//horizTranslation *= -1;
+			horizTranslation += horizInput * speed * Time.deltaTime;
 			transform.localScale = new Vector3(-1, 1, 1); // face left
 			facingRight = false;
 		}
 
 		// Handle the jump button
 		if (Input.GetButtonDown ("Jump") && pPhysics.grounded) {
-			// initiate jump
-			currentJump = 0f;
-			jumpIsOver = false;
+			Jump();
 		}
 		if (Input.GetButtonUp ("Jump")) {
-			// immediately stop jump
-			KillJump();
-		}
-		if (Input.GetButton ("Jump") && !jumpIsOver) {
-
-			/* Lets remove jumpMaxHeight from this, I think it'll just cause problems later on.
-			 * Instead, lets have the max height of a jump come organically from your jump speed
-			 * and gravity.
-			 */
-			//if (currentJump < jumpMaxHeight)
-			currentJump += jumpSpeed;
-			//else
-			//	KillJump();
-
-			vertTranslation += Time.deltaTime * currentJump;
-		}
-		if (Input.GetButton ("Jump") && pPhysics.grounded) {
 			KillJump();
 		}
 
-		// Handle trick button
+		// Handle the trick button
 
 		// start dash
 		if ((Input.GetButtonDown ("Fire2")) && pPhysics.grounded) {
-			if (horizInput > 0)
-				Dash (1);
-			else if (horizInput < 0)
-				Dash (-1);
+			Dash();
 		}
 		// cancel dash (if input is in opposite direction of dash)
 		if (isDashing) {
@@ -152,24 +127,18 @@ public class PlayerController : MonoBehaviour {
 		}
 		
 		
-		// Apply tricks
+		// Update trick behavior based on time passed
 
 		if (isDashing) {
 			dashTimer -= Time.deltaTime;
-			if (dashTimer > 0)
-				horizTranslation += dashSpeed * Time.deltaTime;
-			else {
+			if (dashTimer <= 0)
 				KillDash();
-			}
 		}
-		
 
 		// call move
-		pPhysics.Move (horizTranslation, vertTranslation);
+		pPhysics.Move (horizVelocity*Time.deltaTime + horizTranslation, vertVelocity*Time.deltaTime);
 
-		// reset translations
+		// reset horizontal translation
 		horizTranslation = 0f;
-		vertTranslation = 0f;
-
 	}
 }

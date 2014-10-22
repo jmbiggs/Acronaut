@@ -39,11 +39,11 @@ public class Balloon : MonoBehaviour {
 	// If they land on top of the balloon from above, then their speed will be set to a positive value, so they bounce off the balloon.
 	void OnCollisionEnter2D(Collision2D coll) {
 		if (coll.gameObject.tag == "Player") {
-			if (pc.vertTranslation >= 0f) {
-				pc.vertTranslation += addedSpeedFromBelow;
+			if (pc.vertVelocity >= 0f) {
+				pc.vertVelocity += addedSpeedFromBelow;
 			}
 			else {
-				pc.vertTranslation = setSpeedFromAbove;
+				pc.vertVelocity = setSpeedFromAbove;
 			}
 
 			// Missing an animation for the balloon popping, but this will make the balloon disappear
