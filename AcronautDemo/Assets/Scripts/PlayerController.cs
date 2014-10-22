@@ -139,7 +139,7 @@ public class PlayerController : MonoBehaviour {
 		// Handle trick button
 
 		// start dash
-		if ((Input.GetButtonDown ("Fire2") || Input.GetKeyDown(KeyCode.Z)) && pPhysics.grounded) {
+		if ((Input.GetButtonDown ("Fire2")) && pPhysics.grounded) {
 			if (horizInput > 0)
 				Dash (1);
 			else if (horizInput < 0)
@@ -158,7 +158,7 @@ public class PlayerController : MonoBehaviour {
 		if (isDashing) {
 			dashTimer -= Time.deltaTime;
 			if (dashTimer > 0)
-				horizTranslation += dashSpeed;
+				horizTranslation += dashSpeed * Time.deltaTime;
 			else {
 				KillDash();
 			}

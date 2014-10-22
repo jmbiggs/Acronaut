@@ -16,6 +16,8 @@ local.properties
 .settings/
 .loadpath
 /AcronautDemo/Library/*
+/AcronautDemo/Library/
+/AcronautDemo/Library/metadata/*
 
 # External tool builders
 .externalToolBuilders/
