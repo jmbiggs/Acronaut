@@ -19,6 +19,7 @@ local.properties
 /AcronautDemo/Library/
 /AcronautDemo/Library/metadata/*
 AcronautDemo/Library/
+AcronautDemo/Library/*
 
 # External tool builders
 .externalToolBuilders/
