@@ -1132,6 +1132,8 @@ MonoBehaviour:
   horizVelocity: 0
   horizTranslation: 0
   vertVelocity: 0
+  gravityVelocity: 0
+  terminalVelocity: -15
 --- !u!114 &1185325302
 MonoBehaviour:
   m_ObjectHideFlags: 0

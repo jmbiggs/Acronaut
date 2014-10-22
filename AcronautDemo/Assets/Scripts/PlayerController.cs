@@ -20,11 +20,14 @@ public class PlayerController : MonoBehaviour {
 	private bool facingRight = true;
 
 	public float gravityVelocity = 0f; // the current velocity due to gravity
+	public float terminalVelocity = -3f; // the max speed the player can fall
 
 	//private bool isJumping = false;
 	private bool isDashing = false;
 	private float dashTimer;
-	
+
+	private bool hasUsedDoubleJump = false;
+
 	//private float currentJump = 0f; // when in a jump
 	//private float hoverCount; // TO ADD
 
@@ -79,11 +82,14 @@ public class PlayerController : MonoBehaviour {
 
 		// apply gravity
 		if (!pPhysics.grounded) {
-			gravityVelocity += gravity * Time.deltaTime;
-			vertVelocity -= gravityVelocity;
+			if (vertVelocity >= terminalVelocity) {
+				gravityVelocity += gravity * Time.deltaTime;
+				vertVelocity -= gravityVelocity;
+			}
 		}
 		
 		if (pPhysics.grounded) {
+			hasUsedDoubleJump = false;
 			gravityVelocity = 0f;
 			vertVelocity = 0f;
 		}
@@ -106,8 +112,14 @@ public class PlayerController : MonoBehaviour {
 		}
 
 		// Handle the jump button
-		if (Input.GetButtonDown ("Jump") && pPhysics.grounded) {
-			Jump();
+		if (Input.GetButtonDown ("Jump")) {
+			if (pPhysics.grounded)
+				Jump();
+			else if (!hasUsedDoubleJump) {
+				hasUsedDoubleJump = true;
+				gravityVelocity = 0f;
+				Jump();
+			}
 		}
 		if (Input.GetButtonUp ("Jump")) {
 			KillJump();
@@ -141,5 +153,10 @@ public class PlayerController : MonoBehaviour {
 
 		// reset horizontal translation
 		horizTranslation = 0f;
+	}
+
+
+	void Awake() {
+		Application.targetFrameRate = 60;
 	}
 }
