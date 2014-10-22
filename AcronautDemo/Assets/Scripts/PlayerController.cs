@@ -39,7 +39,9 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	public void DoubleJump(){
-
+		hasUsedDoubleJump = true;
+		vertVelocity = jumpSpeed;
+		gravityVelocity = 0f;
 	}
 
 	// ground dash in direction player is facing
@@ -116,9 +118,7 @@ public class PlayerController : MonoBehaviour {
 			if (pPhysics.grounded)
 				Jump();
 			else if (!hasUsedDoubleJump) {
-				hasUsedDoubleJump = true;
-				gravityVelocity = 0f;
-				Jump();
+				DoubleJump();
 			}
 		}
 		if (Input.GetButtonUp ("Jump")) {
