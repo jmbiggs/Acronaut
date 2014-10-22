@@ -12,24 +12,29 @@ public class PlayerController : MonoBehaviour {
 	//	public float hoverMax;
 	//	public float hoverMultiplier;
 
+	[HideInInspector]
 	public float horizVelocity = 0f;
+	[HideInInspector]
 	public float horizTranslation = 0f;
+	[HideInInspector]
 	public float vertVelocity = 0f;
+	[HideInInspector]
+	public float gravityVelocity = 0f; // the current velocity due to gravity
+	[HideInInspector]
+	public float terminalVelocity = -3f; // the max speed the player can fall
+
 
 	private PlayerPhysics pPhysics;
 	private bool facingRight = true;
 
-	public float gravityVelocity = 0f; // the current velocity due to gravity
-	public float terminalVelocity = -3f; // the max speed the player can fall
-
-	//private bool isJumping = false;
-	private bool isDashing = false;
 	private float dashTimer;
+	private bool isDashing = false;
+	private bool isHorizAirDashing = false;
+	private bool isVertAirDashing = false;
 
 	private bool hasUsedDoubleJump = false;
-
-	//private float currentJump = 0f; // when in a jump
-	//private float hoverCount; // TO ADD
+	private bool hasUsedHorizAirDash = false;
+	private bool hasUsedVertAirDash = false;
 
 	public void Jump(){
 		vertVelocity += jumpSpeed;
@@ -54,20 +59,43 @@ public class PlayerController : MonoBehaviour {
 	}
 	public void KillDash(){
 		isDashing = false;
-		horizVelocity -= dashSpeed;
+		horizVelocity = 0f;
 		dashSpeed = Mathf.Abs(dashSpeed); // reset dash speed to its absolute value
 	}
 
-	// horizontal air dash in given direction
-	// -1 for left, 1 for right
-	public void HorizAirDash(int direction){
-
+	// horizontal air dash in direction player is facing
+	// uses same dash length and speed as ground dash
+	public void HorizAirDash(){
+		hasUsedHorizAirDash = true;
+		isHorizAirDashing = true;
+		vertVelocity = 0f;
+		gravityVelocity = 0f;
+		dashTimer = dashLength;
+		if (!facingRight)
+			dashSpeed *= -1;
+		horizVelocity += dashSpeed;
+	}
+	public void KillHorizAirDash(){
+		isHorizAirDashing = false;
+		horizVelocity = 0f;
+		dashSpeed = Mathf.Abs(dashSpeed); // reset dash speed to its absolute value
 	}
 
 	// vertical air dash in given direction
 	// -1 for down, 1 for up
+	// uses same dash length and speed as ground dash
 	public void VertAirDash(int direction){
-
+		hasUsedVertAirDash = true;
+		isVertAirDashing = true;
+		gravityVelocity = 0f;
+		dashTimer = dashLength;
+		dashSpeed *= direction;
+		vertVelocity = dashSpeed;
+	}
+	public void KillVertAirDash(){
+		isVertAirDashing = false;
+		vertVelocity = 0f;
+		dashSpeed = Mathf.Abs(dashSpeed); // reset dash speed to its absolute value
 	}
 
 	// vertical wall dash in given direction
@@ -82,16 +110,20 @@ public class PlayerController : MonoBehaviour {
 
 	void Update () {
 
-		// apply gravity
-		if (!pPhysics.grounded) {
+		// apply gravity unless grounded or air dashing
+		if (!pPhysics.grounded && !isHorizAirDashing && !isVertAirDashing) {
 			if (vertVelocity >= terminalVelocity) {
 				gravityVelocity += gravity * Time.deltaTime;
 				vertVelocity -= gravityVelocity;
 			}
 		}
-		
+
+		// reset variables when grounded
+		// probably not optimal to do this every update, but it's easy for now
 		if (pPhysics.grounded) {
 			hasUsedDoubleJump = false;
+			hasUsedHorizAirDash = false;
+			hasUsedVertAirDash = false;
 			gravityVelocity = 0f;
 			vertVelocity = 0f;
 		}
@@ -113,6 +145,10 @@ public class PlayerController : MonoBehaviour {
 			facingRight = false;
 		}
 
+		// get the player's (possible) up/down input
+		// -1 for down, 1 for up
+		var vertInput = Input.GetAxis ("Vertical");
+
 		// Handle the jump button
 		if (Input.GetButtonDown ("Jump")) {
 			if (pPhysics.grounded)
@@ -127,7 +163,7 @@ public class PlayerController : MonoBehaviour {
 
 		// Handle the trick button
 
-		// start dash
+		// start ground dash
 		if ((Input.GetButtonDown ("Fire2")) && pPhysics.grounded) {
 			Dash();
 		}
@@ -137,15 +173,52 @@ public class PlayerController : MonoBehaviour {
 			if ((horizInput > 0 && dashDir == -1) || (horizInput < 0 && dashDir == 1))
 				KillDash();
 		}
-		
-		
+
+		// start horiz air dash
+		if ((Input.GetButtonDown ("Fire2")) && vertInput == 0 && !pPhysics.grounded && !hasUsedHorizAirDash) {
+			HorizAirDash();
+		}
+		// cancel dash (canceled by using a Double Jump or a Vertical Airdash, if the player has not used those up)
+		if (isHorizAirDashing) {
+			// TODO
+
+			// however, maybe we don't want to kill it by double jumping
+			// the extra speed in a double jump (like on the ground) is fun
+		}
+
+		// start vert air dash
+		if ((Input.GetButtonDown ("Fire2")) && vertInput != 0 && !pPhysics.grounded && !hasUsedVertAirDash) {
+			if (vertInput < 0)
+				VertAirDash(-1);
+			else
+				VertAirDash(1);
+		}
+		// cancel dash (canceled by using a Horizontal Airdash or Double Jump)
+		if (isVertAirDashing) {
+			// TODO
+		}
+
+
+
 		// Update trick behavior based on time passed
 
 		if (isDashing) {
-			if (pPhysics.grounded) 
+			if (pPhysics.grounded) // not sure why we want this?
 				dashTimer -= Time.deltaTime;
 			if (dashTimer <= 0)
 				KillDash();
+		}
+
+		if (isHorizAirDashing) {
+			dashTimer -= Time.deltaTime;
+			if (dashTimer <= 0)
+				KillHorizAirDash();
+		}
+
+		if (isVertAirDashing) {
+			dashTimer -= Time.deltaTime;
+			if (dashTimer <= 0)
+				KillVertAirDash();
 		}
 
 		// call move

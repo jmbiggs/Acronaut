@@ -5,7 +5,9 @@ using System.Collections;
 [RequireComponent(typeof(PlayerController))]
 public class PlayerPhysics : MonoBehaviour {
 
+	[HideInInspector]
 	public bool grounded;
+
 	public int layerNumForCollisionMask;
 
 	private int collisionMask;
