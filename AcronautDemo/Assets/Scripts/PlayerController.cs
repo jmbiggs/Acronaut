@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour {
 	private float gravityVelocity = 0f; // the current velocity due to gravity
 
 	private bool jumpIsOver = true;  // whether or not the jump has run its course
-	//private float currentJump = 0f; // when in a jump
+	private float currentJump = 0f; // when in a jump
 	private float hoverCount; // TO ADD
 
 
@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour {
 
 	public void KillJump(){
 		jumpIsOver = true;
-//		currentJump = 0f;
+		currentJump = 0f;
 	}
 
 	public void DoubleJump(){
@@ -111,8 +111,7 @@ public class PlayerController : MonoBehaviour {
 		// Handle the jump button
 		if (Input.GetButtonDown ("Jump") && pPhysics.grounded) {
 			// initiate jump
-			//jumpOrigin = transform.position.y;
-//			currentJump = 0f;
+			currentJump = 0f;
 			jumpIsOver = false;
 		}
 		if (Input.GetButtonUp ("Jump")) {
@@ -126,11 +125,11 @@ public class PlayerController : MonoBehaviour {
 			 * and gravity.
 			 */
 			//if (currentJump < jumpMaxHeight)
-			//	currentJump += jumpSpeed;
+			currentJump += jumpSpeed;
 			//else
 			//	KillJump();
 
-			vertTranslation += Time.deltaTime * jumpSpeed;
+			vertTranslation += Time.deltaTime * currentJump;
 		}
 		if (Input.GetButton ("Jump") && pPhysics.grounded) {
 			KillJump();

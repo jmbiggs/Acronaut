@@ -1123,9 +1123,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5a940b8bcedc5548b7a3eafc292d578, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravity: 2
+  gravity: 5
   speed: 40
-  jumpSpeed: 80
+  jumpSpeed: 350
   hoverMax: 0
   hoverMultiplier: 0
   dashLength: .25
