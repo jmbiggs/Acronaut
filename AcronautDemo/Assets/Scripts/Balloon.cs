@@ -47,6 +47,7 @@ public class Balloon : MonoBehaviour {
 				pc.gravityVelocity = 0f;
 			}
 
+			pc.RefreshAirMoves();
 			// Missing an animation for the balloon popping, but this will make the balloon disappear
 			sprite.enabled = false;
 			box.enabled = false;

@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour {
 	public float jumpSpeed;
 	public float dashLength;
 	public float dashSpeed;
+	public float vertAirDashLength;
 	//	public float hoverMax;
 	//	public float hoverMultiplier;
 
@@ -28,6 +29,7 @@ public class PlayerController : MonoBehaviour {
 	private bool facingRight = true;
 
 	private float dashTimer;
+
 	private bool isDashing = false;
 	private bool isHorizAirDashing = false;
 	private bool isVertAirDashing = false;
@@ -63,6 +65,12 @@ public class PlayerController : MonoBehaviour {
 		dashSpeed = Mathf.Abs(dashSpeed); // reset dash speed to its absolute value
 	}
 
+	public void RefreshAirMoves() {
+		hasUsedDoubleJump = false;
+		hasUsedHorizAirDash = false;
+		hasUsedVertAirDash = false;
+	}
+
 	// horizontal air dash in direction player is facing
 	// uses same dash length and speed as ground dash
 	public void HorizAirDash(){
@@ -75,6 +83,7 @@ public class PlayerController : MonoBehaviour {
 			dashSpeed *= -1;
 		horizVelocity += dashSpeed;
 	}
+
 	public void KillHorizAirDash(){
 		isHorizAirDashing = false;
 		horizVelocity = 0f;
@@ -88,10 +97,11 @@ public class PlayerController : MonoBehaviour {
 		hasUsedVertAirDash = true;
 		isVertAirDashing = true;
 		gravityVelocity = 0f;
-		dashTimer = dashLength;
+		dashTimer = vertAirDashLength;
 		dashSpeed *= direction;
 		vertVelocity = dashSpeed;
 	}
+
 	public void KillVertAirDash(){
 		isVertAirDashing = false;
 		vertVelocity = 0f;
@@ -121,9 +131,7 @@ public class PlayerController : MonoBehaviour {
 		// reset variables when grounded
 		// probably not optimal to do this every update, but it's easy for now
 		if (pPhysics.grounded) {
-			hasUsedDoubleJump = false;
-			hasUsedHorizAirDash = false;
-			hasUsedVertAirDash = false;
+			RefreshAirMoves();
 			gravityVelocity = 0f;
 			vertVelocity = 0f;
 		}
@@ -203,7 +211,10 @@ public class PlayerController : MonoBehaviour {
 		// Update trick behavior based on time passed
 
 		if (isDashing) {
-			if (pPhysics.grounded) // not sure why we want this?
+			if (pPhysics.grounded) // This is so the player keeps their increased horizontal speed
+				// from the dash while they're jumping. Basically, Dash Jumping.
+				// The Dash Jump (and increased horizontal speed) ends when the player touches the ground again.
+				// We need a method in Physics that's called when the player becomes grounded so we can end dashes, refresh air moves, etc.
 				dashTimer -= Time.deltaTime;
 			if (dashTimer <= 0)
 				KillDash();
