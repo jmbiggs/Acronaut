@@ -1094,6 +1094,7 @@ GameObject:
   - 61: {fileID: 1185325303}
   - 114: {fileID: 1185325302}
   - 114: {fileID: 1185325301}
+  - 95: {fileID: 1185325306}
   m_Layer: 0
   m_Name: Player 1
   m_TagString: Player
@@ -1198,6 +1199,21 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
+--- !u!95 &1185325306
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1185325299}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d2dbe66705f3b9d4d86e92c7bbfc65e1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1001 &1333346785
 Prefab:
   m_ObjectHideFlags: 0

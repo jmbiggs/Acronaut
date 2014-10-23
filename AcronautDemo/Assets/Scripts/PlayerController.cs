@@ -38,6 +38,8 @@ public class PlayerController : MonoBehaviour {
 	private bool hasUsedHorizAirDash = false;
 	private bool hasUsedVertAirDash = false;
 
+	private Animator animator;
+
 	public void Jump(){
 		vertVelocity += jumpSpeed;
 	}
@@ -116,6 +118,7 @@ public class PlayerController : MonoBehaviour {
 
 	void Start() {
 		pPhysics = GetComponent<PlayerPhysics> ();
+		animator = GetComponent<Animator>();
 	}
 
 	void Update () {
@@ -142,12 +145,14 @@ public class PlayerController : MonoBehaviour {
 		
 		// right direction
 		if (horizInput > 0 && !isDashing) {
+
 			horizTranslation += horizInput * speed * Time.deltaTime;
 			transform.localScale = new Vector3(1, 1, 1); // face right
 			facingRight = true;
 		}
 		// left direction
 		else if (horizInput < 0 && !isDashing) {
+			animator.SetFloat("Speed", Mathf.Abs(horizInput));
 			horizTranslation += horizInput * speed * Time.deltaTime;
 			transform.localScale = new Vector3(-1, 1, 1); // face left
 			facingRight = false;
@@ -231,6 +236,9 @@ public class PlayerController : MonoBehaviour {
 			if (dashTimer <= 0)
 				KillVertAirDash();
 		}
+
+		animator.SetFloat("Speed", Mathf.Abs(horizInput));
+		animator.SetBool("Grounded", pPhysics.grounded);
 
 		// call move
 		pPhysics.Move (horizVelocity*Time.deltaTime + horizTranslation, vertVelocity*Time.deltaTime);
