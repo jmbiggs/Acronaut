@@ -5,8 +5,10 @@ using System.Collections;
 [RequireComponent(typeof(PlayerController))]
 public class PlayerPhysics : MonoBehaviour {
 
-	[HideInInspector]
+	//[HideInInspector]
 	public bool grounded;
+	//[HideInInspector]
+	public bool wallClinging;
 
 	public int layerNumForCollisionMask;
 
@@ -14,14 +16,14 @@ public class PlayerPhysics : MonoBehaviour {
 	private BoxCollider2D coll;
 
 	// variables to make calculations easier to type
-	private Vector2 s;
-	private Vector2 c;
+	private Vector2 s; // size of collider
+	private Vector2 c; // center of collider
 
 	private PlayerController pc;
 
 	private int horizRays = 3;
-	//private int vertRays = 3;
-	private float rayBuffer = 0.005f;
+	private int vertRays = 3;
+	private float rayBuffer = 0.001f;
 
 	void Start() {
 		coll = GetComponent<BoxCollider2D> ();
@@ -36,12 +38,13 @@ public class PlayerPhysics : MonoBehaviour {
 	public void Move(float horizTranslation, float vertTranslation) {
 
 		grounded = false;
+		wallClinging = false;
 
 		// direction to cast rays
 		float dir = (vertTranslation > 0)? 1f : -1f;
 
 		// coordinates of ray origin
-		Vector2 p = transform.position;	
+		Vector2 p = transform.position;
 		float x = (p.x + c.x - s.x/2);
 		float y = p.y + c.y + s.y/2 * dir;
 		
@@ -50,7 +53,7 @@ public class PlayerPhysics : MonoBehaviour {
 		// Also, let's only have rays appear when the player is moving downwards.
 		// That way, if we decide to have a platform that the player can jump through from below,
 		// They don't immediately snap to the platform once they jump through it.
-		float dist = (vertTranslation == 0)? 2 : Mathf.Abs (vertTranslation);
+		float dist = (vertTranslation == 0)? 0.5f : Mathf.Abs (vertTranslation);
 
 		RaycastHit2D hitInfo;
 
@@ -58,7 +61,7 @@ public class PlayerPhysics : MonoBehaviour {
 		for (int i=0; i < horizRays; i++) {
 			
 			Ray2D ray = new Ray2D(new Vector2(x,y), new Vector2(0,dir));
-			Debug.DrawRay (ray.origin, ray.direction, Color.cyan);
+			Debug.DrawRay (ray.origin, ray.direction*dist, Color.cyan);
 			
 			hitInfo = Physics2D.Raycast (ray.origin, ray.direction, dist, collisionMask);
 
@@ -96,6 +99,66 @@ public class PlayerPhysics : MonoBehaviour {
 			// adjust x coordinate for each iteration of the loop
 			x += s.x/(horizRays - 1);
 		}
+
+		// check for horizontal collisions
+		if (horizTranslation != 0) {
+
+			// direction to cast rays
+			float dirH = (horizTranslation > 0)? 1f : -1f;
+
+			// reset ray origin
+			y = p.y + c.y - s.y/2;
+			x = p.x + c.x + s.x/2 * dirH;
+
+			// length of ray
+			float distH = Mathf.Abs (horizTranslation);
+			
+			RaycastHit2D hitInfoH;
+			
+			// detect horiz collisions
+			for (int i=0; i < vertRays; i++) {
+				
+				Ray2D rayH = new Ray2D(new Vector2(x,y), new Vector2(dirH, 0));
+				Debug.DrawRay (rayH.origin, rayH.direction, Color.cyan);
+				
+				hitInfoH = Physics2D.Raycast (rayH.origin, rayH.direction, distH, collisionMask);
+				
+				if (hitInfoH.collider != null) {
+					// distance between player and object
+					float d = Vector2.Distance (rayH.origin, hitInfoH.point);
+
+					// stop horizontal movement and set wall clinging
+					if (d > rayBuffer){
+						// left
+						if (dirH == -1){
+							horizTranslation = -d + rayBuffer;
+						}
+						// right
+						else{
+							horizTranslation = d - rayBuffer;
+						}
+					}
+					else {
+						horizTranslation = 0;
+					}
+					wallClinging = true;
+					break;
+				}
+
+				// adjust y coordinate for each iteration of the loop
+				y += s.y/(vertRays - 1);
+			}
+
+
+		}
+
+
+
+
+
+
+
+
 		transform.Translate (horizTranslation, vertTranslation, 0);
 	}	
 }
