@@ -180,12 +180,7 @@ public class PlayerController : MonoBehaviour {
 		if ((Input.GetButtonDown ("Fire2")) && pPhysics.grounded) {
 			Dash();
 		}
-		// cancel dash (if input is in opposite direction of dash)
-		if (isDashing) {
-			float dashDir = Mathf.Sign(dashSpeed);
-			if ((horizInput > 0 && dashDir == -1) || (horizInput < 0 && dashDir == 1))
-				KillDash();
-		}
+
 
 		// start horiz air dash
 		if ((Input.GetButtonDown ("Fire2")) && vertInput == 0 && !pPhysics.grounded && !hasUsedHorizAirDash) {
@@ -216,6 +211,9 @@ public class PlayerController : MonoBehaviour {
 		// Update trick behavior based on time passed
 
 		if (isDashing) {
+			float dashDir = Mathf.Sign(dashSpeed);
+			if ((horizInput > 0 && dashDir == -1) || (horizInput < 0 && dashDir == 1))
+				KillDash();
 			if (pPhysics.grounded) // This is so the player keeps their increased horizontal speed
 				// from the dash while they're jumping. Basically, Dash Jumping.
 				// The Dash Jump (and increased horizontal speed) ends when the player touches the ground again.
@@ -225,13 +223,13 @@ public class PlayerController : MonoBehaviour {
 				KillDash();
 		}
 
-		if (isHorizAirDashing) {
+		else if (isHorizAirDashing) {
 			dashTimer -= Time.deltaTime;
 			if (dashTimer <= 0)
 				KillHorizAirDash();
 		}
 
-		if (isVertAirDashing) {
+		else if (isVertAirDashing) {
 			dashTimer -= Time.deltaTime;
 			if (dashTimer <= 0)
 				KillVertAirDash();
