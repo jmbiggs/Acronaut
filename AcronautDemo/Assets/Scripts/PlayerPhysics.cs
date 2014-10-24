@@ -10,10 +10,13 @@ public class PlayerPhysics : MonoBehaviour {
 	//[HideInInspector]
 	public bool wallClinging;
 
+	public float raySizeNoVertVel; // downward raycast size when not moving vertically
 	public int layerNumForCollisionMask;
 
 	private int collisionMask;
 	private BoxCollider2D coll;
+
+	private bool wasGrounded;
 
 	// variables to make calculations easier to type
 	private Vector2 s; // size of collider
@@ -37,6 +40,7 @@ public class PlayerPhysics : MonoBehaviour {
 	// Apply movement to the player while checking for collisions
 	public void Move(float horizTranslation, float vertTranslation) {
 
+		wasGrounded = grounded;
 		grounded = false;
 		wallClinging = false;
 
@@ -53,7 +57,7 @@ public class PlayerPhysics : MonoBehaviour {
 		// Also, let's only have rays appear when the player is moving downwards.
 		// That way, if we decide to have a platform that the player can jump through from below,
 		// They don't immediately snap to the platform once they jump through it.
-		float dist = (vertTranslation == 0)? 0.5f : Mathf.Abs (vertTranslation);
+		float dist = (vertTranslation == 0)? raySizeNoVertVel : Mathf.Abs (vertTranslation);
 
 		RaycastHit2D hitInfo;
 
@@ -80,6 +84,8 @@ public class PlayerPhysics : MonoBehaviour {
 					}
 
 					grounded = true;
+					if (!wasGrounded)
+						pc.SetGrounded();
 					break;
 				}
 
@@ -92,7 +98,7 @@ public class PlayerPhysics : MonoBehaviour {
 					else {
 						vertTranslation = 0;
 					}
-					pc.vertVelocity = 0f;
+					pc.KillJump();
 				}
 			}
 
@@ -142,6 +148,7 @@ public class PlayerPhysics : MonoBehaviour {
 						horizTranslation = 0;
 					}
 					wallClinging = true;
+					pc.horizVelocity = 0f;
 					break;
 				}
 

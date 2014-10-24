@@ -1149,6 +1149,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   grounded: 0
   wallClinging: 0
+  raySizeNoVertVel: .100000001
   layerNumForCollisionMask: 8
 --- !u!61 &1185325303
 BoxCollider2D:

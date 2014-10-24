@@ -67,12 +67,6 @@ public class PlayerController : MonoBehaviour {
 		dashSpeed = Mathf.Abs(dashSpeed); // reset dash speed to its absolute value
 	}
 
-	public void RefreshAirMoves() {
-		hasUsedDoubleJump = false;
-		hasUsedHorizAirDash = false;
-		hasUsedVertAirDash = false;
-	}
-
 	// horizontal air dash in direction player is facing
 	// uses same dash length and speed as ground dash
 	public void HorizAirDash(){
@@ -116,6 +110,22 @@ public class PlayerController : MonoBehaviour {
 
 	}
 
+	// restores ability to do all air moves
+	public void RefreshAirMoves() {
+		hasUsedDoubleJump = false;
+		hasUsedHorizAirDash = false;
+		hasUsedVertAirDash = false;
+	}
+
+	// called by PlayerPhysics when grounded
+	public void SetGrounded(){
+		if (pPhysics.grounded) {
+			RefreshAirMoves();
+			gravityVelocity = 0f;
+			vertVelocity = 0f;
+		}
+	}
+
 	void Start() {
 		pPhysics = GetComponent<PlayerPhysics> ();
 		animator = GetComponent<Animator>();
@@ -129,14 +139,6 @@ public class PlayerController : MonoBehaviour {
 				gravityVelocity += gravity * Time.deltaTime;
 				vertVelocity -= gravityVelocity;
 			}
-		}
-
-		// reset variables when grounded
-		// probably not optimal to do this every update, but it's easy for now
-		if (pPhysics.grounded) {
-			RefreshAirMoves();
-			gravityVelocity = 0f;
-			vertVelocity = 0f;
 		}
 
 		// get the player's (possible) left/right input
@@ -177,13 +179,13 @@ public class PlayerController : MonoBehaviour {
 		// Handle the trick button
 
 		// start ground dash
-		if ((Input.GetButtonDown ("Fire2")) && pPhysics.grounded) {
+		if ((Input.GetButtonDown ("Trick")) && pPhysics.grounded) {
 			Dash();
 		}
 
 
 		// start horiz air dash
-		if ((Input.GetButtonDown ("Fire2")) && vertInput == 0 && !pPhysics.grounded && !hasUsedHorizAirDash) {
+		if ((Input.GetButtonDown ("Trick")) && vertInput == 0 && !pPhysics.grounded && !hasUsedHorizAirDash) {
 			HorizAirDash();
 		}
 		// cancel dash (canceled by using a Double Jump or a Vertical Airdash, if the player has not used those up)
@@ -195,7 +197,7 @@ public class PlayerController : MonoBehaviour {
 		}
 
 		// start vert air dash
-		if ((Input.GetButtonDown ("Fire2")) && vertInput != 0 && !pPhysics.grounded && !hasUsedVertAirDash) {
+		if ((Input.GetButtonDown ("Trick")) && vertInput != 0 && !pPhysics.grounded && !hasUsedVertAirDash) {
 			if (vertInput < 0)
 				VertAirDash(-1);
 			else
