@@ -5,10 +5,12 @@ using System.Collections;
 [RequireComponent(typeof(PlayerController))]
 public class PlayerPhysics : MonoBehaviour {
 
-	//[HideInInspector]
+	[HideInInspector]
 	public bool grounded;
-	//[HideInInspector]
+	[HideInInspector]
 	public bool wallClinging;
+	[HideInInspector]
+	public float wallClingingDir;  // -1 for left cling, 1 for right cling
 
 	public float raySizeNoVertVel; // downward raycast size when not moving vertically
 	public int layerNumForCollisionMask;
@@ -53,7 +55,6 @@ public class PlayerPhysics : MonoBehaviour {
 		float y = p.y + c.y + s.y/2 * dir;
 		
 		// length of ray
-		// I think we should scale the length of the ray by the current velocity of the player as they travel downwards
 		// Also, let's only have rays appear when the player is moving downwards.
 		// That way, if we decide to have a platform that the player can jump through from below,
 		// They don't immediately snap to the platform once they jump through it.
@@ -148,6 +149,7 @@ public class PlayerPhysics : MonoBehaviour {
 						horizTranslation = 0;
 					}
 					wallClinging = true;
+					wallClingingDir = dirH;
 					pc.horizVelocity = 0f;
 					break;
 				}
@@ -156,16 +158,10 @@ public class PlayerPhysics : MonoBehaviour {
 				y += s.y/(vertRays - 1);
 			}
 
-
+			if (grounded)
+				wallClinging = false;
 		}
-
-
-
-
-
-
-
-
+		
 		transform.Translate (horizTranslation, vertTranslation, 0);
 	}	
 }

@@ -10,8 +10,8 @@ public class PlayerController : MonoBehaviour {
 	public float dashLength;
 	public float dashSpeed;
 	public float vertAirDashLength;
-	//	public float hoverMax;
-	//	public float hoverMultiplier;
+	public float wallSlideSpeed;
+	public float wallJumpSpeed;
 
 	[HideInInspector]
 	public float horizVelocity = 0f;
@@ -23,8 +23,7 @@ public class PlayerController : MonoBehaviour {
 	public float gravityVelocity = 0f; // the current velocity due to gravity
 	[HideInInspector]
 	public float terminalVelocity = -3f; // the max speed the player can fall
-
-
+	
 	private PlayerPhysics pPhysics;
 	private bool facingRight = true;
 
@@ -45,6 +44,10 @@ public class PlayerController : MonoBehaviour {
 	}
 	public void KillJump(){
 		vertVelocity = 0f;
+	}
+
+	public void WallJump(){
+		horizVelocity = wallJumpSpeed * -1 * pPhysics.wallClingingDir;
 	}
 
 	public void DoubleJump(){
@@ -79,7 +82,6 @@ public class PlayerController : MonoBehaviour {
 			dashSpeed *= -1;
 		horizVelocity += dashSpeed;
 	}
-
 	public void KillHorizAirDash(){
 		isHorizAirDashing = false;
 		horizVelocity = 0f;
@@ -97,7 +99,6 @@ public class PlayerController : MonoBehaviour {
 		dashSpeed *= direction;
 		vertVelocity = dashSpeed;
 	}
-
 	public void KillVertAirDash(){
 		isVertAirDashing = false;
 		vertVelocity = 0f;
@@ -168,6 +169,8 @@ public class PlayerController : MonoBehaviour {
 		if (Input.GetButtonDown ("Jump")) {
 			if (pPhysics.grounded)
 				Jump();
+			else if (pPhysics.wallClinging)
+				WallJump();
 			else if (!hasUsedDoubleJump) {
 				DoubleJump();
 			}
@@ -216,10 +219,7 @@ public class PlayerController : MonoBehaviour {
 			float dashDir = Mathf.Sign(dashSpeed);
 			if ((horizInput > 0 && dashDir == -1) || (horizInput < 0 && dashDir == 1))
 				KillDash();
-			if (pPhysics.grounded) // This is so the player keeps their increased horizontal speed
-				// from the dash while they're jumping. Basically, Dash Jumping.
-				// The Dash Jump (and increased horizontal speed) ends when the player touches the ground again.
-				// We need a method in Physics that's called when the player becomes grounded so we can end dashes, refresh air moves, etc.
+			if (pPhysics.grounded)
 				dashTimer -= Time.deltaTime;
 			if (dashTimer <= 0)
 				KillDash();
@@ -236,6 +236,13 @@ public class PlayerController : MonoBehaviour {
 			if (dashTimer <= 0)
 				KillVertAirDash();
 		}
+
+		// Update velocity if wall clinging
+
+		if (pPhysics.wallClinging) {
+			vertVelocity = -1 * wallSlideSpeed;
+		}
+
 
 		animator.SetFloat("Speed", Mathf.Abs(horizInput));
 		animator.SetBool("Grounded", pPhysics.grounded);

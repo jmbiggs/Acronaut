@@ -1131,6 +1131,8 @@ MonoBehaviour:
   dashLength: .25
   dashSpeed: 25
   vertAirDashLength: .150000006
+  wallSlideSpeed: 7
+  wallJumpSpeed: 10
   horizVelocity: 0
   horizTranslation: 0
   vertVelocity: 0
@@ -1149,6 +1151,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   grounded: 0
   wallClinging: 0
+  wallClingingDir: 0
   raySizeNoVertVel: .100000001
   layerNumForCollisionMask: 8
 --- !u!61 &1185325303
