@@ -48,6 +48,7 @@ public class PlayerController : MonoBehaviour {
 
 	public void WallJump(){
 		horizVelocity = wallJumpSpeed * -1 * pPhysics.wallClingingDir;
+		vertVelocity += jumpSpeed * 10;
 	}
 
 	public void DoubleJump(){
@@ -124,6 +125,7 @@ public class PlayerController : MonoBehaviour {
 			RefreshAirMoves();
 			gravityVelocity = 0f;
 			vertVelocity = 0f;
+			horizVelocity = 0f;
 		}
 	}
 
@@ -135,11 +137,15 @@ public class PlayerController : MonoBehaviour {
 	void Update () {
 
 		// apply gravity unless grounded or air dashing
-		if (!pPhysics.grounded && !isHorizAirDashing && !isVertAirDashing) {
+		if (!pPhysics.grounded && !pPhysics.wallClinging && !isHorizAirDashing && !isVertAirDashing) {
 			if (vertVelocity >= terminalVelocity) {
 				gravityVelocity += gravity * Time.deltaTime;
 				vertVelocity -= gravityVelocity;
 			}
+		}
+		// Apply reduced gravity if wall clinging		
+		else if (pPhysics.wallClinging) {
+			gravityVelocity += wallSlideSpeed;
 		}
 
 		// get the player's (possible) left/right input
@@ -236,13 +242,6 @@ public class PlayerController : MonoBehaviour {
 			if (dashTimer <= 0)
 				KillVertAirDash();
 		}
-
-		// Update velocity if wall clinging
-
-		if (pPhysics.wallClinging) {
-			vertVelocity = -1 * wallSlideSpeed;
-		}
-
 
 		animator.SetFloat("Speed", Mathf.Abs(horizInput));
 		animator.SetBool("Grounded", pPhysics.grounded);
