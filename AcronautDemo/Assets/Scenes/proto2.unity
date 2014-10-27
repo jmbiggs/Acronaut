@@ -1138,6 +1138,7 @@ MonoBehaviour:
   wallSlideSpeed: 7
   wallJumpSpeed: 30
   wallJumpLength: .0500000007
+  wallDashLength: .200000003
   horizVelocity: 0
   horizTranslation: 0
   vertVelocity: 0

@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour {
 	public float wallSlideSpeed; // like a gravity value when wall sliding
 	public float wallJumpSpeed;
 	public float wallJumpLength; // amount of time to move horizontally in wall jump
+	public float wallDashLength;
 
 	[HideInInspector]
 	public float horizVelocity = 0f;
@@ -34,11 +35,13 @@ public class PlayerController : MonoBehaviour {
 	private bool isDashing = false;
 	private bool isHorizAirDashing = false;
 	private bool isVertAirDashing = false;
+	private bool isWallDashing = false;
 	private bool inWallJump = false;
 
 	private bool hasUsedDoubleJump = false;
 	private bool hasUsedHorizAirDash = false;
 	private bool hasUsedVertAirDash = false;
+	private bool hasUsedWallDash = false;
 
 	private Animator animator;
 
@@ -98,6 +101,10 @@ public class PlayerController : MonoBehaviour {
 	// vertical air dash in given direction
 	// -1 for down, 1 for up
 	// uses same dash length and speed as ground dash
+
+	// downward vertical dash feels weird to me when the timer runs out and you go back to a slower speed.
+	// maybe animation will help this seem more normal, or maybe we shouldn't time downward dashes? -MB
+
 	public void VertAirDash(int direction){
 		hasUsedVertAirDash = true;
 		isVertAirDashing = true;
@@ -114,8 +121,18 @@ public class PlayerController : MonoBehaviour {
 
 	// vertical wall dash in given direction
 	// -1 for down, 1 for up
+	// using same dash speed as the other dashes
 	public void WallDash(int direction){
-
+		hasUsedWallDash = true;
+		isWallDashing = true;
+		dashTimer = wallDashLength;
+		dashSpeed *= direction;
+		vertVelocity = dashSpeed;
+	}
+	public void KillWallDash(){
+		isWallDashing = false;
+		vertVelocity = 0f;
+		dashSpeed = Mathf.Abs(dashSpeed); // reset dash speed to its absolute value
 	}
 
 	// restores ability to do all air moves
@@ -123,6 +140,7 @@ public class PlayerController : MonoBehaviour {
 		hasUsedDoubleJump = false;
 		hasUsedHorizAirDash = false;
 		hasUsedVertAirDash = false;
+		hasUsedWallDash = false;
 	}
 
 	// called by PlayerPhysics when grounded
@@ -150,7 +168,7 @@ public class PlayerController : MonoBehaviour {
 			}
 		}
 		// Apply reduced "gravity" if wall clinging		
-		else if (pPhysics.wallClinging) {
+		else if (pPhysics.wallClinging && !isWallDashing) {
 			vertVelocity = wallSlideSpeed * -1;
 		}
 
@@ -200,7 +218,7 @@ public class PlayerController : MonoBehaviour {
 
 
 		// start horiz air dash
-		if ((Input.GetButtonDown ("Trick")) && vertInput == 0 && !pPhysics.grounded && !hasUsedHorizAirDash) {
+		if ((Input.GetButtonDown ("Trick")) && vertInput == 0 && !pPhysics.grounded && !hasUsedHorizAirDash && !pPhysics.wallClinging) {
 			HorizAirDash();
 		}
 		// cancel dash (canceled by using a Double Jump or a Vertical Airdash, if the player has not used those up)
@@ -212,7 +230,7 @@ public class PlayerController : MonoBehaviour {
 		}
 
 		// start vert air dash
-		if ((Input.GetButtonDown ("Trick")) && vertInput != 0 && !pPhysics.grounded && !hasUsedVertAirDash) {
+		if ((Input.GetButtonDown ("Trick")) && vertInput != 0 && !pPhysics.grounded && !hasUsedVertAirDash && !pPhysics.wallClinging) {
 			if (vertInput < 0)
 				VertAirDash(-1);
 			else
@@ -223,6 +241,17 @@ public class PlayerController : MonoBehaviour {
 			// TODO
 		}
 
+		// start wall dash
+		if ((Input.GetButtonDown ("Trick")) && vertInput != 0 && !hasUsedWallDash && pPhysics.wallClinging) {
+			if (vertInput < 0)
+				WallDash(-1);
+			else
+				WallDash(1);
+		}
+		// cancel dash
+		if (isWallDashing) {
+			// TODO
+		}
 
 
 		// Update trick behavior based on time passed
@@ -253,6 +282,11 @@ public class PlayerController : MonoBehaviour {
 				horizVelocity = 0f;
 				vertVelocity = wallJumpSpeed;
 			}
+		}
+		else if (isWallDashing) {
+			dashTimer -= Time.deltaTime;
+			if (dashTimer <= 0)
+				KillWallDash();
 		}
 
 		animator.SetFloat("Speed", Mathf.Abs(horizInput));

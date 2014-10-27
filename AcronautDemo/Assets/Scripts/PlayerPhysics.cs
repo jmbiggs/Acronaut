@@ -19,6 +19,7 @@ public class PlayerPhysics : MonoBehaviour {
 	private BoxCollider2D coll;
 
 	private bool wasGrounded;
+	private bool wasClinging;
 
 	// variables to make calculations easier to type
 	private Vector2 s; // size of collider
@@ -44,6 +45,7 @@ public class PlayerPhysics : MonoBehaviour {
 
 		wasGrounded = grounded;
 		grounded = false;
+		wasClinging = wallClinging;
 		wallClinging = false;
 
 		// direction to cast rays
@@ -150,6 +152,8 @@ public class PlayerPhysics : MonoBehaviour {
 					}
 					wallClinging = true;
 					wallClingingDir = dirH;
+					if (!wasClinging)
+						pc.SetGrounded();
 					pc.horizVelocity = 0f;
 					break;
 				}
