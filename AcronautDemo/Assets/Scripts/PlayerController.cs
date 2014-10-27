@@ -10,8 +10,9 @@ public class PlayerController : MonoBehaviour {
 	public float dashLength;
 	public float dashSpeed;
 	public float vertAirDashLength;
-	public float wallSlideSpeed;
+	public float wallSlideSpeed; // like a gravity value when wall sliding
 	public float wallJumpSpeed;
+	public float wallJumpLength; // amount of time to move horizontally in wall jump
 
 	[HideInInspector]
 	public float horizVelocity = 0f;
@@ -28,10 +29,12 @@ public class PlayerController : MonoBehaviour {
 	private bool facingRight = true;
 
 	private float dashTimer;
+	private float wallJumpTimer;
 
 	private bool isDashing = false;
 	private bool isHorizAirDashing = false;
 	private bool isVertAirDashing = false;
+	private bool inWallJump = false;
 
 	private bool hasUsedDoubleJump = false;
 	private bool hasUsedHorizAirDash = false;
@@ -47,8 +50,11 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	public void WallJump(){
-		horizVelocity = wallJumpSpeed * -1 * pPhysics.wallClingingDir;
-		vertVelocity += jumpSpeed * 10;
+		inWallJump = true;
+		vertVelocity = 0f;
+		gravityVelocity = 0f;
+		horizVelocity += wallJumpSpeed * -1 * pPhysics.wallClingingDir;
+		wallJumpTimer = wallJumpLength;
 	}
 
 	public void DoubleJump(){
@@ -136,16 +142,16 @@ public class PlayerController : MonoBehaviour {
 
 	void Update () {
 
-		// apply gravity unless grounded or air dashing
-		if (!pPhysics.grounded && !pPhysics.wallClinging && !isHorizAirDashing && !isVertAirDashing) {
+		// apply gravity unless grounded, wall clinging, air dashing or in a wall jump
+		if (!pPhysics.grounded && !pPhysics.wallClinging && !isHorizAirDashing && !isVertAirDashing && !inWallJump) {
 			if (vertVelocity >= terminalVelocity) {
 				gravityVelocity += gravity * Time.deltaTime;
 				vertVelocity -= gravityVelocity;
 			}
 		}
-		// Apply reduced gravity if wall clinging		
+		// Apply reduced "gravity" if wall clinging		
 		else if (pPhysics.wallClinging) {
-			gravityVelocity += wallSlideSpeed;
+			vertVelocity = wallSlideSpeed * -1;
 		}
 
 		// get the player's (possible) left/right input
@@ -153,14 +159,14 @@ public class PlayerController : MonoBehaviour {
 		var horizInput = Input.GetAxis ("Horizontal");
 		
 		// right direction
-		if (horizInput > 0 && !isDashing) {
+		if (horizInput > 0 && !isDashing && !inWallJump) {
 
 			horizTranslation += horizInput * speed * Time.deltaTime;
 			transform.localScale = new Vector3(1, 1, 1); // face right
 			facingRight = true;
 		}
 		// left direction
-		else if (horizInput < 0 && !isDashing) {
+		else if (horizInput < 0 && !isDashing && !inWallJump) {
 			animator.SetFloat("Speed", Mathf.Abs(horizInput));
 			horizTranslation += horizInput * speed * Time.deltaTime;
 			transform.localScale = new Vector3(-1, 1, 1); // face left
@@ -222,25 +228,31 @@ public class PlayerController : MonoBehaviour {
 		// Update trick behavior based on time passed
 
 		if (isDashing) {
-			float dashDir = Mathf.Sign(dashSpeed);
+			float dashDir = Mathf.Sign (dashSpeed);
 			if ((horizInput > 0 && dashDir == -1) || (horizInput < 0 && dashDir == 1))
-				KillDash();
+				KillDash ();
 			if (pPhysics.grounded)
 				dashTimer -= Time.deltaTime;
 			if (dashTimer <= 0)
-				KillDash();
-		}
-
+				KillDash ();
+		} 
 		else if (isHorizAirDashing) {
 			dashTimer -= Time.deltaTime;
 			if (dashTimer <= 0)
-				KillHorizAirDash();
-		}
-
+				KillHorizAirDash ();
+		} 
 		else if (isVertAirDashing) {
 			dashTimer -= Time.deltaTime;
 			if (dashTimer <= 0)
-				KillVertAirDash();
+				KillVertAirDash ();
+		} 
+		else if (inWallJump) {
+			wallJumpTimer -= Time.deltaTime;
+			if (wallJumpTimer <= 0) {
+				inWallJump = false;
+				horizVelocity = 0f;
+				vertVelocity = wallJumpSpeed;
+			}
 		}
 
 		animator.SetFloat("Speed", Mathf.Abs(horizInput));
