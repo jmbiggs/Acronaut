@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour {
 	public float wallJumpSpeed;
 	public float wallJumpLength; // amount of time to move horizontally in wall jump
 	public float wallDashLength;
+	public float hoverSpeed;
 
 	[HideInInspector]
 	public float horizVelocity = 0f;
@@ -37,6 +38,7 @@ public class PlayerController : MonoBehaviour {
 	private bool isVertAirDashing = false;
 	private bool isWallDashing = false;
 	private bool inWallJump = false;
+	private bool isHovering = false;
 
 	private bool hasUsedDoubleJump = false;
 	private bool hasUsedHorizAirDash = false;
@@ -50,6 +52,17 @@ public class PlayerController : MonoBehaviour {
 	}
 	public void KillJump(){
 		vertVelocity = 0f;
+	}
+
+	public void Hover() {
+		isHovering = true;
+		vertVelocity = hoverSpeed;
+		gravityVelocity = 0f;
+	}
+
+	public void KillHover() {
+		isHovering = false;
+		gravityVelocity = gravity;
 	}
 
 	public void WallJump(){
@@ -147,6 +160,7 @@ public class PlayerController : MonoBehaviour {
 	public void SetGrounded(){
 		if (pPhysics.grounded) {
 			RefreshAirMoves();
+			if (isHovering) KillHover ();
 			gravityVelocity = 0f;
 			vertVelocity = 0f;
 			horizVelocity = 0f;
@@ -161,7 +175,7 @@ public class PlayerController : MonoBehaviour {
 	void Update () {
 
 		// apply gravity unless grounded, wall clinging, air dashing or in a wall jump
-		if (!pPhysics.grounded && !pPhysics.wallClinging && !isHorizAirDashing && !isVertAirDashing && !inWallJump) {
+		if (!pPhysics.grounded && !pPhysics.wallClinging && !isHorizAirDashing && !isVertAirDashing && !inWallJump && !isHovering) {
 			if (vertVelocity >= terminalVelocity) {
 				gravityVelocity += gravity * Time.deltaTime;
 				vertVelocity -= gravityVelocity;
@@ -204,9 +218,16 @@ public class PlayerController : MonoBehaviour {
 			else if (!hasUsedDoubleJump) {
 				DoubleJump();
 			}
+			else if (hasUsedDoubleJump) {
+				Hover();
+			}
 		}
 		if (Input.GetButtonUp ("Jump")) {
-			KillJump();
+			if (isHovering) {
+				KillHover ();
+			}
+			else
+				KillJump();
 		}
 
 		// Handle the trick button

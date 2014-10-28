@@ -150,12 +150,15 @@ public class PlayerPhysics : MonoBehaviour {
 					else {
 						horizTranslation = 0;
 					}
-					wallClinging = true;
-					wallClingingDir = dirH;
-					if (!wasClinging)
-						pc.SetGrounded();
-					pc.horizVelocity = 0f;
-					break;
+					if (pc.vertVelocity < 0) {
+						wallClinging = true;
+						wallClingingDir = dirH;
+						pc.RefreshAirMoves();
+						if (!wasClinging)
+							pc.SetGrounded();
+						pc.horizVelocity = 0f;
+						break;
+					}
 				}
 
 				// adjust y coordinate for each iteration of the loop

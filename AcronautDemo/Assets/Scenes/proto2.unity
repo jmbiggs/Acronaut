@@ -1135,10 +1135,11 @@ MonoBehaviour:
   dashLength: .25
   dashSpeed: 25
   vertAirDashLength: .150000006
-  wallSlideSpeed: 7
-  wallJumpSpeed: 30
+  wallSlideSpeed: 3.5
+  wallJumpSpeed: 20
   wallJumpLength: .0500000007
   wallDashLength: .200000003
+  hoverSpeed: -1
   horizVelocity: 0
   horizTranslation: 0
   vertVelocity: 0
