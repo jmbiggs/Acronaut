@@ -33,12 +33,20 @@ public class PlayerController : MonoBehaviour {
 	private float dashTimer;
 	private float wallJumpTimer;
 
-	private bool isDashing = false;
-	private bool isHorizAirDashing = false;
-	private bool isVertAirDashing = false;
-	private bool isWallDashing = false;
-	private bool inWallJump = false;
-	private bool isHovering = false;
+	[HideInInspector]
+	public bool isDashing = false;
+	[HideInInspector]
+	public bool isHorizAirDashing = false;
+	[HideInInspector]
+	public bool isVertAirDashing = false;
+	[HideInInspector]
+	public bool isWallDashing = false;
+	[HideInInspector]
+	public bool inWallJump = false;
+	[HideInInspector]
+	public bool isHovering = false;
+
+	private SpriteRenderer sprite;
 
 	private bool hasUsedDoubleJump = false;
 	private bool hasUsedHorizAirDash = false;
@@ -49,20 +57,32 @@ public class PlayerController : MonoBehaviour {
 
 	public void Jump(){
 		vertVelocity += jumpSpeed;
+		sprite.color = Color.red;
 	}
 	public void KillJump(){
 		vertVelocity = 0f;
+		sprite.color = Color.white;
 	}
 
 	public void Hover() {
 		isHovering = true;
 		vertVelocity = hoverSpeed;
 		gravityVelocity = 0f;
+		sprite.color = Color.magenta;
 	}
 
 	public void KillHover() {
 		isHovering = false;
 		gravityVelocity = gravity;
+		sprite.color = Color.white;
+	}
+
+	public void AirMurder() {
+		KillHover ();
+		KillJump ();
+		KillDash();
+		KillHorizAirDash();
+		KillVertAirDash();
 	}
 
 	public void WallJump(){
@@ -71,12 +91,14 @@ public class PlayerController : MonoBehaviour {
 		gravityVelocity = 0f;
 		horizVelocity += wallJumpSpeed * -1 * pPhysics.wallClingingDir;
 		wallJumpTimer = wallJumpLength;
+		sprite.color = Color.cyan;
 	}
 
 	public void DoubleJump(){
 		hasUsedDoubleJump = true;
 		vertVelocity = jumpSpeed;
 		gravityVelocity = 0f;
+		sprite.color = Color.green;
 	}
 
 	// ground dash in direction player is facing
@@ -86,11 +108,13 @@ public class PlayerController : MonoBehaviour {
 		if (!facingRight)
 			dashSpeed *= -1;
 		horizVelocity += dashSpeed;
+		sprite.color = Color.blue;
 	}
 	public void KillDash(){
 		isDashing = false;
 		horizVelocity = 0f;
 		dashSpeed = Mathf.Abs(dashSpeed); // reset dash speed to its absolute value
+		sprite.color = Color.white;
 	}
 
 	// horizontal air dash in direction player is facing
@@ -104,11 +128,13 @@ public class PlayerController : MonoBehaviour {
 		if (!facingRight)
 			dashSpeed *= -1;
 		horizVelocity += dashSpeed;
+		sprite.color = Color.yellow;
 	}
 	public void KillHorizAirDash(){
 		isHorizAirDashing = false;
 		horizVelocity = 0f;
 		dashSpeed = Mathf.Abs(dashSpeed); // reset dash speed to its absolute value
+		sprite.color = Color.white;
 	}
 
 	// vertical air dash in given direction
@@ -125,11 +151,13 @@ public class PlayerController : MonoBehaviour {
 		dashTimer = vertAirDashLength;
 		dashSpeed *= direction;
 		vertVelocity = dashSpeed;
+		sprite.color = Color.blue;
 	}
 	public void KillVertAirDash(){
 		isVertAirDashing = false;
 		vertVelocity = 0f;
 		dashSpeed = Mathf.Abs(dashSpeed); // reset dash speed to its absolute value
+		sprite.color = Color.white;
 	}
 
 	// vertical wall dash in given direction
@@ -170,6 +198,7 @@ public class PlayerController : MonoBehaviour {
 	void Start() {
 		pPhysics = GetComponent<PlayerPhysics> ();
 		animator = GetComponent<Animator>();
+		sprite = GetComponent<SpriteRenderer>();
 	}
 
 	void Update () {
@@ -240,6 +269,9 @@ public class PlayerController : MonoBehaviour {
 
 		// start horiz air dash
 		if ((Input.GetButtonDown ("Trick")) && vertInput == 0 && !pPhysics.grounded && !hasUsedHorizAirDash && !pPhysics.wallClinging) {
+			if (isHovering) {
+				KillHover ();
+			}
 			HorizAirDash();
 		}
 		// cancel dash (canceled by using a Double Jump or a Vertical Airdash, if the player has not used those up)
@@ -252,6 +284,9 @@ public class PlayerController : MonoBehaviour {
 
 		// start vert air dash
 		if ((Input.GetButtonDown ("Trick")) && vertInput != 0 && !pPhysics.grounded && !hasUsedVertAirDash && !pPhysics.wallClinging) {
+			if (isHovering) {
+				KillHover ();
+			}
 			if (vertInput < 0)
 				VertAirDash(-1);
 			else
