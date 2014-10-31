@@ -9,7 +9,11 @@ public class PlayerController : MonoBehaviour {
 	public float jumpSpeed;
 	public float dashLength;
 	public float dashSpeed;
+	public float horizAirDashSpeed;
+	public float horizAirDashLength;
 	public float vertAirDashLength;
+	public float vertAirDashSpeed;
+
 	public float wallSlideSpeed; // like a gravity value when wall sliding
 	public float wallJumpSpeed;
 	public float wallJumpLength; // amount of time to move horizontally in wall jump
@@ -107,7 +111,7 @@ public class PlayerController : MonoBehaviour {
 		dashTimer = dashLength;
 		if (!facingRight)
 			dashSpeed *= -1;
-		horizVelocity += dashSpeed;
+		horizVelocity = dashSpeed;
 		sprite.color = Color.blue;
 	}
 	public void KillDash(){
@@ -119,21 +123,21 @@ public class PlayerController : MonoBehaviour {
 
 	// horizontal air dash in direction player is facing
 	// uses same dash length and speed as ground dash
-	public void HorizAirDash(){
+	public void HorizAirDash(int direction){
 		hasUsedHorizAirDash = true;
 		isHorizAirDashing = true;
 		vertVelocity = 0f;
 		gravityVelocity = 0f;
-		dashTimer = dashLength;
-		if (!facingRight)
-			dashSpeed *= -1;
-		horizVelocity += dashSpeed;
+		dashTimer = horizAirDashLength;
+		horizAirDashSpeed *= direction;
+		horizVelocity = horizAirDashSpeed;
 		sprite.color = Color.yellow;
 	}
+
 	public void KillHorizAirDash(){
 		isHorizAirDashing = false;
 		horizVelocity = 0f;
-		dashSpeed = Mathf.Abs(dashSpeed); // reset dash speed to its absolute value
+		horizAirDashSpeed = Mathf.Abs(horizAirDashSpeed); // reset dash speed to its absolute value
 		sprite.color = Color.white;
 	}
 
@@ -149,14 +153,15 @@ public class PlayerController : MonoBehaviour {
 		isVertAirDashing = true;
 		gravityVelocity = 0f;
 		dashTimer = vertAirDashLength;
-		dashSpeed *= direction;
-		vertVelocity = dashSpeed;
+		vertAirDashSpeed *= direction;
+		vertVelocity = vertAirDashSpeed;
 		sprite.color = Color.blue;
 	}
+
 	public void KillVertAirDash(){
 		isVertAirDashing = false;
 		vertVelocity = 0f;
-		dashSpeed = Mathf.Abs(dashSpeed); // reset dash speed to its absolute value
+		vertAirDashSpeed = Mathf.Abs(vertAirDashSpeed); // reset dash speed to its absolute value
 		sprite.color = Color.white;
 	}
 
@@ -188,6 +193,7 @@ public class PlayerController : MonoBehaviour {
 	public void SetGrounded(){
 		if (pPhysics.grounded) {
 			RefreshAirMoves();
+			KillDash();
 			if (isHovering) KillHover ();
 			gravityVelocity = 0f;
 			vertVelocity = 0f;
@@ -220,14 +226,14 @@ public class PlayerController : MonoBehaviour {
 		var horizInput = Input.GetAxis ("Horizontal");
 		
 		// right direction
-		if (horizInput > 0 && !isDashing && !inWallJump) {
+		if (horizInput > 0 && !isDashing && !isHorizAirDashing && !inWallJump) {
 
 			horizTranslation += horizInput * speed * Time.deltaTime;
 			transform.localScale = new Vector3(1, 1, 1); // face right
 			facingRight = true;
 		}
 		// left direction
-		else if (horizInput < 0 && !isDashing && !inWallJump) {
+		else if (horizInput < 0 && !isDashing && !isHorizAirDashing && !inWallJump) {
 			animator.SetFloat("Speed", Mathf.Abs(horizInput));
 			horizTranslation += horizInput * speed * Time.deltaTime;
 			transform.localScale = new Vector3(-1, 1, 1); // face left
@@ -240,8 +246,9 @@ public class PlayerController : MonoBehaviour {
 
 		// Handle the jump button
 		if (Input.GetButtonDown ("Jump")) {
-			if (pPhysics.grounded)
+			if (pPhysics.grounded) {
 				Jump();
+			}
 			else if (pPhysics.wallClinging)
 				WallJump();
 			else if (!hasUsedDoubleJump) {
@@ -272,7 +279,10 @@ public class PlayerController : MonoBehaviour {
 			if (isHovering) {
 				KillHover ();
 			}
-			HorizAirDash();
+			if (horizInput > 0)
+				HorizAirDash(1);
+			else
+				HorizAirDash (-1);
 		}
 		// cancel dash (canceled by using a Double Jump or a Vertical Airdash, if the player has not used those up)
 		if (isHorizAirDashing) {

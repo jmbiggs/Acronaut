@@ -43,14 +43,8 @@ public class Balloon : MonoBehaviour {
 				pc.KillHover();
 			}
 
-			if (pc.vertVelocity >= 0f) {
-				pc.vertVelocity += addedSpeedFromBelow;
-			}
-			else {
-				pc.vertVelocity = setSpeedFromAbove;
-				pc.gravityVelocity = 0f;
-			}
-
+			pc.vertVelocity = pc.jumpSpeed;
+			pc.gravityVelocity = 0;
 
 			pc.RefreshAirMoves();
 			// Missing an animation for the balloon popping, but this will make the balloon disappear
