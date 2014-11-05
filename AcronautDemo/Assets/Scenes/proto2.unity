@@ -1951,7 +1951,7 @@ MonoBehaviour:
   vertAirDashLength: .25
   vertAirDashSpeed: 8
   wallSlideSpeed: 3.5
-  wallJumpSpeed: 9
+  wallJumpSpeed: 7
   wallJumpLength: .075000003
   wallDashLength: .200000003
   hoverSpeed: -1
@@ -2879,6 +2879,10 @@ Prefab:
     - target: {fileID: 400000, guid: 26de065a9887ece47ab59d0ff562c7a1, type: 2}
       propertyPath: m_RootOrder
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 26de065a9887ece47ab59d0ff562c7a1, type: 2}
+      propertyPath: wallJumpSpeed
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 26de065a9887ece47ab59d0ff562c7a1, type: 2}
