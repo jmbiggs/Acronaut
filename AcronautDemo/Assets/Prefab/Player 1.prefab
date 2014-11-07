@@ -95,7 +95,7 @@ MonoBehaviour:
   vertAirDashLength: .25
   vertAirDashSpeed: 8
   wallSlideSpeed: 3.5
-  wallJumpSpeed: 9
+  wallJumpSpeed: 7
   wallJumpLength: .075000003
   wallDashLength: .200000003
   hoverSpeed: -1

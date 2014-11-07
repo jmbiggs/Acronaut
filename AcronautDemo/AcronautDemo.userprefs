@@ -1,12 +1,9 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\PlayerController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Balloon.cs">
     <Files>
-      <File FileName="Assets\ScreenSettings.cs" Line="12" Column="18" />
-      <File FileName="Assets\Scripts\Balloon.cs" Line="43" Column="14" />
-      <File FileName="Assets\Scripts\PlayerController.cs" Line="250" Column="12" />
-      <File FileName="Assets\Scripts\PlayerPhysics.cs" Line="10" Column="19" />
-      <File FileName="Assets\PickUp.cs" Line="30" Column="1" />
+      <File FileName="Assets\Scripts\PlayerController.cs" Line="356" Column="4" />
+      <File FileName="Assets\Scripts\Balloon.cs" Line="13" Column="25" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

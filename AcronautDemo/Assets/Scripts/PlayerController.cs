@@ -355,6 +355,7 @@ public class PlayerController : MonoBehaviour {
 				KillWallDash();
 		}
 
+		animator.SetFloat("Vertical Speed", (vertVelocity));
 		animator.SetFloat("Speed", Mathf.Abs(horizInput));
 		animator.SetBool("Grounded", pPhysics.grounded);
 
