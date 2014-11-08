@@ -19,6 +19,8 @@ public class PlayerController : MonoBehaviour {
 	public float wallJumpLength; // amount of time to move horizontally in wall jump
 	public float wallDashLength;
 	public float hoverSpeed;
+	public float knockbackDist;
+	public float knockbackSpeed;
 
 	[HideInInspector]
 	public float horizVelocity = 0f;
@@ -37,6 +39,9 @@ public class PlayerController : MonoBehaviour {
 	private float dashTimer;
 	private float wallJumpTimer;
 
+	private float knockbackToTravel;
+	private int knockbackDir;
+
 	[HideInInspector]
 	public bool isDashing = false;
 	[HideInInspector]
@@ -49,6 +54,8 @@ public class PlayerController : MonoBehaviour {
 	public bool inWallJump = false;
 	[HideInInspector]
 	public bool isHovering = false;
+	[HideInInspector]
+	public bool isKnocked = false;
 
 	private SpriteRenderer sprite;
 
@@ -181,6 +188,15 @@ public class PlayerController : MonoBehaviour {
 		dashSpeed = Mathf.Abs(dashSpeed); // reset dash speed to its absolute value
 	}
 
+	// temporarily disables controls and knocks the player in the given direction
+	// (-1 for left, 1 for right)
+	public void Knockback(int direction) {
+		horizVelocity = 0f;
+		isKnocked = true;
+		knockbackDir = direction;
+		knockbackToTravel = knockbackDist;
+	}
+
 	// restores ability to do all air moves
 	public void RefreshAirMoves() {
 		hasUsedDoubleJump = false;
@@ -226,14 +242,14 @@ public class PlayerController : MonoBehaviour {
 		var horizInput = Input.GetAxis ("Horizontal");
 		
 		// right direction
-		if (horizInput > 0 && !isDashing && !isHorizAirDashing && !inWallJump) {
+		if (horizInput > 0 && !isDashing && !isHorizAirDashing && !inWallJump && !isKnocked) {
 
 			horizTranslation += horizInput * speed * Time.deltaTime;
 			transform.localScale = new Vector3(1, 1, 1); // face right
 			facingRight = true;
 		}
 		// left direction
-		else if (horizInput < 0 && !isDashing && !isHorizAirDashing && !inWallJump) {
+		else if (horizInput < 0 && !isDashing && !isHorizAirDashing && !inWallJump && !isKnocked) {
 			animator.SetFloat("Speed", Mathf.Abs(horizInput));
 			horizTranslation += horizInput * speed * Time.deltaTime;
 			transform.localScale = new Vector3(-1, 1, 1); // face left
@@ -246,7 +262,10 @@ public class PlayerController : MonoBehaviour {
 
 		// Handle the jump button
 		if (Input.GetButtonDown ("Jump")) {
-			if (pPhysics.grounded) {
+			if (isKnocked) {
+				break;
+			}
+			else if (pPhysics.grounded) {
 				Jump();
 			}
 			else if (pPhysics.wallClinging)
@@ -269,13 +288,13 @@ public class PlayerController : MonoBehaviour {
 		// Handle the trick button
 
 		// start ground dash
-		if ((Input.GetButtonDown ("Trick")) && pPhysics.grounded) {
+		if ((Input.GetButtonDown ("Trick")) && pPhysics.grounded && !isKnocked) {
 			Dash();
 		}
 
 
 		// start horiz air dash
-		if ((Input.GetButtonDown ("Trick")) && vertInput == 0 && !pPhysics.grounded && !hasUsedHorizAirDash && !pPhysics.wallClinging) {
+		if ((Input.GetButtonDown ("Trick")) && vertInput == 0 && !pPhysics.grounded && !hasUsedHorizAirDash && !pPhysics.wallClinging && !isKnocked) {
 			if (isHovering) {
 				KillHover ();
 			}
@@ -293,7 +312,7 @@ public class PlayerController : MonoBehaviour {
 		}
 
 		// start vert air dash
-		if ((Input.GetButtonDown ("Trick")) && vertInput != 0 && !pPhysics.grounded && !hasUsedVertAirDash && !pPhysics.wallClinging) {
+		if ((Input.GetButtonDown ("Trick")) && vertInput != 0 && !pPhysics.grounded && !hasUsedVertAirDash && !pPhysics.wallClinging && !isKnocked) {
 			if (isHovering) {
 				KillHover ();
 			}
@@ -308,7 +327,7 @@ public class PlayerController : MonoBehaviour {
 		}
 
 		// start wall dash
-		if ((Input.GetButtonDown ("Trick")) && vertInput != 0 && !hasUsedWallDash && pPhysics.wallClinging) {
+		if ((Input.GetButtonDown ("Trick")) && vertInput != 0 && !hasUsedWallDash && pPhysics.wallClinging && !isKnocked) {
 			if (vertInput < 0)
 				WallDash(-1);
 			else
@@ -322,7 +341,20 @@ public class PlayerController : MonoBehaviour {
 
 		// Update trick behavior based on time passed
 
-		if (isDashing) {
+		if (isKnocked) {
+			float toTravel = knockbackSpeed * Time.deltaTime;
+			knockbackToTravel -= toTravel;
+			if (knockbackToTravel > 0)
+			{
+				horizVelocity = toTravel * knockbackDir;
+			}
+			else
+			{
+				isKnocked = false;
+			}
+		}
+
+		else if (isDashing) {
 			float dashDir = Mathf.Sign (dashSpeed);
 			if ((horizInput > 0 && dashDir == -1) || (horizInput < 0 && dashDir == 1))
 				KillDash ();
