@@ -34,7 +34,8 @@ public class PlayerController : MonoBehaviour {
 	public float terminalVelocity = -3f; // the max speed the player can fall
 	
 	private PlayerPhysics pPhysics;
-	private bool facingRight = true;
+	[HideInInspector]
+	public bool facingRight = true;
 
 	private float dashTimer;
 	private float wallJumpTimer;
@@ -191,6 +192,9 @@ public class PlayerController : MonoBehaviour {
 	// temporarily disables controls and knocks the player in the given direction
 	// (-1 for left, 1 for right)
 	public void Knockback(int direction) {
+		if (isHorizAirDashing) {
+			KillHorizAirDash();
+		}
 		horizVelocity = 0f;
 		isKnocked = true;
 		knockbackDir = direction;
@@ -343,7 +347,7 @@ public class PlayerController : MonoBehaviour {
 			knockbackToTravel -= toTravel;
 			if (knockbackToTravel > 0)
 			{
-				horizVelocity = toTravel * knockbackDir;
+				horizTranslation = toTravel * knockbackDir;
 			}
 			else
 			{
