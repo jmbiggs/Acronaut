@@ -261,11 +261,8 @@ public class PlayerController : MonoBehaviour {
 		var vertInput = Input.GetAxis ("Vertical");
 
 		// Handle the jump button
-		if (Input.GetButtonDown ("Jump")) {
-			if (isKnocked) {
-				break;
-			}
-			else if (pPhysics.grounded) {
+		if (Input.GetButtonDown ("Jump") && !isKnocked) {
+			if (pPhysics.grounded) {
 				Jump();
 			}
 			else if (pPhysics.wallClinging)
