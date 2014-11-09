@@ -50,6 +50,7 @@
      <Compile Include="Assets\PickUp.cs" />
      <Compile Include="Assets\ScreenSettings.cs" />
      <Compile Include="Assets\Scripts\Balloon.cs" />
+     <Compile Include="Assets\Scripts\Bounce_Platform.cs" />
      <Compile Include="Assets\Scripts\CameraFollow.cs" />
      <Compile Include="Assets\Scripts\Elephant.cs" />
      <Compile Include="Assets\Scripts\Elephant_Water.cs" />
