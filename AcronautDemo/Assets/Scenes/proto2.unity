@@ -2912,6 +2912,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1185325299}
   followSpeed: 5
+  leadAmount: 200
 --- !u!114 &1600046756
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2932,8 +2933,8 @@ BoxCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Size: {x: 1.94000006, y: 1}
-  m_Center: {x: .0299999993, y: .140000001}
+  m_Size: {x: 1.94000006, y: 2.18521547}
+  m_Center: {x: .0299999714, y: .732607841}
 --- !u!1001 &1654386067
 Prefab:
   m_ObjectHideFlags: 0
