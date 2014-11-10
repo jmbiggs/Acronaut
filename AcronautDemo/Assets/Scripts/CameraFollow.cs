@@ -15,33 +15,34 @@ public class CameraFollow : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		playerT = player.transform;
-		moveTarget = transform.position;
 		pc = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		//transform.position = new Vector3(playerT.position.x, playerT.position.y, transform.position.z);
-
 		if (needToMove) {
-			Vector3 newTarget = new Vector3 (playerT.position.x, playerT.position.y, transform.position.z);
-
-			float playerMoveAmt = pc.horizVelocity*Time.deltaTime + pc.horizTranslation;
-
-			if (playerMoveAmt > 0)
+			Vector3 newTarget = new Vector3 (playerT.position.x, playerT.position.y, -10);
+			//float playerMoveAmt = pc.horizVelocity * Time.deltaTime + pc.horizTranslation;
+			/*if (playerMoveAmt > 0)				
 			{
+				print(playerMoveAmt);
 				newTarget.x += leadAmount;
 			}
-			else if (playerMoveAmt > 0)
-			{
+			else if (playerMoveAmt > 0)			
+				newTarget.x -= leadAmount;*/
+
+			if (pc.facingRight)
+				newTarget.x += leadAmount;
+			else
 				newTarget.x -= leadAmount;
-			}
 
-			moveTarget = newTarget;
-
+			moveTarget = newTarget;		
 		}
-
-		transform.position = Vector3.Lerp(transform.position, moveTarget, followSpeed * Time.deltaTime);
+		/*else
+		{
+			moveTarget = transform.position;
+		}*/
+		transform.position = Vector3.Lerp(transform.position, moveTarget, followSpeed * Time.deltaTime);	
 	}
 
 	void OnTriggerStay2D(Collider2D coll){

@@ -2911,8 +2911,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1185325299}
-  followSpeed: 5
-  leadAmount: 200
+  followSpeed: 4
+  leadAmount: 2.5
 --- !u!114 &1600046756
 MonoBehaviour:
   m_ObjectHideFlags: 0

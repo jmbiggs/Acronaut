@@ -52,6 +52,7 @@
      <Compile Include="Assets\Scripts\Balloon.cs" />
      <Compile Include="Assets\Scripts\Bounce_Platform.cs" />
      <Compile Include="Assets\Scripts\CameraFollow.cs" />
+     <Compile Include="Assets\Scripts\CameraLookat.cs" />
      <Compile Include="Assets\Scripts\Elephant.cs" />
      <Compile Include="Assets\Scripts\Elephant_Water.cs" />
      <Compile Include="Assets\Scripts\Monkey.cs" />
