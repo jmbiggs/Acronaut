@@ -2,18 +2,30 @@
 using System.Collections;
 
 public class CameraFollow : MonoBehaviour {
+	
+	public GameObject player;
+	public float followSpeed;
 
-	public GameObject target;
-
-	private Transform _t;
+	private Transform playerT;
+	private Vector3 moveTarget;
 
 	// Use this for initialization
 	void Start () {
-		_t = target.transform;
+		playerT = player.transform;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		transform.position = new Vector3(_t.position.x, _t.position.y, transform.position.z);
+		moveTarget = new Vector3 (playerT.position.x, playerT.position.y, transform.position.z);
+		//transform.position = new Vector3(playerT.position.x, playerT.position.y, transform.position.z);
+		transform.position = Vector3.Lerp(transform.position, moveTarget, followSpeed * Time.deltaTime);
 	}
+
+	void OnTriggerStay2D(Collider2D coll){
+		moveTarget = transform.position;
+	}
+	void OnTriggerExit2D(Collider2D coll){
+
+	}
+
 }
