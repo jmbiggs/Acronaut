@@ -28,7 +28,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -40.1916618, y: -7.43899202, z: 0}
+  m_LocalPosition: {x: 3.52990007, y: -2.92050004, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -57,8 +57,8 @@ BoxCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Size: {x: .610000014, y: .699999988}
-  m_Center: {x: 0, y: -.050999999}
+  m_Size: {x: .280000001, y: .389999986}
+  m_Center: {x: 0, y: 0}
 --- !u!95 &9500000
 Animator:
   serializedVersion: 3
@@ -85,7 +85,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5a940b8bcedc5548b7a3eafc292d578, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravity: 3.5
+  gravity: 3
   speed: 5.5
   jumpSpeed: 9
   dashLength: .25
@@ -99,17 +99,25 @@ MonoBehaviour:
   wallJumpLength: .075000003
   wallDashLength: .200000003
   hoverSpeed: -1
+  knockbackDist: 2
+  knockbackSpeed: 15
+  swingPauseTime: .5
+  swingSpeed: 21
+  swingTrickSpeedMult: 1.5
   horizVelocity: 0
   horizTranslation: 0
   vertVelocity: 0
   gravityVelocity: 0
   terminalVelocity: -15
+  facingRight: 1
   isDashing: 0
   isHorizAirDashing: 0
   isVertAirDashing: 0
   isWallDashing: 0
   inWallJump: 0
   isHovering: 0
+  isKnocked: 0
+  isSwinging: 0
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -146,7 +154,7 @@ SpriteRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f3b172daf10435242a23fcc5db40cb63, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7590d0cbf911db14e999617f07faba2b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000
 Prefab:

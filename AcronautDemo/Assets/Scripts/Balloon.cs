@@ -33,10 +33,7 @@ public class Balloon : MonoBehaviour {
 		}
 	}
 
-	// This is kind of wonky because I'm doing it with vertical translation, not the player's current vertical speed
-	// Once I have that though, you can imagine that the player will get speed added to them if they're jumping upwards from below
-	// and collide with the balloon.
-	// If they land on top of the balloon from above, then their speed will be set to a positive value, so they bounce off the balloon.
+
 	void OnCollisionEnter2D(Collision2D coll) {
 		if (coll.gameObject.tag == "Player") {
 			if (pc.isHovering) {

@@ -1,10 +1,15 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\CameraFollow.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Bounce_Platform.cs">
     <Files>
-      <File FileName="Assets\Scripts\CameraFollow.cs" Line="44" Column="6" />
-      <File FileName="Assets\Scripts\PlayerController.cs" Line="244" Column="26" />
-      <File FileName="Assets\Scripts\CameraLookat.cs" Line="12" Column="2" />
+      <File FileName="Assets\Scripts\Bounce_Platform.cs" Line="3" Column="1" />
+      <File FileName="Assets\Scripts\Balloon.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\CameraFollow.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\PlayerController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\CameraLookat.cs" Line="1" Column="1" />
+      <File FileName="Assets\Flag.cs" Line="22" Column="16" />
+      <File FileName="Assets\Level.cs" Line="32" Column="22" />
+      <File FileName="Assets\AudienceGauge.cs" Line="41" Column="4" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

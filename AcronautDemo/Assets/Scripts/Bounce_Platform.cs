@@ -19,7 +19,8 @@ public class Bounce_Platform : MonoBehaviour {
 
 	// Reverse the player's vertical velocity, and multiply it by the bounce multiplier
 	void OnCollisionEnter2D(Collision2D coll){
-		pc.SetGrounded ();
+		pc.RefreshAirMoves();
+		pc.gravityVelocity = 0f;
 		pc.vertVelocity *= bounceMultiplier * -1;
 	}
 }

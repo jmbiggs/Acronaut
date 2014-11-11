@@ -53,28 +53,28 @@ BlendTree:
     m_IsAnim: 1
     m_Mirror: 0
   - m_Motion: {fileID: 7400000, guid: bce0ad1aa950008439c6277c921e7bea, type: 2}
-    m_Threshold: 0
+    m_Threshold: .100000001
     m_Position: {x: 0, y: 0}
     m_TimeScale: 2
     m_CycleOffset: 0
     m_IsAnim: 1
     m_Mirror: 0
   - m_Motion: {fileID: 7400000, guid: cedda84fb2eeb7d43bc28d7fe9af1545, type: 2}
-    m_Threshold: 2
+    m_Threshold: 3
     m_Position: {x: 0, y: 0}
     m_TimeScale: 2
     m_CycleOffset: 0
     m_IsAnim: 1
     m_Mirror: 0
   - m_Motion: {fileID: 7400000, guid: 89282d079e4e69a4f88cace555d58047, type: 2}
-    m_Threshold: 5
+    m_Threshold: 7
     m_Position: {x: 0, y: 0}
     m_TimeScale: 2
     m_CycleOffset: 0
     m_IsAnim: 1
     m_Mirror: 0
   - m_Motion: {fileID: 7400000, guid: 528b796595c5d6d4f981e26fd7e241a4, type: 2}
-    m_Threshold: 20
+    m_Threshold: 10
     m_Position: {x: 0, y: 0}
     m_TimeScale: 2
     m_CycleOffset: 0
@@ -83,7 +83,7 @@ BlendTree:
   m_BlendParameter: Vertical Speed
   m_BlendParameterY: Speed
   m_MinThreshold: -2
-  m_MaxThreshold: 20
+  m_MaxThreshold: 10
   m_UseAutomaticThresholds: 0
   m_BlendType: 0
 --- !u!1101 &110100000
