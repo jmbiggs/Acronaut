@@ -58,6 +58,7 @@
      <Compile Include="Assets\Scripts\CameraLookat.cs" />
      <Compile Include="Assets\Scripts\Elephant.cs" />
      <Compile Include="Assets\Scripts\Elephant_Water.cs" />
+     <Compile Include="Assets\Scripts\Hoop.cs" />
      <Compile Include="Assets\Scripts\Monkey.cs" />
      <Compile Include="Assets\Scripts\PlayerController.cs" />
      <Compile Include="Assets\Scripts\PlayerPhysics.cs" />
