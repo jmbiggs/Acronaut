@@ -16,7 +16,6 @@ public class Hoop : MonoBehaviour {
 	}
 
 	void OnCollisionEnter2D(Collision2D coll){
-		print ("oh hi");
 		pc.Knockback (-1);	
 	}
 }
