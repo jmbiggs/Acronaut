@@ -3,8 +3,9 @@ using System.Collections;
 
 public class Flag : MonoBehaviour {
 
-	PlayerController pc;
-	Level level;
+	public PlayerController pc;
+	public Level level;
+	public BoxCollider2D box;
 
 	// Use this for initialization
 	void Start () {
@@ -18,9 +19,8 @@ public class Flag : MonoBehaviour {
 	}
 
 	void OnCollisionEnter2D(Collision2D coll) {
-		if (coll.gameObject.tag == "Player") {
+			Debug.Log ("Collided!");
 			level.Win();
-		}
 		
 	}
 }

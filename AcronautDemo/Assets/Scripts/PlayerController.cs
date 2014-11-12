@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour {
 	[HideInInspector]
 	public float gravityVelocity = 0f; // the current velocity due to gravity
 	[HideInInspector]
-	public float terminalVelocity = -3f; // the max speed the player can fall
+	public float terminalVelocity = -3.3f; // the max speed the player can fall
 	
 	private PlayerPhysics pPhysics;
 	[HideInInspector]
@@ -92,7 +92,7 @@ public class PlayerController : MonoBehaviour {
 
 	public void KillHover() {
 		isHovering = false;
-		gravityVelocity = gravity;
+		gravityVelocity = 0f;
 		sprite.color = Color.white;
 	}
 
@@ -175,7 +175,8 @@ public class PlayerController : MonoBehaviour {
 
 	public void KillVertAirDash(){
 		isVertAirDashing = false;
-		vertVelocity = 0f;
+		if (vertVelocity > 0f)
+			vertVelocity = 0f;
 		vertAirDashSpeed = Mathf.Abs(vertAirDashSpeed); // reset dash speed to its absolute value
 		sprite.color = Color.white;
 	}
@@ -253,6 +254,11 @@ public class PlayerController : MonoBehaviour {
 			if (vertVelocity >= terminalVelocity) {
 				gravityVelocity += gravity * Time.deltaTime;
 				vertVelocity -= gravityVelocity;
+			}
+			else if (vertVelocity < terminalVelocity) {
+				vertVelocity -= terminalVelocity * Time.deltaTime;
+				if (vertVelocity > terminalVelocity + .01f && vertVelocity < terminalVelocity - .01f)
+					vertVelocity = terminalVelocity;
 			}
 		}
 		// Apply reduced "gravity" if wall clinging		
