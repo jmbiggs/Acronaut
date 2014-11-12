@@ -65,6 +65,10 @@ public class PlayerController : MonoBehaviour {
 	public bool isKnocked = false;
 	[HideInInspector]
 	public bool isSwinging = false;
+	[HideInInspector]
+	public bool inSpotlight = false;
+	[HideInInspector]
+	public bool paused = false;
 
 	private bool hasUsedDoubleJump = false;
 	private bool hasUsedHorizAirDash = false;
@@ -114,7 +118,8 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	public void DoubleJump(){
-		hasUsedDoubleJump = true;
+		if (!inSpotlight)
+			hasUsedDoubleJump = true;
 		vertVelocity = jumpSpeed;
 		gravityVelocity = 0f;
 		sprite.color = Color.green;
@@ -139,7 +144,8 @@ public class PlayerController : MonoBehaviour {
 	// horizontal air dash in direction player is facing
 	// uses same dash length and speed as ground dash
 	public void HorizAirDash(int direction){
-		hasUsedHorizAirDash = true;
+		if (!inSpotlight)
+			hasUsedHorizAirDash = true;
 		isHorizAirDashing = true;
 		vertVelocity = 0f;
 		gravityVelocity = 0f;
@@ -164,7 +170,8 @@ public class PlayerController : MonoBehaviour {
 	// maybe animation will help this seem more normal, or maybe we shouldn't time downward dashes? -MB
 
 	public void VertAirDash(int direction){
-		hasUsedVertAirDash = true;
+		if (!inSpotlight)
+			hasUsedVertAirDash = true;
 		isVertAirDashing = true;
 		gravityVelocity = 0f;
 		dashTimer = vertAirDashLength;
@@ -185,7 +192,8 @@ public class PlayerController : MonoBehaviour {
 	// -1 for down, 1 for up
 	// using same dash speed as the other dashes
 	public void WallDash(int direction){
-		hasUsedWallDash = true;
+		if (!inSpotlight)
+			hasUsedWallDash = true;
 		isWallDashing = true;
 		dashTimer = wallDashLength;
 		dashSpeed *= direction;
@@ -248,6 +256,9 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void Update () {
+
+		if (paused)
+			return;
 
 		// apply gravity unless grounded, wall clinging, air dashing, swinging or in a wall jump
 		if (!pPhysics.grounded && !pPhysics.wallClinging && !isHorizAirDashing && !isVertAirDashing && !inWallJump && !isHovering && !isSwinging) {
