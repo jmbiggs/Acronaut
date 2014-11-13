@@ -58,6 +58,7 @@
      <Compile Include="Assets\Scripts\Bumper.cs" />
      <Compile Include="Assets\Scripts\CameraFollow.cs" />
      <Compile Include="Assets\Scripts\CameraLookat.cs" />
+     <Compile Include="Assets\Scripts\Cannon.cs" />
      <Compile Include="Assets\Scripts\Elephant.cs" />
      <Compile Include="Assets\Scripts\Elephant_Water.cs" />
      <Compile Include="Assets\Scripts\Hoop.cs" />
