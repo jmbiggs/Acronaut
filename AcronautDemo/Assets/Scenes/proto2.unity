@@ -2546,6 +2546,8 @@ MonoBehaviour:
   isHovering: 0
   isKnocked: 0
   isSwinging: 0
+  inSpotlight: 0
+  paused: 0
 --- !u!114 &1185325302
 MonoBehaviour:
   m_ObjectHideFlags: 0
