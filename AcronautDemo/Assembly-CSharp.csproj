@@ -54,6 +54,7 @@
      <Compile Include="Assets\Music.cs" />
      <Compile Include="Assets\PickUp.cs" />
      <Compile Include="Assets\PlayerState.cs" />
+     <Compile Include="Assets\RabbitHat.cs" />
      <Compile Include="Assets\ScreenSettings.cs" />
      <Compile Include="Assets\Scripts\Balloon.cs" />
      <Compile Include="Assets\Scripts\Bounce_Platform.cs" />

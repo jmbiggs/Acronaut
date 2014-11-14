@@ -78,6 +78,8 @@ public class PlayerController : MonoBehaviour {
 	private SpriteRenderer sprite;
 	private Animator animator;
 
+	public GameObject pausePanel;
+
 	public void Jump(){
 		vertVelocity += jumpSpeed;
 		sprite.color = Color.red;
@@ -257,6 +259,19 @@ public class PlayerController : MonoBehaviour {
 
 	void Update () {
 
+		if (Input.GetKeyDown(KeyCode.P)) {
+			if (paused) {
+				paused = false;
+				Time.timeScale = 1f;
+				pausePanel.SetActive(false);
+			}
+			else {
+				paused = true;
+				Time.timeScale = 0f;
+				pausePanel.SetActive(true);
+			}
+		}
+
 		if (paused)
 			return;
 
@@ -321,6 +336,8 @@ public class PlayerController : MonoBehaviour {
 			else
 				KillJump();
 		}
+
+
 
 		// Handle the trick button
 
