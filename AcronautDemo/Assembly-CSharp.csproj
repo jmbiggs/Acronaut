@@ -71,6 +71,7 @@
      <Compile Include="Assets\Scripts\Rhino.cs" />
      <Compile Include="Assets\Scripts\SpotlightPlatform.cs" />
      <Compile Include="Assets\Scripts\Tightrope.cs" />
+     <Compile Include="Assets\TutorialBox.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.0/UnityEngine.UI.dll</HintPath>
  </Reference>
