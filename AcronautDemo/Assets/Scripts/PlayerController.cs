@@ -424,6 +424,7 @@ public class PlayerController : MonoBehaviour {
 			// launch
 			else {
 				isSwinging = false;
+				gravityVelocity = 0f;
 				vertVelocity = swingSpeed;
 				if (swingTrick)
 					vertVelocity *= swingTrickSpeedMult;

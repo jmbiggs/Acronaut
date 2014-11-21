@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Balloon : MonoBehaviour {
 
-	public PlayerController pc;
+	PlayerController pc;
 	public float addedSpeedFromBelow = 10f;
 	public float setSpeedFromAbove = 10f;
 	public float timeToRespawn = 1.5f;

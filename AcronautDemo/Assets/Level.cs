@@ -12,12 +12,13 @@ public class Level : MonoBehaviour {
 
 	public float playerTime;
 
-	public GameObject winPanel;
+	public WinPanel winPanel;
 
 	public bool reachedGoal = false;
 
 	// Use this for initialization
 	void Start () {
+		// winPanel = GameObject.FindGameObjectWithTag("WinPanel").GetComponent<WinPanel>();
 		playerTime = 0f;
 	}
 	
@@ -28,7 +29,8 @@ public class Level : MonoBehaviour {
 	}
 
 	public void Win() {
-		winPanel.SetActive(true);
+		winPanel.gameObject.SetActive(true);
+		winPanel.DisplayWinPanel(goldTime, silverTime, bronzeTime, playerTime);
 		reachedGoal = true;
 	}
 }
