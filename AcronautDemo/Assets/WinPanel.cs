@@ -20,13 +20,27 @@ public class WinPanel : MonoBehaviour {
 	}
 
 	public void DisplayWinPanel(float goldTime, float silverTime, float bronzeTime, float time) {
+		int minuteInt = (int) time / 60;
 		string minutes;
-		if ((int) time / 60 == 0)
-			minutes = "00";
+		if (minuteInt < 10)
+			minutes = "0" + minuteInt.ToString();
 		else 
-			minutes = ((int) time / 60).ToString();
-		string seconds = Mathf.FloorToInt(time % 60).ToString();
-		string milliseconds = Mathf.FloorToInt((time % 1f) * 100f).ToString();
+			minutes = minuteInt.ToString();
+
+		int secondInt = Mathf.FloorToInt(time % 60);
+		string seconds;
+		if (secondInt < 10)
+			seconds = "0" + secondInt.ToString (); 
+		else 
+			seconds = secondInt.ToString (); 
+
+		int millisecondInt = Mathf.FloorToInt((time % 1f) * 100f);
+		string milliseconds;
+		if (millisecondInt < 10)
+			milliseconds = "0" + millisecondInt.ToString();
+		else
+			milliseconds = millisecondInt.ToString();
+
 		string formattedTime = (minutes + "'" + seconds + "'" + milliseconds);
 		playerTime.text = formattedTime;
 		if (time <= goldTime) 

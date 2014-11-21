@@ -3,9 +3,8 @@ using System.Collections;
 
 public class Flag : MonoBehaviour {
 
-	public PlayerController pc;
-	public Level level;
-	public BoxCollider2D box;
+	PlayerController pc;
+	Level level;
 
 	// Use this for initialization
 	void Start () {
