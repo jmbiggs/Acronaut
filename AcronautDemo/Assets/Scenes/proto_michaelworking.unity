@@ -1439,9 +1439,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a05370ff284d844b82f84556f021ffe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pc: {fileID: 1185325301}
-  level: {fileID: 1004900821}
-  box: {fileID: 606436582}
 --- !u!61 &606436582
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1451,7 +1448,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 606436580}
   m_Enabled: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Size: {x: .219999999, y: .219999999}
   m_Center: {x: 0, y: 0}
 --- !u!212 &606436583
@@ -3468,7 +3465,7 @@ MonoBehaviour:
   silverTime: 45
   bronzeTime: 60
   playerTime: 0
-  winPanel: {fileID: 416163065}
+  winPanel: {fileID: 0}
   reachedGoal: 0
 --- !u!4 &1004900822
 Transform:
