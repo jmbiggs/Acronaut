@@ -19,8 +19,9 @@ public class Rhino : MonoBehaviour {
 	}
 
 	// Bounce up, speed depends on whether player is dashing
-	void OnCollisionEnter2D(Collision2D coll){
+	void OnTriggerEnter2D(Collider2D coll){
 		float newSpeed = pc.isDashing ? dashingBounceSpeed : bounceSpeed;
 		pc.vertVelocity = newSpeed;
+		pc.gravityVelocity = 0f;
 	}
 }
