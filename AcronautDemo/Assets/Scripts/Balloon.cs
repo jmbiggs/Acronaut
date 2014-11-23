@@ -7,8 +7,12 @@ public class Balloon : MonoBehaviour {
 	public float addedSpeedFromBelow = 10f;
 	public float setSpeedFromAbove = 10f;
 	public float timeToRespawn = 1.5f;
+	public float timeToSubtract = 2f;
+	private bool canEarnTime = true;
 
 	private float respawnTimer = 0f;
+
+	private Level level;
 
 	private SpriteRenderer sprite;
 	private BoxCollider2D box;
@@ -18,6 +22,7 @@ public class Balloon : MonoBehaviour {
 		pc = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
 		sprite = gameObject.GetComponent<SpriteRenderer>();
 		box = gameObject.GetComponent<BoxCollider2D>();
+		level = GameObject.FindGameObjectWithTag("Level").GetComponent<Level>();
 	}
 	
 	// Update is called once per frame
@@ -49,6 +54,11 @@ public class Balloon : MonoBehaviour {
 			box.enabled = false;
 
 			respawnTimer = timeToRespawn;
+
+			if (canEarnTime) {
+				level.playerTime -= timeToSubtract;
+				canEarnTime = false;
+			}
 		}
 
 	}

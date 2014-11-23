@@ -130,6 +130,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 1324858744}
   box: {fileID: 1357218}
+  timeSave: .100000001
 --- !u!1001 &12787238
 Prefab:
   m_ObjectHideFlags: 0
@@ -274,6 +275,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 2083253827}
   box: {fileID: 26497904}
+  timeSave: .100000001
 --- !u!1 &27616789
 GameObject:
   m_ObjectHideFlags: 0
@@ -401,6 +403,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 1608892739}
   box: {fileID: 36874910}
+  timeSave: .100000001
 --- !u!1 &43040266
 GameObject:
   m_ObjectHideFlags: 0
@@ -784,6 +787,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 533124856}
   box: {fileID: 59431606}
+  timeSave: .100000001
 --- !u!4 &59431608
 Transform:
   m_ObjectHideFlags: 0
@@ -1009,6 +1013,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 876958602}
   box: {fileID: 76345235}
+  timeSave: .100000001
 --- !u!1001 &76990379
 Prefab:
   m_ObjectHideFlags: 0
@@ -1109,6 +1114,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 1814955677}
   box: {fileID: 80549607}
+  timeSave: .100000001
 --- !u!1 &80552707
 GameObject:
   m_ObjectHideFlags: 0
@@ -1152,6 +1158,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 1972898030}
   box: {fileID: 80552708}
+  timeSave: .100000001
 --- !u!4 &80552710
 Transform:
   m_ObjectHideFlags: 0
@@ -1255,6 +1262,7 @@ MonoBehaviour:
   bronzeTime: 60
   playerTime: 0
   winPanel: {fileID: 1820953912}
+  timeText: {fileID: 978964884}
   reachedGoal: 0
 --- !u!1001 &92245582
 Prefab:
@@ -1400,6 +1408,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 1202340989}
   box: {fileID: 106427852}
+  timeSave: .100000001
 --- !u!1 &107450330
 GameObject:
   m_ObjectHideFlags: 0
@@ -1818,7 +1827,7 @@ Transform:
   - {fileID: 168179701}
   - {fileID: 216823342}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
 --- !u!1 &125428244
 GameObject:
   m_ObjectHideFlags: 0
@@ -1931,53 +1940,6 @@ Prefab:
   m_RootGameObject: {fileID: 658069289}
   m_IsPrefabParent: 0
   m_IsExploded: 1
---- !u!1 &128181231
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 100000, guid: a1dc0b5a3658b374481d735b8ae88c5e, type: 2}
-  m_PrefabInternal: {fileID: 1064495022}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 128181233}
-  - 114: {fileID: 128181232}
-  m_Layer: 0
-  m_Name: Level
-  m_TagString: Level
-  m_Icon: {fileID: -1003283189, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &128181232
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11400000, guid: a1dc0b5a3658b374481d735b8ae88c5e,
-    type: 2}
-  m_PrefabInternal: {fileID: 1064495022}
-  m_GameObject: {fileID: 128181231}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 465eb649562d68344ad458985f0880a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  levelName: Test
-  goldTime: 30
-  silverTime: 45
-  bronzeTime: 60
-  playerTime: 0
-  winPanel: {fileID: 0}
-  reachedGoal: 0
---- !u!4 &128181233
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 400000, guid: a1dc0b5a3658b374481d735b8ae88c5e, type: 2}
-  m_PrefabInternal: {fileID: 1064495022}
-  m_GameObject: {fileID: 128181231}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 1
 --- !u!1 &131543399
 GameObject:
   m_ObjectHideFlags: 0
@@ -2034,6 +1996,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 1248152808}
   box: {fileID: 131543401}
+  timeSave: .100000001
 --- !u!1 &131983865
 GameObject:
   m_ObjectHideFlags: 0
@@ -2145,6 +2108,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 1734538905}
   box: {fileID: 135260030}
+  timeSave: .100000001
 --- !u!4 &135260032
 Transform:
   m_ObjectHideFlags: 0
@@ -2214,6 +2178,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 116437279}
   box: {fileID: 137473129}
+  timeSave: .100000001
 --- !u!1 &139527697
 GameObject:
   m_ObjectHideFlags: 0
@@ -2406,6 +2371,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 683269132}
   box: {fileID: 153431047}
+  timeSave: .100000001
 --- !u!1001 &157678773
 Prefab:
   m_ObjectHideFlags: 0
@@ -2547,11 +2513,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 235396d474bf6064594c4cbdecaa7ba5, type: 2}
       propertyPath: m_LocalRotation.z
-      value: -.706855893
+      value: .707106829
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 235396d474bf6064594c4cbdecaa7ba5, type: 2}
       propertyPath: m_LocalRotation.w
-      value: .707357585
+      value: -.707106829
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 235396d474bf6064594c4cbdecaa7ba5, type: 2}
       propertyPath: m_RootOrder
@@ -2671,7 +2637,7 @@ BoxCollider2D:
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 100000, guid: 2ce84ec1b3c561849abf37028a0eef1f, type: 2}
-  m_PrefabInternal: {fileID: 1107530557}
+  m_PrefabInternal: {fileID: 1260121195}
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 168179701}
@@ -2690,7 +2656,7 @@ MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 11400000, guid: 2ce84ec1b3c561849abf37028a0eef1f,
     type: 2}
-  m_PrefabInternal: {fileID: 1107530557}
+  m_PrefabInternal: {fileID: 1260121195}
   m_GameObject: {fileID: 168179697}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -2705,7 +2671,7 @@ BoxCollider2D:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 6100000, guid: 2ce84ec1b3c561849abf37028a0eef1f,
     type: 2}
-  m_PrefabInternal: {fileID: 1107530557}
+  m_PrefabInternal: {fileID: 1260121195}
   m_GameObject: {fileID: 168179697}
   m_Enabled: 1
   m_Material: {fileID: 0}
@@ -2717,7 +2683,7 @@ SpriteRenderer:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 21200000, guid: 2ce84ec1b3c561849abf37028a0eef1f,
     type: 2}
-  m_PrefabInternal: {fileID: 1107530557}
+  m_PrefabInternal: {fileID: 1260121195}
   m_GameObject: {fileID: 168179697}
   m_Enabled: 1
   m_CastShadows: 0
@@ -2739,7 +2705,7 @@ SpriteRenderer:
 Transform:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 400000, guid: 2ce84ec1b3c561849abf37028a0eef1f, type: 2}
-  m_PrefabInternal: {fileID: 1107530557}
+  m_PrefabInternal: {fileID: 1260121195}
   m_GameObject: {fileID: 168179697}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -6.95093536, y: 11.3855438, z: 0}
@@ -3764,6 +3730,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 697647662}
   box: {fileID: 203605448}
+  timeSave: .100000001
 --- !u!4 &203605450
 Transform:
   m_ObjectHideFlags: 0
@@ -4141,6 +4108,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 404072667}
   box: {fileID: 224157953}
+  timeSave: .100000001
 --- !u!1 &227853450
 GameObject:
   m_ObjectHideFlags: 0
@@ -4296,6 +4264,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 713837316}
   box: {fileID: 241017741}
+  timeSave: .100000001
 --- !u!4 &241017743
 Transform:
   m_ObjectHideFlags: 0
@@ -4396,6 +4365,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 334513924}
   box: {fileID: 247341306}
+  timeSave: .100000001
 --- !u!4 &247341308
 Transform:
   m_ObjectHideFlags: 0
@@ -4452,6 +4422,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 491585632}
   box: {fileID: 248103759}
+  timeSave: .100000001
 --- !u!4 &248103761
 Transform:
   m_ObjectHideFlags: 0
@@ -4521,6 +4492,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 2124083881}
   box: {fileID: 270535692}
+  timeSave: .100000001
 --- !u!1 &271513770
 GameObject:
   m_ObjectHideFlags: 0
@@ -4577,6 +4549,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 2117849091}
   box: {fileID: 271513772}
+  timeSave: .100000001
 --- !u!1001 &272364303
 Prefab:
   m_ObjectHideFlags: 0
@@ -4844,6 +4817,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 2096426427}
   box: {fileID: 297497740}
+  timeSave: .100000001
 --- !u!4 &297497742
 Transform:
   m_ObjectHideFlags: 0
@@ -5168,7 +5142,7 @@ RectTransform:
   - {fileID: 909178570}
   - {fileID: 774675752}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
   m_AnchoredPosition: {x: 177, y: 133}
@@ -5305,6 +5279,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 2133166514}
   box: {fileID: 311610016}
+  timeSave: .100000001
 --- !u!4 &311610018
 Transform:
   m_ObjectHideFlags: 0
@@ -5374,6 +5349,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 664208196}
   box: {fileID: 326009970}
+  timeSave: .100000001
 --- !u!1 &334513923
 GameObject:
   m_ObjectHideFlags: 0
@@ -5627,6 +5603,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 1621152468}
   box: {fileID: 350262800}
+  timeSave: .100000001
 --- !u!1 &354866236
 GameObject:
   m_ObjectHideFlags: 0
@@ -6041,6 +6018,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 1301699145}
   box: {fileID: 375814696}
+  timeSave: .100000001
 --- !u!1 &389015599
 GameObject:
   m_ObjectHideFlags: 0
@@ -6084,6 +6062,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 2059570638}
   box: {fileID: 389015600}
+  timeSave: .100000001
 --- !u!4 &389015602
 Transform:
   m_ObjectHideFlags: 0
@@ -6140,6 +6119,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 111223114}
   box: {fileID: 389310403}
+  timeSave: .100000001
 --- !u!4 &389310405
 Transform:
   m_ObjectHideFlags: 0
@@ -6277,6 +6257,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 597669437}
   box: {fileID: 392877472}
+  timeSave: .100000001
 --- !u!1001 &394170543
 Prefab:
   m_ObjectHideFlags: 0
@@ -6377,6 +6358,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 508764165}
   box: {fileID: 395663668}
+  timeSave: .100000001
 --- !u!1 &396194672
 GameObject:
   m_ObjectHideFlags: 0
@@ -6488,6 +6470,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 1865054624}
   box: {fileID: 400148297}
+  timeSave: .100000001
 --- !u!4 &400148299
 Transform:
   m_ObjectHideFlags: 0
@@ -6863,6 +6846,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 991616148}
   box: {fileID: 420784150}
+  timeSave: .100000001
 --- !u!4 &420784152
 Transform:
   m_ObjectHideFlags: 0
@@ -6932,6 +6916,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 200567481}
   box: {fileID: 421188598}
+  timeSave: .100000001
 --- !u!1001 &423387861
 Prefab:
   m_ObjectHideFlags: 0
@@ -7102,6 +7087,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 198266483}
   box: {fileID: 431609404}
+  timeSave: .100000001
 --- !u!1 &438934277
 GameObject:
   m_ObjectHideFlags: 0
@@ -7379,6 +7365,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 1188294422}
   box: {fileID: 452059438}
+  timeSave: .100000001
 --- !u!1001 &454956957
 Prefab:
   m_ObjectHideFlags: 0
@@ -7622,6 +7609,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 658868992}
   box: {fileID: 467184188}
+  timeSave: .100000001
 --- !u!4 &467184190
 Transform:
   m_ObjectHideFlags: 0
@@ -7678,6 +7666,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 1604671758}
   box: {fileID: 469788701}
+  timeSave: .100000001
 --- !u!4 &469788703
 Transform:
   m_ObjectHideFlags: 0
@@ -8017,6 +8006,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 1571300207}
   box: {fileID: 480523819}
+  timeSave: .100000001
 --- !u!1 &482951103
 GameObject:
   m_ObjectHideFlags: 0
@@ -8182,6 +8172,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 107450332}
   box: {fileID: 485472917}
+  timeSave: .100000001
 --- !u!1 &487188953
 GameObject:
   m_ObjectHideFlags: 0
@@ -8238,6 +8229,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 221831235}
   box: {fileID: 487188955}
+  timeSave: .100000001
 --- !u!1 &489812452
 GameObject:
   m_ObjectHideFlags: 0
@@ -8294,6 +8286,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 1590140791}
   box: {fileID: 489812454}
+  timeSave: .100000001
 --- !u!1001 &490446052
 Prefab:
   m_ObjectHideFlags: 0
@@ -8618,6 +8611,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 793154175}
   box: {fileID: 508425804}
+  timeSave: .100000001
 --- !u!1 &508764163
 GameObject:
   m_ObjectHideFlags: 0
@@ -8815,7 +8809,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
 --- !u!1 &514462303
 GameObject:
   m_ObjectHideFlags: 0
@@ -8984,6 +8978,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 44360322}
   box: {fileID: 517953105}
+  timeSave: .100000001
 --- !u!1001 &518756643
 Prefab:
   m_ObjectHideFlags: 0
@@ -9376,6 +9371,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 737218330}
   box: {fileID: 550562907}
+  timeSave: .100000001
 --- !u!1 &552751165
 GameObject:
   m_ObjectHideFlags: 0
@@ -9509,6 +9505,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 2059274783}
   box: {fileID: 554611716}
+  timeSave: .100000001
 --- !u!4 &554611718
 Transform:
   m_ObjectHideFlags: 0
@@ -10144,6 +10141,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 2021709353}
   box: {fileID: 580326730}
+  timeSave: .100000001
 --- !u!1 &580666944
 GameObject:
   m_ObjectHideFlags: 0
@@ -10200,6 +10198,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 1826247422}
   box: {fileID: 580666946}
+  timeSave: .100000001
 --- !u!1001 &583993202
 Prefab:
   m_ObjectHideFlags: 0
@@ -10300,6 +10299,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 798856610}
   box: {fileID: 584366788}
+  timeSave: .100000001
 --- !u!1 &585117224
 GameObject:
   m_ObjectHideFlags: 0
@@ -10343,6 +10343,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 125428245}
   box: {fileID: 585117225}
+  timeSave: .100000001
 --- !u!4 &585117227
 Transform:
   m_ObjectHideFlags: 0
@@ -10412,6 +10413,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 785485925}
   box: {fileID: 586061119}
+  timeSave: .100000001
 --- !u!1001 &588799505
 Prefab:
   m_ObjectHideFlags: 0
@@ -11209,6 +11211,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 2103191019}
   box: {fileID: 634445518}
+  timeSave: .100000001
 --- !u!1 &641393391
 GameObject:
   m_ObjectHideFlags: 0
@@ -11265,6 +11268,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 1891319979}
   box: {fileID: 641393393}
+  timeSave: .100000001
 --- !u!1001 &641581690
 Prefab:
   m_ObjectHideFlags: 0
@@ -11365,6 +11369,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 1853855823}
   box: {fileID: 643341217}
+  timeSave: .100000001
 --- !u!1 &644314395
 GameObject:
   m_ObjectHideFlags: 0
@@ -11476,6 +11481,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 2112090418}
   box: {fileID: 644863307}
+  timeSave: .100000001
 --- !u!4 &644863309
 Transform:
   m_ObjectHideFlags: 0
@@ -11532,6 +11538,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 577109743}
   box: {fileID: 646356553}
+  timeSave: .100000001
 --- !u!4 &646356555
 Transform:
   m_ObjectHideFlags: 0
@@ -11669,6 +11676,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 623237867}
   box: {fileID: 649492915}
+  timeSave: .100000001
 --- !u!1 &652873784
 GameObject:
   m_ObjectHideFlags: 0
@@ -11715,7 +11723,7 @@ Transform:
   - {fileID: 355000138}
   - {fileID: 1871622475}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
 --- !u!1 &658069289
 GameObject:
   m_ObjectHideFlags: 0
@@ -11759,6 +11767,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 1094977271}
   box: {fileID: 658069290}
+  timeSave: .100000001
 --- !u!4 &658069292
 Transform:
   m_ObjectHideFlags: 0
@@ -11828,6 +11837,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 644314397}
   box: {fileID: 658374728}
+  timeSave: .100000001
 --- !u!1 &658868991
 GameObject:
   m_ObjectHideFlags: 0
@@ -12020,6 +12030,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 1450772964}
   box: {fileID: 664151520}
+  timeSave: .100000001
 --- !u!1 &664208193
 GameObject:
   m_ObjectHideFlags: 0
@@ -12131,6 +12142,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 1262183121}
   box: {fileID: 664675255}
+  timeSave: .100000001
 --- !u!4 &664675257
 Transform:
   m_ObjectHideFlags: 0
@@ -12343,6 +12355,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 2023095609}
   box: {fileID: 677880307}
+  timeSave: .100000001
 --- !u!4 &677880309
 Transform:
   m_ObjectHideFlags: 0
@@ -12480,6 +12493,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 219982134}
   box: {fileID: 690274302}
+  timeSave: .100000001
 --- !u!1 &691976202
 GameObject:
   m_ObjectHideFlags: 0
@@ -12679,6 +12693,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 811830267}
   box: {fileID: 693636872}
+  timeSave: .100000001
 --- !u!4 &693636874
 Transform:
   m_ObjectHideFlags: 0
@@ -13084,6 +13099,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 1358888336}
   box: {fileID: 735793146}
+  timeSave: .100000001
 --- !u!1 &737218328
 GameObject:
   m_ObjectHideFlags: 0
@@ -13276,6 +13292,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 396194674}
   box: {fileID: 744763993}
+  timeSave: .100000001
 --- !u!1 &746620028
 GameObject:
   m_ObjectHideFlags: 0
@@ -13319,6 +13336,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 408272784}
   box: {fileID: 746620029}
+  timeSave: .100000001
 --- !u!4 &746620031
 Transform:
   m_ObjectHideFlags: 0
@@ -13858,6 +13876,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 2054125959}
   box: {fileID: 774675753}
+  timeSave: .100000001
 --- !u!1 &775588331
 GameObject:
   m_ObjectHideFlags: 0
@@ -14147,6 +14166,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 578175530}
   box: {fileID: 780061652}
+  timeSave: .100000001
 --- !u!4 &780061654
 Transform:
   m_ObjectHideFlags: 0
@@ -14582,6 +14602,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 1873289417}
   box: {fileID: 798804843}
+  timeSave: .100000001
 --- !u!1 &798856608
 GameObject:
   m_ObjectHideFlags: 0
@@ -15273,6 +15294,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 1208834621}
   box: {fileID: 822917243}
+  timeSave: .100000001
 --- !u!4 &822917245
 Transform:
   m_ObjectHideFlags: 0
@@ -15342,6 +15364,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 2043111880}
   box: {fileID: 831281451}
+  timeSave: .100000001
 --- !u!1 &831982069
 GameObject:
   m_ObjectHideFlags: 0
@@ -15398,6 +15421,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 1370225327}
   box: {fileID: 831982071}
+  timeSave: .100000001
 --- !u!1 &832351363
 GameObject:
   m_ObjectHideFlags: 0
@@ -15441,6 +15465,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 288717069}
   box: {fileID: 832351364}
+  timeSave: .100000001
 --- !u!4 &832351366
 Transform:
   m_ObjectHideFlags: 0
@@ -15697,6 +15722,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 1478308808}
   box: {fileID: 863684346}
+  timeSave: .100000001
 --- !u!4 &863684348
 Transform:
   m_ObjectHideFlags: 0
@@ -16036,6 +16062,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 768927156}
   box: {fileID: 879505988}
+  timeSave: .100000001
 --- !u!1001 &879978028
 Prefab:
   m_ObjectHideFlags: 0
@@ -16156,7 +16183,7 @@ Transform:
   m_LocalScale: {x: 4, y: 4, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
 --- !u!1001 &894158214
 Prefab:
   m_ObjectHideFlags: 0
@@ -16345,6 +16372,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 758061317}
   box: {fileID: 909178571}
+  timeSave: .100000001
 --- !u!1 &917604660
 GameObject:
   m_ObjectHideFlags: 0
@@ -16401,6 +16429,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 474892958}
   box: {fileID: 917604662}
+  timeSave: .100000001
 --- !u!1001 &918007177
 Prefab:
   m_ObjectHideFlags: 0
@@ -16688,6 +16717,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 1608270172}
   box: {fileID: 942936116}
+  timeSave: .100000001
 --- !u!4 &942936118
 Transform:
   m_ObjectHideFlags: 0
@@ -16744,6 +16774,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 514462304}
   box: {fileID: 943963554}
+  timeSave: .100000001
 --- !u!4 &943963556
 Transform:
   m_ObjectHideFlags: 0
@@ -16813,6 +16844,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 868122218}
   box: {fileID: 962227453}
+  timeSave: .100000001
 --- !u!1 &963125558
 GameObject:
   m_ObjectHideFlags: 0
@@ -17005,7 +17037,7 @@ GameObject:
   - 114: {fileID: 978964884}
   - 114: {fileID: 978964883}
   m_Layer: 5
-  m_Name: Audience Gauge
+  m_Name: timer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17024,9 +17056,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1681448791}
   m_RootOrder: 0
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -40.3310013, y: 7.01049995}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 70.6930008, y: -17.7399998}
   m_SizeDelta: {x: 130, y: 30}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &978964883
@@ -17123,6 +17155,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 1674815382}
   box: {fileID: 986571518}
+  timeSave: .100000001
 --- !u!4 &986571520
 Transform:
   m_ObjectHideFlags: 0
@@ -17352,7 +17385,7 @@ Transform:
   m_Children:
   - {fileID: 1016507927}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
 --- !u!95 &1004267981
 Animator:
   serializedVersion: 3
@@ -17700,6 +17733,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 1446444851}
   box: {fileID: 1010068970}
+  timeSave: .100000001
 --- !u!1 &1016507924
 GameObject:
   m_ObjectHideFlags: 0
@@ -18921,6 +18955,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 1968800062}
   box: {fileID: 1030653387}
+  timeSave: .100000001
 --- !u!4 &1030653389
 Transform:
   m_ObjectHideFlags: 0
@@ -18990,6 +19025,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 2059159483}
   box: {fileID: 1032899511}
+  timeSave: .100000001
 --- !u!1 &1041169020
 GameObject:
   m_ObjectHideFlags: 0
@@ -19033,6 +19069,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 1092220646}
   box: {fileID: 1041169021}
+  timeSave: .100000001
 --- !u!4 &1041169023
 Transform:
   m_ObjectHideFlags: 0
@@ -19102,6 +19139,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 450265728}
   box: {fileID: 1042183861}
+  timeSave: .100000001
 --- !u!1 &1047277066
 GameObject:
   m_ObjectHideFlags: 0
@@ -19158,6 +19196,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 1908867262}
   box: {fileID: 1047277068}
+  timeSave: .100000001
 --- !u!1 &1053024618
 GameObject:
   m_ObjectHideFlags: 0
@@ -19201,6 +19240,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 1105541576}
   box: {fileID: 1053024619}
+  timeSave: .100000001
 --- !u!4 &1053024621
 Transform:
   m_ObjectHideFlags: 0
@@ -19285,50 +19325,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 652873785}
   m_RootOrder: 12
---- !u!1001 &1064495022
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 400000, guid: a1dc0b5a3658b374481d735b8ae88c5e, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: a1dc0b5a3658b374481d735b8ae88c5e, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: a1dc0b5a3658b374481d735b8ae88c5e, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: a1dc0b5a3658b374481d735b8ae88c5e, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: a1dc0b5a3658b374481d735b8ae88c5e, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: a1dc0b5a3658b374481d735b8ae88c5e, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: a1dc0b5a3658b374481d735b8ae88c5e, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: a1dc0b5a3658b374481d735b8ae88c5e, type: 2}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: a1dc0b5a3658b374481d735b8ae88c5e, type: 2}
-  m_RootGameObject: {fileID: 128181231}
-  m_IsPrefabParent: 0
-  m_IsExploded: 1
 --- !u!1 &1066318040
 GameObject:
   m_ObjectHideFlags: 0
@@ -19372,6 +19368,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 1020126949}
   box: {fileID: 1066318041}
+  timeSave: .100000001
 --- !u!4 &1066318043
 Transform:
   m_ObjectHideFlags: 0
@@ -19628,6 +19625,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 1936654957}
   box: {fileID: 1081776750}
+  timeSave: .100000001
 --- !u!4 &1081776752
 Transform:
   m_ObjectHideFlags: 0
@@ -19697,6 +19695,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 758896178}
   box: {fileID: 1083203538}
+  timeSave: .100000001
 --- !u!1001 &1088873888
 Prefab:
   m_ObjectHideFlags: 0
@@ -19784,6 +19783,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 2021828209}
   box: {fileID: 1088928192}
+  timeSave: .100000001
 --- !u!4 &1088928194
 Transform:
   m_ObjectHideFlags: 0
@@ -20210,6 +20210,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 1442666337}
   box: {fileID: 1104991318}
+  timeSave: .100000001
 --- !u!1 &1105541575
 GameObject:
   m_ObjectHideFlags: 0
@@ -20278,54 +20279,6 @@ Animator:
   m_ApplyRootMotion: 1
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!1001 &1107530557
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 124923691}
-    m_Modifications:
-    - target: {fileID: 400000, guid: 2ce84ec1b3c561849abf37028a0eef1f, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -6.95093536
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 2ce84ec1b3c561849abf37028a0eef1f, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 11.3855438
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 2ce84ec1b3c561849abf37028a0eef1f, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 2ce84ec1b3c561849abf37028a0eef1f, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 2ce84ec1b3c561849abf37028a0eef1f, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 2ce84ec1b3c561849abf37028a0eef1f, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 2ce84ec1b3c561849abf37028a0eef1f, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 2ce84ec1b3c561849abf37028a0eef1f, type: 2}
-      propertyPath: m_RootOrder
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 11400000, guid: 2ce84ec1b3c561849abf37028a0eef1f, type: 2}
-      propertyPath: launchAngle
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 2ce84ec1b3c561849abf37028a0eef1f, type: 2}
-  m_RootGameObject: {fileID: 168179697}
-  m_IsPrefabParent: 0
-  m_IsExploded: 1
 --- !u!1001 &1109855969
 Prefab:
   m_ObjectHideFlags: 0
@@ -20413,6 +20366,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 210086053}
   box: {fileID: 1114933084}
+  timeSave: .100000001
 --- !u!4 &1114933086
 Transform:
   m_ObjectHideFlags: 0
@@ -20581,6 +20535,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 139527698}
   box: {fileID: 1125753388}
+  timeSave: .100000001
 --- !u!4 &1125753390
 Transform:
   m_ObjectHideFlags: 0
@@ -20830,6 +20785,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 1413517769}
   box: {fileID: 1139729270}
+  timeSave: .100000001
 --- !u!1001 &1146558854
 Prefab:
   m_ObjectHideFlags: 0
@@ -21056,6 +21012,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 1757821345}
   box: {fileID: 1151162631}
+  timeSave: .100000001
 --- !u!4 &1151162633
 Transform:
   m_ObjectHideFlags: 0
@@ -21224,6 +21181,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 1146804127}
   box: {fileID: 1164312288}
+  timeSave: .100000001
 --- !u!4 &1164312290
 Transform:
   m_ObjectHideFlags: 0
@@ -21458,6 +21416,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 2054553865}
   box: {fileID: 1174887254}
+  timeSave: .100000001
 --- !u!1 &1188294420
 GameObject:
   m_ObjectHideFlags: 0
@@ -21697,6 +21656,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 2146433050}
   box: {fileID: 1200359612}
+  timeSave: .100000001
 --- !u!1001 &1201158950
 Prefab:
   m_ObjectHideFlags: 0
@@ -22079,6 +22039,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 1864160881}
   box: {fileID: 1213039708}
+  timeSave: .100000001
 --- !u!4 &1213039710
 Transform:
   m_ObjectHideFlags: 0
@@ -22135,6 +22096,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 1792498320}
   box: {fileID: 1219245062}
+  timeSave: .100000001
 --- !u!4 &1219245064
 Transform:
   m_ObjectHideFlags: 0
@@ -22248,6 +22210,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 976367562}
   box: {fileID: 1223651582}
+  timeSave: .100000001
 --- !u!1 &1224760232
 GameObject:
   m_ObjectHideFlags: 0
@@ -22304,6 +22267,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 1537390120}
   box: {fileID: 1224760234}
+  timeSave: .100000001
 --- !u!1 &1230655114
 GameObject:
   m_ObjectHideFlags: 0
@@ -22347,6 +22311,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 2071301337}
   box: {fileID: 1230655115}
+  timeSave: .100000001
 --- !u!4 &1230655117
 Transform:
   m_ObjectHideFlags: 0
@@ -22403,6 +22368,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 1125421815}
   box: {fileID: 1234869497}
+  timeSave: .100000001
 --- !u!4 &1234869499
 Transform:
   m_ObjectHideFlags: 0
@@ -22584,6 +22550,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 770589193}
   box: {fileID: 1236504346}
+  timeSave: .100000001
 --- !u!1 &1237107774
 GameObject:
   m_ObjectHideFlags: 0
@@ -22627,6 +22594,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 933160599}
   box: {fileID: 1237107775}
+  timeSave: .100000001
 --- !u!4 &1237107777
 Transform:
   m_ObjectHideFlags: 0
@@ -22683,6 +22651,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 811735078}
   box: {fileID: 1239098230}
+  timeSave: .100000001
 --- !u!4 &1239098232
 Transform:
   m_ObjectHideFlags: 0
@@ -22952,6 +22921,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 2002632921}
   box: {fileID: 1257946928}
+  timeSave: .100000001
 --- !u!1 &1260080842
 GameObject:
   m_ObjectHideFlags: 0
@@ -23020,6 +22990,50 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1409292222}
   m_RootOrder: 0
+--- !u!1001 &1260121195
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 124923691}
+    m_Modifications:
+    - target: {fileID: 400000, guid: 2ce84ec1b3c561849abf37028a0eef1f, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -6.95093536
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 2ce84ec1b3c561849abf37028a0eef1f, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 11.3855438
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 2ce84ec1b3c561849abf37028a0eef1f, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 2ce84ec1b3c561849abf37028a0eef1f, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 2ce84ec1b3c561849abf37028a0eef1f, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 2ce84ec1b3c561849abf37028a0eef1f, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 2ce84ec1b3c561849abf37028a0eef1f, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 2ce84ec1b3c561849abf37028a0eef1f, type: 2}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 2ce84ec1b3c561849abf37028a0eef1f, type: 2}
+  m_RootGameObject: {fileID: 168179697}
+  m_IsPrefabParent: 0
+  m_IsExploded: 1
 --- !u!1 &1262183120
 GameObject:
   m_ObjectHideFlags: 0
@@ -23396,6 +23410,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 1605060397}
   box: {fileID: 1303903822}
+  timeSave: .100000001
 --- !u!1 &1306709040
 GameObject:
   m_ObjectHideFlags: 0
@@ -23452,6 +23467,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 1069633665}
   box: {fileID: 1306709042}
+  timeSave: .100000001
 --- !u!1 &1313208990
 GameObject:
   m_ObjectHideFlags: 0
@@ -23495,6 +23511,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 357348854}
   box: {fileID: 1313208991}
+  timeSave: .100000001
 --- !u!4 &1313208993
 Transform:
   m_ObjectHideFlags: 0
@@ -23564,6 +23581,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 1415873812}
   box: {fileID: 1317702644}
+  timeSave: .100000001
 --- !u!1 &1318595729
 GameObject:
   m_ObjectHideFlags: 0
@@ -23943,7 +23961,7 @@ Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 235396d474bf6064594c4cbdecaa7ba5, type: 2}
   m_PrefabInternal: {fileID: 161920014}
   m_GameObject: {fileID: 1348890680}
-  m_LocalRotation: {x: 0, y: 0, z: -.706855893, w: .707357585}
+  m_LocalRotation: {x: 0, y: 0, z: .707106829, w: -.707106829}
   m_LocalPosition: {x: -7.56780005, y: 6.33960009, z: 0}
   m_LocalScale: {x: 58.7950974, y: 6.72727394, z: 1}
   m_Children: []
@@ -24005,6 +24023,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 1635925012}
   box: {fileID: 1356891297}
+  timeSave: .100000001
 --- !u!1001 &1358303525
 Prefab:
   m_ObjectHideFlags: 0
@@ -24306,6 +24325,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 1161577872}
   box: {fileID: 1373170896}
+  timeSave: .100000001
 --- !u!1001 &1373273531
 Prefab:
   m_ObjectHideFlags: 0
@@ -24525,6 +24545,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 43040267}
   box: {fileID: 1386955468}
+  timeSave: .100000001
 --- !u!4 &1386955470
 Transform:
   m_ObjectHideFlags: 0
@@ -24794,6 +24815,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 1260080844}
   box: {fileID: 1409292223}
+  timeSave: .100000001
 --- !u!1 &1413517767
 GameObject:
   m_ObjectHideFlags: 0
@@ -24973,6 +24995,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 1881641984}
   box: {fileID: 1425849094}
+  timeSave: .100000001
 --- !u!4 &1425849096
 Transform:
   m_ObjectHideFlags: 0
@@ -25453,6 +25476,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 212746378}
   box: {fileID: 1451199396}
+  timeSave: .100000001
 --- !u!4 &1451199398
 Transform:
   m_ObjectHideFlags: 0
@@ -25522,6 +25546,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 1724785744}
   box: {fileID: 1452515431}
+  timeSave: .100000001
 --- !u!1001 &1455174679
 Prefab:
   m_ObjectHideFlags: 0
@@ -25609,6 +25634,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 854748106}
   box: {fileID: 1456870005}
+  timeSave: .100000001
 --- !u!4 &1456870007
 Transform:
   m_ObjectHideFlags: 0
@@ -25709,6 +25735,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 1795525937}
   box: {fileID: 1474578791}
+  timeSave: .100000001
 --- !u!4 &1474578793
 Transform:
   m_ObjectHideFlags: 0
@@ -25765,6 +25792,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 59361923}
   box: {fileID: 1475009043}
+  timeSave: .100000001
 --- !u!4 &1475009045
 Transform:
   m_ObjectHideFlags: 0
@@ -26021,6 +26049,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 197824475}
   box: {fileID: 1482272764}
+  timeSave: .100000001
 --- !u!4 &1482272766
 Transform:
   m_ObjectHideFlags: 0
@@ -26077,6 +26106,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 691976203}
   box: {fileID: 1484223752}
+  timeSave: .100000001
 --- !u!4 &1484223754
 Transform:
   m_ObjectHideFlags: 0
@@ -26146,6 +26176,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 528274898}
   box: {fileID: 1487606813}
+  timeSave: .100000001
 --- !u!1001 &1495401125
 Prefab:
   m_ObjectHideFlags: 0
@@ -26321,6 +26352,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 1788172976}
   box: {fileID: 1501466327}
+  timeSave: .100000001
 --- !u!4 &1501466329
 Transform:
   m_ObjectHideFlags: 0
@@ -26434,6 +26466,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 1093344327}
   box: {fileID: 1505796796}
+  timeSave: .100000001
 --- !u!1001 &1507573157
 Prefab:
   m_ObjectHideFlags: 0
@@ -26534,6 +26567,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 661774088}
   box: {fileID: 1509848465}
+  timeSave: .100000001
 --- !u!1 &1511239906
 GameObject:
   m_ObjectHideFlags: 0
@@ -26923,6 +26957,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 114290665}
   box: {fileID: 1549397154}
+  timeSave: .100000001
 --- !u!4 &1549397156
 Transform:
   m_ObjectHideFlags: 0
@@ -27151,6 +27186,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 506471624}
   box: {fileID: 1560772617}
+  timeSave: .100000001
 --- !u!1 &1565361707
 GameObject:
   m_ObjectHideFlags: 0
@@ -27319,6 +27355,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 1511239908}
   box: {fileID: 1567631139}
+  timeSave: .100000001
 --- !u!1001 &1568389639
 Prefab:
   m_ObjectHideFlags: 0
@@ -27777,6 +27814,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 227853452}
   box: {fileID: 1581431690}
+  timeSave: .100000001
 --- !u!1 &1581546420
 GameObject:
   m_ObjectHideFlags: 0
@@ -27873,6 +27911,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 438934279}
   box: {fileID: 1587608057}
+  timeSave: .100000001
 --- !u!1 &1589830226
 GameObject:
   m_ObjectHideFlags: 0
@@ -28500,6 +28539,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 143468961}
   box: {fileID: 1612303633}
+  timeSave: .100000001
 --- !u!4 &1612303635
 Transform:
   m_ObjectHideFlags: 0
@@ -28749,6 +28789,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 1236192287}
   box: {fileID: 1622224774}
+  timeSave: .100000001
 --- !u!1 &1626486241
 GameObject:
   m_ObjectHideFlags: 0
@@ -28805,6 +28846,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 1318595731}
   box: {fileID: 1626486243}
+  timeSave: .100000001
 --- !u!1001 &1635134416
 Prefab:
   m_ObjectHideFlags: 0
@@ -28973,6 +29015,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 777671297}
   box: {fileID: 1636053856}
+  timeSave: .100000001
 --- !u!1 &1636476098
 GameObject:
   m_ObjectHideFlags: 0
@@ -29016,6 +29059,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 408903858}
   box: {fileID: 1636476099}
+  timeSave: .100000001
 --- !u!4 &1636476101
 Transform:
   m_ObjectHideFlags: 0
@@ -29072,6 +29116,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 869966250}
   box: {fileID: 1647215051}
+  timeSave: .100000001
 --- !u!4 &1647215053
 Transform:
   m_ObjectHideFlags: 0
@@ -29128,6 +29173,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 391918136}
   box: {fileID: 1651881537}
+  timeSave: .100000001
 --- !u!4 &1651881539
 Transform:
   m_ObjectHideFlags: 0
@@ -29241,6 +29287,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 1167058746}
   box: {fileID: 1661411926}
+  timeSave: .100000001
 --- !u!1 &1674815381
 GameObject:
   m_ObjectHideFlags: 0
@@ -29484,6 +29531,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 963125560}
   box: {fileID: 1685555585}
+  timeSave: .100000001
 --- !u!1001 &1685894726
 Prefab:
   m_ObjectHideFlags: 0
@@ -29860,6 +29908,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 1913954075}
   box: {fileID: 1726548385}
+  timeSave: .100000001
 --- !u!4 &1726548387
 Transform:
   m_ObjectHideFlags: 0
@@ -29929,6 +29978,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 603898997}
   box: {fileID: 1729561732}
+  timeSave: .100000001
 --- !u!1 &1734538904
 GameObject:
   m_ObjectHideFlags: 0
@@ -30040,6 +30090,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 822561602}
   box: {fileID: 1741834143}
+  timeSave: .100000001
 --- !u!4 &1741834145
 Transform:
   m_ObjectHideFlags: 0
@@ -30654,6 +30705,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 1589830228}
   box: {fileID: 1801361348}
+  timeSave: .100000001
 --- !u!1001 &1806065829
 Prefab:
   m_ObjectHideFlags: 0
@@ -30754,6 +30806,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 1695095802}
   box: {fileID: 1807403568}
+  timeSave: .100000001
 --- !u!1 &1814955675
 GameObject:
   m_ObjectHideFlags: 0
@@ -30865,6 +30918,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 572743318}
   box: {fileID: 1819142248}
+  timeSave: .100000001
 --- !u!4 &1819142250
 Transform:
   m_ObjectHideFlags: 0
@@ -31077,6 +31131,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 73250768}
   box: {fileID: 1826309356}
+  timeSave: .100000001
 --- !u!4 &1826309358
 Transform:
   m_ObjectHideFlags: 0
@@ -31302,6 +31357,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 171700062}
   box: {fileID: 1852166927}
+  timeSave: .100000001
 --- !u!1 &1853855821
 GameObject:
   m_ObjectHideFlags: 0
@@ -31565,6 +31621,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 1565361709}
   box: {fileID: 1864466493}
+  timeSave: .100000001
 --- !u!1 &1865054623
 GameObject:
   m_ObjectHideFlags: 0
@@ -31917,6 +31974,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 2040454896}
   box: {fileID: 1877384865}
+  timeSave: .100000001
 --- !u!4 &1877384867
 Transform:
   m_ObjectHideFlags: 0
@@ -31986,6 +32044,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 1101168797}
   box: {fileID: 1878366235}
+  timeSave: .100000001
 --- !u!1 &1879473904
 GameObject:
   m_ObjectHideFlags: 0
@@ -32042,6 +32101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 672676046}
   box: {fileID: 1879473906}
+  timeSave: .100000001
 --- !u!1 &1880549800
 GameObject:
   m_ObjectHideFlags: 0
@@ -32085,6 +32145,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 1846924534}
   box: {fileID: 1880549801}
+  timeSave: .100000001
 --- !u!4 &1880549803
 Transform:
   m_ObjectHideFlags: 0
@@ -32222,6 +32283,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 1513447421}
   box: {fileID: 1884650800}
+  timeSave: .100000001
 --- !u!1 &1884795387
 GameObject:
   m_ObjectHideFlags: 0
@@ -32346,6 +32408,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 531915937}
   box: {fileID: 1886171260}
+  timeSave: .100000001
 --- !u!1 &1887695596
 GameObject:
   m_ObjectHideFlags: 0
@@ -32402,6 +32465,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 160769213}
   box: {fileID: 1887695598}
+  timeSave: .100000001
 --- !u!1 &1891319977
 GameObject:
   m_ObjectHideFlags: 0
@@ -32702,6 +32766,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 172537421}
   box: {fileID: 1902527133}
+  timeSave: .100000001
 --- !u!1001 &1906241385
 Prefab:
   m_ObjectHideFlags: 0
@@ -33009,6 +33074,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 272417593}
   box: {fileID: 1919079991}
+  timeSave: .100000001
 --- !u!4 &1919079993
 Transform:
   m_ObjectHideFlags: 0
@@ -33078,6 +33144,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 811459274}
   box: {fileID: 1934931482}
+  timeSave: .100000001
 --- !u!1 &1936654956
 GameObject:
   m_ObjectHideFlags: 0
@@ -33202,6 +33269,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 1569612305}
   box: {fileID: 1944440501}
+  timeSave: .100000001
 --- !u!1001 &1951221031
 Prefab:
   m_ObjectHideFlags: 0
@@ -33772,6 +33840,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 1956240451}
   box: {fileID: 1983811251}
+  timeSave: .100000001
 --- !u!1 &2002632919
 GameObject:
   m_ObjectHideFlags: 0
@@ -33940,6 +34009,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 742824793}
   box: {fileID: 2007650466}
+  timeSave: .100000001
 --- !u!1 &2009377491
 GameObject:
   m_ObjectHideFlags: 0
@@ -33983,6 +34053,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 1884795388}
   box: {fileID: 2009377492}
+  timeSave: .100000001
 --- !u!4 &2009377494
 Transform:
   m_ObjectHideFlags: 0
@@ -34083,6 +34154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 700342895}
   box: {fileID: 2014039843}
+  timeSave: .100000001
 --- !u!4 &2014039845
 Transform:
   m_ObjectHideFlags: 0
@@ -34514,6 +34586,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 631545201}
   box: {fileID: 2036121311}
+  timeSave: .100000001
 --- !u!1 &2040454895
 GameObject:
   m_ObjectHideFlags: 0
@@ -34789,6 +34862,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 131983866}
   box: {fileID: 2053713716}
+  timeSave: .100000001
 --- !u!4 &2053713718
 Transform:
   m_ObjectHideFlags: 0
@@ -35198,6 +35272,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 300236783}
   box: {fileID: 2060952737}
+  timeSave: .100000001
 --- !u!1001 &2061681403
 Prefab:
   m_ObjectHideFlags: 0
@@ -35285,6 +35360,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 1973682286}
   box: {fileID: 2062390705}
+  timeSave: .100000001
 --- !u!4 &2062390707
 Transform:
   m_ObjectHideFlags: 0
@@ -35385,6 +35461,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 648109848}
   box: {fileID: 2066044992}
+  timeSave: .100000001
 --- !u!4 &2066044994
 Transform:
   m_ObjectHideFlags: 0
@@ -35722,6 +35799,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 1618773994}
   box: {fileID: 2087241452}
+  timeSave: .100000001
 --- !u!1001 &2095207940
 Prefab:
   m_ObjectHideFlags: 0
@@ -36281,6 +36359,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 466742425}
   box: {fileID: 2126095113}
+  timeSave: .100000001
 --- !u!4 &2126095115
 Transform:
   m_ObjectHideFlags: 0

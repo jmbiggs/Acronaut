@@ -14,6 +14,8 @@ public class Cannon : MonoBehaviour {
 	private float hForce;
 	private float vForce;
 
+	private bool isFiring = false;
+
 	// Use this for initialization
 	void Start () {
 		pc = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
@@ -40,11 +42,19 @@ public class Cannon : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D coll){
-		pc.paused = true;
-		inPause = true;
-		timer = pauseTime;
-		pc.horizVelocity = 0f;
-		pc.vertVelocity = 0f;
+		if (!isFiring) {
+			pc.paused = true;
+			pc.transform.position = this.gameObject.transform.position;
+			inPause = true;
+			timer = pauseTime;
+			pc.horizVelocity = 0f;
+			pc.vertVelocity = 0f;
+			isFiring = true;
+		}
+	}
+
+	void OnTriggerExit2D(Collider2D coll) {
+		isFiring = false;
 	}
 
 }

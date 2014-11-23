@@ -5,10 +5,13 @@ public class PickUp : MonoBehaviour {
 	
 	public SpriteRenderer sprite;
 	public BoxCollider2D box;
+	public float timeSave = 5f;
+
+	Level level;
 
 	// Use this for initialization
 	void Start () {
-
+		level = GameObject.FindGameObjectWithTag("Level").GetComponent<Level>();
 	}
 	
 	// Update is called once per frame
@@ -22,7 +25,7 @@ public class PickUp : MonoBehaviour {
 			// Missing an animation for the balloon popping, but this will make the balloon disappear
 			sprite.enabled = false;
 			box.enabled = false;
-
+			level.playerTime -= timeSave;
 		}
 		
 	}
