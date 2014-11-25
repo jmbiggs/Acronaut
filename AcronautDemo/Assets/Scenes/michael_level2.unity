@@ -559,7 +559,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelName: Test
-  nextLevel: balloonLevel
+  nextLevel: isaac_level
   goldTime: 30
   silverTime: 45
   bronzeTime: 60
@@ -12129,7 +12129,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400028, guid: 3729b692df3010d478a83884895d689f, type: 2}
       propertyPath: nextLevel
-      value: balloonLevel
+      value: isaac_level
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3729b692df3010d478a83884895d689f, type: 2}
