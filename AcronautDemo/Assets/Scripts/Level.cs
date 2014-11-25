@@ -5,6 +5,7 @@ using System.Collections;
 public class Level : MonoBehaviour {
 
 	public string levelName;
+	public string nextLevel;
 
 	public float goldTime;
 	public float silverTime;
@@ -26,6 +27,13 @@ public class Level : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (reachedGoal) {
+			if (Input.GetButtonDown ("Jump")) {
+				Application.LoadLevel(nextLevel);
+			}
+		}
+
+
 		if (playerTime < 0f)
 			playerTime = 0f;
 		if (!reachedGoal) {
@@ -62,4 +70,6 @@ public class Level : MonoBehaviour {
 		winPanel.DisplayWinPanel(goldTime, silverTime, bronzeTime, playerTime);
 		reachedGoal = true;
 	}
+
+
 }

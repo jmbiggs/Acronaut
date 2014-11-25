@@ -16,4 +16,8 @@ public class LevelLoader : MonoBehaviour {
 	public void LoadTest() {
 		Application.LoadLevel("proto2");
 	}
+
+	public void LoadLevel(string level) {
+		Application.LoadLevel (level);
+	}
 }

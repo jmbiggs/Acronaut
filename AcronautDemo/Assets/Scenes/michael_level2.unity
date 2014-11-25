@@ -559,6 +559,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelName: Test
+  nextLevel: balloonLevel
   goldTime: 30
   silverTime: 45
   bronzeTime: 60
@@ -1632,7 +1633,6 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 1906241385}
   m_GameObject: {fileID: 354866236}
-  m_HideIfInvisible: 0
 --- !u!1001 &364681239
 Prefab:
   m_ObjectHideFlags: 0
@@ -1963,12 +1963,12 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 6
     m_RichText: 1
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Tutorial text goes here
+  m_Text: 
 --- !u!222 &426106694
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1976,7 +1976,6 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 1906241385}
   m_GameObject: {fileID: 426106692}
-  m_HideIfInvisible: 0
 --- !u!224 &426106695
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1992,7 +1991,7 @@ RectTransform:
   m_RootOrder: 3
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 77.1309967, y: -22.5020752}
+  m_AnchoredPosition: {x: 77.0999985, y: -22.5020752}
   m_SizeDelta: {x: 130, y: 30}
   m_Pivot: {x: .5, y: .5}
 --- !u!1001 &436857522
@@ -2340,7 +2339,6 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 1906241385}
   m_GameObject: {fileID: 475422869}
-  m_HideIfInvisible: 0
 --- !u!1 &482951103
 GameObject:
   m_ObjectHideFlags: 0
@@ -2405,7 +2403,6 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 1906241385}
   m_GameObject: {fileID: 482951103}
-  m_HideIfInvisible: 0
 --- !u!1 &485052402
 GameObject:
   m_ObjectHideFlags: 0
@@ -4011,7 +4008,6 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 1906241385}
   m_GameObject: {fileID: 770000167}
-  m_HideIfInvisible: 0
 --- !u!1001 &770831573
 Prefab:
   m_ObjectHideFlags: 0
@@ -4428,7 +4424,6 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 1906241385}
   m_GameObject: {fileID: 867476372}
-  m_HideIfInvisible: 0
 --- !u!1 &888651964
 GameObject:
   m_ObjectHideFlags: 0
@@ -4493,7 +4488,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
 --- !u!4 &888651968
 Transform:
   m_ObjectHideFlags: 0
@@ -4816,7 +4811,6 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 1906241385}
   m_GameObject: {fileID: 978964881}
-  m_HideIfInvisible: 0
 --- !u!1 &979972346
 GameObject:
   m_ObjectHideFlags: 0
@@ -5122,7 +5116,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!199 &1016507925
 ParticleSystemRenderer:
   m_ObjectHideFlags: 0
@@ -8388,7 +8382,6 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 1906241385}
   m_GameObject: {fileID: 1365615349}
-  m_HideIfInvisible: 0
 --- !u!1 &1366109744
 GameObject:
   m_ObjectHideFlags: 0
@@ -10669,6 +10662,7 @@ Canvas:
   m_PixelPerfect: 1
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
 --- !u!1001 &1718972758
@@ -10869,7 +10863,6 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 1906241385}
   m_GameObject: {fileID: 1724767895}
-  m_HideIfInvisible: 0
 --- !u!1001 &1762937992
 Prefab:
   m_ObjectHideFlags: 0
@@ -11542,7 +11535,6 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 1906241385}
   m_GameObject: {fileID: 1820953910}
-  m_HideIfInvisible: 0
 --- !u!1 &1834052975
 GameObject:
   m_ObjectHideFlags: 0
@@ -12135,6 +12127,10 @@ Prefab:
       propertyPath: m_AnchoredPosition.y
       value: -22.5020752
       objectReference: {fileID: 0}
+    - target: {fileID: 11400028, guid: 3729b692df3010d478a83884895d689f, type: 2}
+      propertyPath: nextLevel
+      value: balloonLevel
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3729b692df3010d478a83884895d689f, type: 2}
   m_RootGameObject: {fileID: 1681448790}
@@ -12626,7 +12622,6 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 1906241385}
   m_GameObject: {fileID: 2021958627}
-  m_HideIfInvisible: 0
 --- !u!1 &2025720269
 GameObject:
   m_ObjectHideFlags: 0

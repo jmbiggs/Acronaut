@@ -4,7 +4,7 @@ using System.Collections;
 public class Music : MonoBehaviour {
 
 	public static Music instance = null;
-	public AudioClip newMusic;
+	public AudioClip[] newMusic;
 
 	// Use this for initialization
 	void Start () {
