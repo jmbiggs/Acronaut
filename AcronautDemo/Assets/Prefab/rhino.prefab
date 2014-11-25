@@ -215,8 +215,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0e0a9db7399cbf4ebaea2a080474dfb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bounceSpeed: 11
-  dashingBounceSpeed: 15
+  bounceSpeed: 25
+  dashingBounceSpeed: 38
+  bounceAngle: 45
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
