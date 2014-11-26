@@ -82,24 +82,24 @@ public class PlayerController : MonoBehaviour {
 
 	public void Jump(){
 		vertVelocity += jumpSpeed;
-		sprite.color = Color.red;
 	}
+
 	public void KillJump(){
 		vertVelocity = 0f;
-		sprite.color = Color.white;
+
 	}
 
 	public void Hover() {
 		isHovering = true;
 		vertVelocity = hoverSpeed;
 		gravityVelocity = 0f;
-		sprite.color = Color.magenta;
+	
 	}
 
 	public void KillHover() {
 		isHovering = false;
 		gravityVelocity = 0f;
-		sprite.color = Color.white;
+	
 	}
 
 	public void AirMurder() {
@@ -116,7 +116,7 @@ public class PlayerController : MonoBehaviour {
 		gravityVelocity = 0f;
 		horizVelocity += wallJumpSpeed * -1 * pPhysics.wallClingingDir;
 		wallJumpTimer = wallJumpLength;
-		sprite.color = Color.cyan;
+
 	}
 
 	public void DoubleJump(){
@@ -124,7 +124,7 @@ public class PlayerController : MonoBehaviour {
 			hasUsedDoubleJump = true;
 		vertVelocity = jumpSpeed;
 		gravityVelocity = 0f;
-		sprite.color = Color.green;
+	
 	}
 
 	// ground dash in direction player is facing
@@ -134,13 +134,13 @@ public class PlayerController : MonoBehaviour {
 		if (!facingRight)
 			dashSpeed *= -1;
 		horizVelocity = dashSpeed;
-		sprite.color = Color.blue;
+	
 	}
 	public void KillDash(){
 		isDashing = false;
 		horizVelocity = 0f;
 		dashSpeed = Mathf.Abs(dashSpeed); // reset dash speed to its absolute value
-		sprite.color = Color.white;
+
 	}
 
 	// horizontal air dash in direction player is facing
@@ -154,14 +154,13 @@ public class PlayerController : MonoBehaviour {
 		dashTimer = horizAirDashLength;
 		horizAirDashSpeed *= direction;
 		horizVelocity = horizAirDashSpeed;
-		sprite.color = Color.yellow;
+
 	}
 
 	public void KillHorizAirDash(){
 		isHorizAirDashing = false;
 		horizVelocity = 0f;
 		horizAirDashSpeed = Mathf.Abs(horizAirDashSpeed); // reset dash speed to its absolute value
-		sprite.color = Color.white;
 	}
 
 	// vertical air dash in given direction
@@ -179,7 +178,6 @@ public class PlayerController : MonoBehaviour {
 		dashTimer = vertAirDashLength;
 		vertAirDashSpeed *= direction;
 		vertVelocity = vertAirDashSpeed;
-		sprite.color = Color.blue;
 	}
 
 	public void KillVertAirDash(){
@@ -187,7 +185,6 @@ public class PlayerController : MonoBehaviour {
 		if (vertVelocity > 0f)
 			vertVelocity = 0f;
 		vertAirDashSpeed = Mathf.Abs(vertAirDashSpeed); // reset dash speed to its absolute value
-		sprite.color = Color.white;
 	}
 
 	// vertical wall dash in given direction

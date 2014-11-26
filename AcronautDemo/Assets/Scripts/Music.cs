@@ -22,4 +22,8 @@ public class Music : MonoBehaviour {
 	void Update () {
 	
 	}
+
+	void OnLevelWasLoaded() {
+	
+	}
 }
