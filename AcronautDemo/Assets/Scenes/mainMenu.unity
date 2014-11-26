@@ -103,9 +103,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1851365120}
   m_RootOrder: 1
-  m_AnchorMin: {x: .5, y: .5}
-  m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: -1.52590001e-05, y: 111}
+  m_AnchorMin: {x: .5, y: 1}
+  m_AnchorMax: {x: .5, y: 1}
+  m_AnchoredPosition: {x: -1.52590001e-05, y: -40}
   m_SizeDelta: {x: 130, y: 30}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &129485738
@@ -142,7 +142,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 129485736}
-  m_HideIfInvisible: 0
 --- !u!1 &399085384
 GameObject:
   m_ObjectHideFlags: 0
@@ -219,15 +218,15 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1355098514}
-        m_MethodName: LoadTest
-        m_Mode: 1
+        m_MethodName: LoadLevel
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: level1
           m_BoolArgument: 0
         m_CallState: 1
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -259,7 +258,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 399085384}
-  m_HideIfInvisible: 0
 --- !u!1001 &765861906
 Prefab:
   m_ObjectHideFlags: 0
@@ -364,6 +362,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
+  m_DragThreshold: 5
 --- !u!4 &977773034
 Transform:
   m_ObjectHideFlags: 0
@@ -599,16 +598,13 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Test Level
-
-'
+  m_Text: New Game
 --- !u!222 &1811257297
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1811257295}
-  m_HideIfInvisible: 0
 --- !u!224 &1811257298
 RectTransform:
   m_ObjectHideFlags: 0
@@ -693,6 +689,7 @@ Canvas:
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
 --- !u!1 &1969362422
@@ -781,7 +778,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c20b9b01ec4b274b810f93b5f8bf7ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  newMusic: {fileID: 8300000, guid: 53ab4cac7b6dc0041a8841d3f72dd4a0, type: 3}
+  newMusic:
+  - {fileID: 8300000, guid: 53ab4cac7b6dc0041a8841d3f72dd4a0, type: 3}
+  - {fileID: 8300000, guid: 1e71b103f8a38324582f17a98307dadb, type: 3}
+  - {fileID: 8300000, guid: d52e89e944dd89044b24401fe4a2b86c, type: 3}
+  - {fileID: 8300000, guid: 1becfc5b3a6bcc1489d8dc11b4686b02, type: 3}
 --- !u!4 &1969362425
 Transform:
   m_ObjectHideFlags: 0

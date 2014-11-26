@@ -47,7 +47,7 @@ public class PlayerController : MonoBehaviour {
 	private int knockbackDir;
 
 	private bool swingTrick; // whether or not the trick button is held during swing
-	private float swingPauseTimer;
+	public float swingPauseTimer;
 
 	[HideInInspector]
 	public bool isDashing = false;
@@ -225,10 +225,10 @@ public class PlayerController : MonoBehaviour {
 	// temporarily disables controls and swings the player up into the air
 	// if trick button is held down, swing distance will be longer
 	public void Swing() {
-		isSwinging = true;
-		swingPauseTimer = swingPauseTime;
-		horizVelocity = 0f;
-		vertVelocity = 0f;
+		// isSwinging = true;
+		// swingPauseTimer = swingPauseTime;
+		// horizVelocity = 0f;
+		// vertVelocity = 0f;
 	}
 
 	// restores ability to do all air moves
