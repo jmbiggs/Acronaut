@@ -144,6 +144,8 @@ public class PlayerController : MonoBehaviour {
 	public void HorizAirDash(int direction){
 		if (!inSpotlight)
 			hasUsedHorizAirDash = true;
+		if (isDashing)
+			KillDash ();
 		isHorizAirDashing = true;
 		vertVelocity = 0f;
 		gravityVelocity = 0f;
@@ -376,7 +378,7 @@ public class PlayerController : MonoBehaviour {
 			if (isHovering) {
 				KillHover ();
 			}
-			if (horizInput > 0)
+			if (facingRight)
 				HorizAirDash (1);
 			else
 				HorizAirDash (-1);
