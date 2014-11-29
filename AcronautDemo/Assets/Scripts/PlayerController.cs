@@ -19,6 +19,8 @@ public class PlayerController : MonoBehaviour {
 	public float wallSlideSpeed; // like a gravity value when wall sliding
 	public float wallJumpSpeedVert;
 	public float wallJumpSpeedHoriz;
+	public float wallTrickJumpSpeedVert;
+	public float wallTrickJumpSpeedHoriz;
 	public float wallJumpLength; // amount of time to move horizontally in wall jump
 	public float wallDashLength;
 	public float hoverSpeed;
@@ -51,6 +53,7 @@ public class PlayerController : MonoBehaviour {
 
 	private bool swingTrick; // whether or not the trick button is held during swing
 	public float swingPauseTimer;
+	private bool wallJumpTricked = false; // whether or not trick button is held during wall jump
 
 	[HideInInspector]
 	public bool isDashing = false;
@@ -110,11 +113,20 @@ public class PlayerController : MonoBehaviour {
 		KillVertAirDash();
 	}
 
-	public void WallJump(){
+	// if tricked is true, jump further out
+	public void WallJump(bool tricked){
 		inWallJump = true;
 		vertVelocity = 0f;
 		gravityVelocity = 0f;
-		horizVelocity += wallJumpSpeedHoriz * -pPhysics.wallClingingDir;
+		if (tricked) {
+			horizVelocity += wallTrickJumpSpeedHoriz * -pPhysics.wallClingingDir;
+			wallJumpTricked = true;
+		} 
+		else {
+			horizVelocity += wallJumpSpeedHoriz * -pPhysics.wallClingingDir;
+			wallJumpTricked = false;
+		}
+
 		wallJumpTimer = wallJumpLength;
 	}
 
@@ -347,7 +359,10 @@ public class PlayerController : MonoBehaviour {
 				Jump();
 			}
 			else if (pPhysics.wallClinging)
-				WallJump();
+				if (Input.GetButton("Trick"))
+					WallJump(true);
+				else
+				    WallJump (false);
 			else if (!hasUsedDoubleJump) {
 				DoubleJump();
 			}
@@ -483,7 +498,10 @@ public class PlayerController : MonoBehaviour {
 			if (wallJumpTimer <= 0) {
 				inWallJump = false;
 				horizVelocity = 0f;
-				vertVelocity = wallJumpSpeedVert;
+				if (wallJumpTricked)
+					vertVelocity = wallTrickJumpSpeedVert;
+				else
+					vertVelocity = wallJumpSpeedVert;
 			}
 		}
 		else if (isWallDashing) {
