@@ -17,7 +17,8 @@ public class PlayerController : MonoBehaviour {
 	public float vertAirDashSpeed;
 
 	public float wallSlideSpeed; // like a gravity value when wall sliding
-	public float wallJumpSpeed;
+	public float wallJumpSpeedVert;
+	public float wallJumpSpeedHoriz;
 	public float wallJumpLength; // amount of time to move horizontally in wall jump
 	public float wallDashLength;
 	public float hoverSpeed;
@@ -88,20 +89,17 @@ public class PlayerController : MonoBehaviour {
 
 	public void KillJump(){
 		vertVelocity = 0f;
-
 	}
 
 	public void Hover() {
 		isHovering = true;
 		vertVelocity = hoverSpeed;
-		gravityVelocity = 0f;
-	
+		gravityVelocity = 0f;	
 	}
 
 	public void KillHover() {
 		isHovering = false;
-		gravityVelocity = 0f;
-	
+		gravityVelocity = 0f;	
 	}
 
 	public void AirMurder() {
@@ -116,17 +114,15 @@ public class PlayerController : MonoBehaviour {
 		inWallJump = true;
 		vertVelocity = 0f;
 		gravityVelocity = 0f;
-		horizVelocity += wallJumpSpeed * -1 * pPhysics.wallClingingDir;
+		horizVelocity += wallJumpSpeedHoriz * -pPhysics.wallClingingDir;
 		wallJumpTimer = wallJumpLength;
-
 	}
 
 	public void DoubleJump(){
 		if (!inSpotlight)
 			hasUsedDoubleJump = true;
 		vertVelocity = jumpSpeed;
-		gravityVelocity = 0f;
-	
+		gravityVelocity = 0f;	
 	}
 
 	// ground dash in direction player is facing
@@ -135,14 +131,12 @@ public class PlayerController : MonoBehaviour {
 		dashTimer = dashLength;
 		if (!facingRight)
 			dashSpeed *= -1;
-		horizVelocity = dashSpeed;
-	
+		horizVelocity = dashSpeed;	
 	}
 	public void KillDash(){
 		isDashing = false;
 		horizVelocity = 0f;
 		dashSpeed = Mathf.Abs(dashSpeed); // reset dash speed to its absolute value
-
 	}
 
 	// horizontal air dash in direction player is facing
@@ -156,7 +150,6 @@ public class PlayerController : MonoBehaviour {
 		dashTimer = horizAirDashLength;
 		horizAirDashSpeed *= direction;
 		horizVelocity = horizAirDashSpeed;
-
 	}
 
 	public void KillHorizAirDash(){
@@ -488,7 +481,7 @@ public class PlayerController : MonoBehaviour {
 			if (wallJumpTimer <= 0) {
 				inWallJump = false;
 				horizVelocity = 0f;
-				vertVelocity = wallJumpSpeed;
+				vertVelocity = wallJumpSpeedVert;
 			}
 		}
 		else if (isWallDashing) {
