@@ -476,16 +476,17 @@ public class PlayerController : MonoBehaviour {
 
 		else if (isDashing) {
 			float dashDir = Mathf.Sign (dashSpeed);
-			if ((horizInput > 0 && dashDir == -1) || (horizInput < 0 && dashDir == 1))
+			if ((horizInput > 0 && dashDir == -1) || 
+			    (horizInput < 0 && dashDir == 1) ||
+			    !Input.GetButton("Trick") ||
+			    dashTimer <= 0)
 				KillDash ();
 			if (pPhysics.grounded)
 				dashTimer -= Time.deltaTime;
-			if (dashTimer <= 0)
-				KillDash ();
 		} 
 		else if (isHorizAirDashing) {
 			dashTimer -= Time.deltaTime;
-			if (dashTimer <= 0)
+			if (dashTimer <= 0 || !Input.GetButton("Trick"))
 				KillHorizAirDash ();
 		} 
 		else if (isVertAirDashing) {
