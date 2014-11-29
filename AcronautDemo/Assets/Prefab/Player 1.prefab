@@ -147,6 +147,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gravity: 3
   groundResistance: 50
+  airResistance: 25
   speed: 5.5
   jumpSpeed: 9
   dashLength: .25

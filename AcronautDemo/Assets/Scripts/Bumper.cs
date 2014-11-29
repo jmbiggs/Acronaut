@@ -29,9 +29,14 @@ public class Bumper : MonoBehaviour {
 		int mid = coll.contacts.Length / 2;
 		Vector2 c = coll.contacts [mid].point;
 
+		// get the normal
+		Vector2 norm = coll.contacts [mid].normal;
+
+		/*
 		// get weighted percentages of contact point's distance from center
 		float vPer = (c.y - transform.position.y); // / circle.radius;
 		float hPer = (c.x - transform.position.x); // / circle.radius;
+		*/
 
 		// get magnitude of current velocity
 		float magSquared = (pc.horizVelocity * pc.horizVelocity) + (pc.vertVelocity * pc.vertVelocity);
@@ -42,7 +47,11 @@ public class Bumper : MonoBehaviour {
 			mag = minBounce;
 
 		// multiply each percentage by the magnitude, and set new velocities
-		pc.vertVelocity = vPer * mag;
-		pc.horizVelocity = hPer * mag;	
+		pc.vertVelocity = -norm.y * mag;
+		pc.horizVelocity = -norm.x * mag;	
+
+		// kill hover if necessary
+		if (pc.isHovering)
+			pc.KillHover ();
 	}
 }

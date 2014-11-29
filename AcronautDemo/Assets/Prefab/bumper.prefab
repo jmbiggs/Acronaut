@@ -53,7 +53,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bounceMultiplier: 1.60000002
-  minBounce: 20
+  minBounce: 15
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1

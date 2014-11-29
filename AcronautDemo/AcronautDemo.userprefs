@@ -2,16 +2,14 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Bumper.cs">
     <Files>
-      <File FileName="Assets\Scripts\PlayerController.cs" Line="318" Column="26" />
-      <File FileName="Assets\Scripts\Bumper.cs" Line="33" Column="1" />
-      <File FileName="Assets\Scripts\Level.cs" Line="64" Column="1" />
-      <File FileName="Assets\Scripts\Balloon.cs" Line="24" Column="29" />
+      <File FileName="Assets\Scripts\PlayerController.cs" Line="278" Column="124" />
+      <File FileName="Assets\Scripts\Bumper.cs" Line="56" Column="3" />
+      <File FileName="Assets\Scripts\Level.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Balloon.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint enabled="false" file="C:\Users\Michael\Documents\GitHub\Acronaut\AcronautDemo\Assets\Scripts\Bumper.cs" line="33" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

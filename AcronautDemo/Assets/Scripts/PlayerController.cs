@@ -5,7 +5,8 @@ using System.Collections;
 public class PlayerController : MonoBehaviour {
 
 	public float gravity;
-	public float groundResistance;
+	public float groundResistance; // slows horizontal velocity on ground
+	public float airResistance; // slows horizontal velocity in air
 	public float speed;
 	public float jumpSpeed;
 	public float dashLength;
@@ -299,6 +300,20 @@ public class PlayerController : MonoBehaviour {
 			}
 			else {
 				horizVelocity += groundResistance * Time.deltaTime;
+				if (horizVelocity > 0)
+					horizVelocity = 0f;
+			}
+		}
+
+		// apply air resistance if necessary
+		else if (!pPhysics.grounded && horizVelocity != 0f && !isHorizAirDashing && !isVertAirDashing && !isKnocked) {
+			if (horizVelocity > 0){
+				horizVelocity -= airResistance * Time.deltaTime;
+				if (horizVelocity < 0)
+					horizVelocity = 0f;
+			}
+			else {
+				horizVelocity += airResistance * Time.deltaTime;
 				if (horizVelocity > 0)
 					horizVelocity = 0f;
 			}
