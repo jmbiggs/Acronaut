@@ -5,6 +5,7 @@ using System.Collections;
 public class PlayerController : MonoBehaviour {
 
 	public float gravity;
+	public float groundResistance;
 	public float speed;
 	public float jumpSpeed;
 	public float dashLength;
@@ -289,6 +290,20 @@ public class PlayerController : MonoBehaviour {
 			vertVelocity = wallSlideSpeed * -1;
 		}
 
+		// apply ground resistance if necessary
+		if (pPhysics.grounded && horizVelocity != 0f && !isDashing && !isKnocked) {
+			if (horizVelocity > 0){
+				horizVelocity -= groundResistance * Time.deltaTime;
+				if (horizVelocity < 0)
+					horizVelocity = 0f;
+			}
+			else {
+				horizVelocity += groundResistance * Time.deltaTime;
+				if (horizVelocity > 0)
+					horizVelocity = 0f;
+			}
+		}
+
 		// get the player's (possible) left/right input
 		// it should be between -1 and 1
 		var horizInput = Input.GetAxis ("Horizontal");
@@ -299,6 +314,8 @@ public class PlayerController : MonoBehaviour {
 			horizTranslation += horizInput * speed * Time.deltaTime;
 			transform.localScale = new Vector3(1, 1, 1); // face right
 			facingRight = true;
+			/*if (horizVelocity < 0)
+				horizVelocity = 0f;*/
 		}
 		// left direction
 		else if (horizInput < 0 && !isDashing && !isHorizAirDashing && !inWallJump && !isKnocked && !isSwinging) {
@@ -306,6 +323,8 @@ public class PlayerController : MonoBehaviour {
 			horizTranslation += horizInput * speed * Time.deltaTime;
 			transform.localScale = new Vector3(-1, 1, 1); // face left
 			facingRight = false;
+			/*if (horizVelocity > 0)
+				horizVelocity = 0f;*/
 		}
 
 		// get the player's (possible) up/down input

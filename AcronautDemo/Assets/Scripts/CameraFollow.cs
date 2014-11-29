@@ -9,13 +9,14 @@ public class CameraFollow : MonoBehaviour {
 
 	private Transform playerT;
 	private Vector3 moveTarget;
-	private bool needToMove;
+	private bool needToMove = true;
 	private PlayerController pc;
 
 	// Use this for initialization
 	void Start () {
 		playerT = player.transform;
 		pc = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+		//transform.position = new Vector3 (playerT.position.x, playerT.position.y, -10);
 	}
 	
 	// Update is called once per frame

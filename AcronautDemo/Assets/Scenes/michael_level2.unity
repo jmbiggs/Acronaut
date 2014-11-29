@@ -1633,6 +1633,7 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 1906241385}
   m_GameObject: {fileID: 354866236}
+  m_HideIfInvisible: 0
 --- !u!1001 &364681239
 Prefab:
   m_ObjectHideFlags: 0
@@ -1976,6 +1977,7 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 1906241385}
   m_GameObject: {fileID: 426106692}
+  m_HideIfInvisible: 0
 --- !u!224 &426106695
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2339,6 +2341,7 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 1906241385}
   m_GameObject: {fileID: 475422869}
+  m_HideIfInvisible: 0
 --- !u!1 &482951103
 GameObject:
   m_ObjectHideFlags: 0
@@ -2403,6 +2406,7 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 1906241385}
   m_GameObject: {fileID: 482951103}
+  m_HideIfInvisible: 0
 --- !u!1 &485052402
 GameObject:
   m_ObjectHideFlags: 0
@@ -2606,7 +2610,7 @@ Transform:
   m_PrefabInternal: {fileID: 1135579164}
   m_GameObject: {fileID: 511055039}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 33.8959999, y: 23.6170006, z: -10}
+  m_LocalPosition: {x: 33.9700012, y: 23.6170006, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -4008,6 +4012,7 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 1906241385}
   m_GameObject: {fileID: 770000167}
+  m_HideIfInvisible: 0
 --- !u!1001 &770831573
 Prefab:
   m_ObjectHideFlags: 0
@@ -4424,6 +4429,7 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 1906241385}
   m_GameObject: {fileID: 867476372}
+  m_HideIfInvisible: 0
 --- !u!1 &888651964
 GameObject:
   m_ObjectHideFlags: 0
@@ -4755,6 +4761,7 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 1906241385}
   m_GameObject: {fileID: 978964881}
+  m_HideIfInvisible: 0
 --- !u!1 &979972346
 GameObject:
   m_ObjectHideFlags: 0
@@ -6836,7 +6843,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400000, guid: 370d16af5aa3f6848b7cadf78690ceeb, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 33.8959999
+      value: 33.9700012
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 370d16af5aa3f6848b7cadf78690ceeb, type: 2}
       propertyPath: m_LocalPosition.y
@@ -6864,7 +6871,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 370d16af5aa3f6848b7cadf78690ceeb, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 370d16af5aa3f6848b7cadf78690ceeb, type: 2}
       propertyPath: player
@@ -8370,6 +8377,7 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 1906241385}
   m_GameObject: {fileID: 1365615349}
+  m_HideIfInvisible: 0
 --- !u!1 &1366109744
 GameObject:
   m_ObjectHideFlags: 0
@@ -10650,7 +10658,6 @@ Canvas:
   m_PixelPerfect: 1
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
-  m_OverridePixelPerfect: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
 --- !u!1001 &1718972758
@@ -10851,6 +10858,7 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 1906241385}
   m_GameObject: {fileID: 1724767895}
+  m_HideIfInvisible: 0
 --- !u!1001 &1762937992
 Prefab:
   m_ObjectHideFlags: 0
@@ -11523,6 +11531,7 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 1906241385}
   m_GameObject: {fileID: 1820953910}
+  m_HideIfInvisible: 0
 --- !u!1 &1834052975
 GameObject:
   m_ObjectHideFlags: 0
@@ -12610,6 +12619,7 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 1906241385}
   m_GameObject: {fileID: 2021958627}
+  m_HideIfInvisible: 0
 --- !u!1 &2025720269
 GameObject:
   m_ObjectHideFlags: 0

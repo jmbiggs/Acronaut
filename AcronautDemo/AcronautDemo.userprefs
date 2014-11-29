@@ -1,21 +1,17 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Level.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Bumper.cs">
     <Files>
-      <File FileName="Assets\Scripts\LevelLoader.cs" Line="16" Column="20" />
-      <File FileName="Assets\Scripts\Level.cs" Line="38" Column="20" />
-      <File FileName="Assets\Scripts\Monkey.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\WinPanel.cs" Line="10" Column="25" />
-      <File FileName="Assets\Scripts\PickUp.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Balloon.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Flag.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\PlayerController.cs" Line="319" Column="7" />
-      <File FileName="Assets\Scripts\Bounce_Platform.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Music.cs" Line="24" Column="3" />
+      <File FileName="Assets\Scripts\PlayerController.cs" Line="318" Column="26" />
+      <File FileName="Assets\Scripts\Bumper.cs" Line="33" Column="1" />
+      <File FileName="Assets\Scripts\Level.cs" Line="64" Column="1" />
+      <File FileName="Assets\Scripts\Balloon.cs" Line="24" Column="29" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint enabled="false" file="C:\Users\Michael\Documents\GitHub\Acronaut\AcronautDemo\Assets\Scripts\Bumper.cs" line="33" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

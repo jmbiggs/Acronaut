@@ -17,8 +17,7 @@ public class Flag : MonoBehaviour {
 	
 	}
 
-	void OnTriggerEnter2D(Collider2D coll) {
-			Debug.Log ("Collided!");
+	void OnTriggerEnter2D(Collider2D coll) {;
 			level.Win();
 		
 	}

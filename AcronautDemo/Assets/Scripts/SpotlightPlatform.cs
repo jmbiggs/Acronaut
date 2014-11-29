@@ -44,13 +44,15 @@ public class SpotlightPlatform : MonoBehaviour {
 	
 	// Reverse the player's vertical velocity, and multiply it by the bounce multiplier
 	void OnCollisionEnter2D(Collision2D coll){
-		// start the pause timer
-		isPaused = true;
-		timer = pauseTime;
+		if (!used) {
+			// start the pause timer
+			isPaused = true;
+			timer = pauseTime;
 
-		// pause the player
-		pc.paused = true;
+			// pause the player
+			pc.paused = true;
 
-		used = true;
+			used = true;
+		}
 	}
 }
