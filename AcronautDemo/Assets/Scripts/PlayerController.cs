@@ -331,22 +331,22 @@ public class PlayerController : MonoBehaviour {
 		var horizInput = Input.GetAxis ("Horizontal");
 		
 		// right direction
-		if (horizInput > 0 && !isDashing && !isHorizAirDashing && !inWallJump && !isKnocked && !isSwinging) {
-
-			horizTranslation += horizInput * speed * Time.deltaTime;
+		if (horizInput > 0 && !isHorizAirDashing 
+		    && !inWallJump && !isKnocked && !isSwinging) {
+			if (!isDashing)
+				horizTranslation += horizInput * speed * Time.deltaTime;
 			transform.localScale = new Vector3(1, 1, 1); // face right
 			facingRight = true;
-			/*if (horizVelocity < 0)
-				horizVelocity = 0f;*/
 		}
 		// left direction
-		else if (horizInput < 0 && !isDashing && !isHorizAirDashing && !inWallJump && !isKnocked && !isSwinging) {
-			animator.SetFloat("Speed", Mathf.Abs(horizInput));
-			horizTranslation += horizInput * speed * Time.deltaTime;
+		else if (horizInput < 0 && !isHorizAirDashing 
+		         && !inWallJump && !isKnocked && !isSwinging) {
+			if (!isDashing){
+				horizTranslation += horizInput * speed * Time.deltaTime;
+			}
+			//animator.SetFloat("Speed", Mathf.Abs(horizInput));
 			transform.localScale = new Vector3(-1, 1, 1); // face left
 			facingRight = false;
-			/*if (horizVelocity > 0)
-				horizVelocity = 0f;*/
 		}
 
 		// get the player's (possible) up/down input
@@ -358,12 +358,19 @@ public class PlayerController : MonoBehaviour {
 			if (pPhysics.grounded) {
 				Jump();
 			}
-			else if (pPhysics.wallClinging)
+			else if (pPhysics.wallClinging) {
+				if (isWallDashing)
+					KillWallDash();
 				if (Input.GetButton("Trick"))
 					WallJump(true);
 				else
-				    WallJump (false);
+				    WallJump(false);
+			}
 			else if (!hasUsedDoubleJump) {
+				if (isHorizAirDashing)
+					KillHorizAirDash();
+				else if (isVertAirDashing)
+					KillVertAirDash();
 				DoubleJump();
 			}
 			else if (hasUsedDoubleJump) {
@@ -383,16 +390,18 @@ public class PlayerController : MonoBehaviour {
 		// Handle the trick button
 
 		// start ground dash
-		if ((Input.GetButtonDown ("Trick")) && pPhysics.grounded && !isKnocked && !isSwinging) {
-						Dash ();
-				}
+		if ((Input.GetButtonDown ("Trick")) && pPhysics.grounded 
+		    && !isKnocked && !isSwinging) {
+			Dash ();
+		}
 
 
 		// start horiz air dash
 		else if ((Input.GetButtonDown ("Trick")) && vertInput == 0 && !pPhysics.grounded && !hasUsedHorizAirDash && !pPhysics.wallClinging && !isKnocked && !isSwinging) {
-			if (isHovering) {
-				KillHover ();
-			}
+			if (isHovering)
+				KillHover ();			
+			else if (isVertAirDashing)
+				KillVertAirDash();
 			if (facingRight)
 				HorizAirDash (1);
 			else
@@ -406,27 +415,16 @@ public class PlayerController : MonoBehaviour {
 		if ((Input.GetButtonDown ("Trick")) && isSwinging)
 			swingTrick = false;
 
-		// cancel dash (canceled by using a Double Jump or a Vertical Airdash, if the player has not used those up)
-		if (isHorizAirDashing) {
-			// TODO
-
-			// however, maybe we don't want to kill it by double jumping
-			// the extra speed in a double jump (like on the ground) is fun
-		}
-
 		// start vert air dash
 		if ((Input.GetButtonDown ("Trick")) && vertInput != 0 && !pPhysics.grounded && !hasUsedVertAirDash && !pPhysics.wallClinging && !isKnocked && !isSwinging) {
-			if (isHovering) {
+			if (isHovering)
 				KillHover ();
-			}
+			else if (isHorizAirDashing)
+				KillHorizAirDash();
 			if (vertInput < 0)
 				VertAirDash(-1);
 			else
 				VertAirDash(1);
-		}
-		// cancel dash (canceled by using a Horizontal Airdash or Double Jump)
-		if (isVertAirDashing) {
-			// TODO
 		}
 
 		// start wall dash
@@ -436,11 +434,6 @@ public class PlayerController : MonoBehaviour {
 			else
 				WallDash(1);
 		}
-		// cancel dash
-		if (isWallDashing) {
-			// TODO
-		}
-
 
 		// Update trick behavior based on time passed
 
@@ -470,16 +463,18 @@ public class PlayerController : MonoBehaviour {
 				if (swingTrick)
 					vertVelocity *= swingTrickSpeedMult;
 			}
-
 		}
 
 
 		else if (isDashing) {
 			float dashDir = Mathf.Sign (dashSpeed);
-			if ((horizInput > 0 && dashDir == -1) || 
-			    (horizInput < 0 && dashDir == 1) ||
-			    !Input.GetButton("Trick") ||
-			    dashTimer <= 0)
+			// flip around, keeping the dash going
+			if ((horizInput > 0 && dashDir == -1) || (horizInput < 0 && dashDir == 1)){
+				dashDir *= -1;
+				dashSpeed *= -1;
+				horizVelocity *= -1;
+			}
+			if (!Input.GetButton("Trick") || dashTimer <= 0)
 				KillDash ();
 			if (pPhysics.grounded)
 				dashTimer -= Time.deltaTime;
