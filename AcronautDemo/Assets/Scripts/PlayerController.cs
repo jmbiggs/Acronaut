@@ -265,7 +265,7 @@ public class PlayerController : MonoBehaviour {
 
 	void Update () {
 
-		if (Input.GetKeyDown(KeyCode.P)) {
+		if (Input.GetButtonDown("Pause")) {
 			if (paused) {
 				paused = false;
 				Time.timeScale = 1f;
@@ -355,7 +355,8 @@ public class PlayerController : MonoBehaviour {
 
 		// Handle the jump button
 		if (Input.GetButtonDown ("Jump") && !isKnocked && !isSwinging) {
-			if (pPhysics.grounded) {
+
+			if (pPhysics.grounded){
 				Jump();
 			}
 			else if (pPhysics.wallClinging) {

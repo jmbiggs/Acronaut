@@ -3461,6 +3461,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 21
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 26de065a9887ece47ab59d0ff562c7a1, type: 2}
+      propertyPath: jumpPressLeewayTime
+      value: .100000001
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 26de065a9887ece47ab59d0ff562c7a1, type: 2}
   m_RootGameObject: {fileID: 1185325299}
