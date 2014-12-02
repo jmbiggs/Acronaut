@@ -75,6 +75,8 @@ public class PlayerController : MonoBehaviour {
 	public bool inSpotlight = false;
 	[HideInInspector]
 	public bool paused = false;
+	[HideInInspector]
+	public bool killJumpOnButtonUp = true;
 
 	private bool hasUsedDoubleJump = false;
 	private bool hasUsedHorizAirDash = false;
@@ -381,6 +383,13 @@ public class PlayerController : MonoBehaviour {
 		if (Input.GetButtonUp ("Jump")) {
 			if (isHovering) {
 				KillHover ();
+			}
+			else if (isVertAirDashing) {
+				gravityVelocity = 0f;
+				vertVelocity = vertAirDashSpeed;
+			}
+			else if (!killJumpOnButtonUp) {
+				killJumpOnButtonUp = true;
 			}
 			else
 				KillJump();

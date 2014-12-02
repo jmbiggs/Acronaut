@@ -45,6 +45,14 @@ public class Balloon : MonoBehaviour {
 				pc.KillHover();
 			}
 
+			if (pc.isHorizAirDashing) {
+				pc.KillHorizAirDash();
+			}
+
+			if (pc.isVertAirDashing) {
+				pc.KillVertAirDash();
+			}
+
 			pc.vertVelocity = pc.jumpSpeed;
 			pc.gravityVelocity = 0;
 
@@ -54,6 +62,10 @@ public class Balloon : MonoBehaviour {
 			box.enabled = false;
 
 			respawnTimer = timeToRespawn;
+
+			if (Input.GetButton("Jump") || Input.GetButtonUp ("Jump")) {
+				pc.killJumpOnButtonUp = false;
+			}
 
 			if (canEarnTime) {
 				level.playerTime -= timeToSubtract;
