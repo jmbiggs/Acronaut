@@ -14,7 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/hatLevel.unity
   - enabled: 1
-    path: Assets/Scenes/balloonLevel.unity
+    path: Assets/Scenes/balloonLevelHard.unity
   - enabled: 1
     path: Assets/Scenes/michael_level.unity
   - enabled: 1
