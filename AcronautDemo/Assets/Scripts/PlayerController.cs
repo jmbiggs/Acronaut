@@ -22,7 +22,6 @@ public class PlayerController : MonoBehaviour {
 	public float wallTrickJumpSpeedVert;
 	public float wallTrickJumpSpeedHoriz;
 	public float wallJumpLength; // amount of time to move horizontally in wall jump
-	public float wallDashLength;
 	public float hoverSpeed;
 	public float knockbackDist;
 	public float knockbackSpeed;
@@ -62,8 +61,6 @@ public class PlayerController : MonoBehaviour {
 	[HideInInspector]
 	public bool isVertAirDashing = false;
 	[HideInInspector]
-	public bool isWallDashing = false;
-	[HideInInspector]
 	public bool inWallJump = false;
 	[HideInInspector]
 	public bool isHovering = false;
@@ -81,7 +78,6 @@ public class PlayerController : MonoBehaviour {
 	private bool hasUsedDoubleJump = false;
 	private bool hasUsedHorizAirDash = false;
 	private bool hasUsedVertAirDash = false;
-	private bool hasUsedWallDash = false;
 
 	private SpriteRenderer sprite;
 	private Animator animator;
@@ -131,6 +127,12 @@ public class PlayerController : MonoBehaviour {
 
 		wallJumpTimer = wallJumpLength;
 	}
+
+	public void KillWallJump(){
+		inWallJump = false;
+		horizVelocity = 0f;	
+	}
+
 
 	public void DoubleJump(){
 		if (!inSpotlight)
@@ -198,23 +200,6 @@ public class PlayerController : MonoBehaviour {
 		vertAirDashSpeed = Mathf.Abs(vertAirDashSpeed); // reset dash speed to its absolute value
 	}
 
-	// vertical wall dash in given direction
-	// -1 for down, 1 for up
-	// using same dash speed as the other dashes
-	public void WallDash(int direction){
-		if (!inSpotlight)
-			hasUsedWallDash = true;
-		isWallDashing = true;
-		dashTimer = wallDashLength;
-		dashSpeed *= direction;
-		vertVelocity = dashSpeed;
-	}
-	public void KillWallDash(){
-		isWallDashing = false;
-		vertVelocity = 0f;
-		dashSpeed = Mathf.Abs(dashSpeed); // reset dash speed to its absolute value
-	}
-
 	// temporarily disables controls and knocks the player in the given direction
 	// (-1 for left, 1 for right)
 	public void Knockback(int direction) {
@@ -244,7 +229,6 @@ public class PlayerController : MonoBehaviour {
 		hasUsedDoubleJump = false;
 		hasUsedHorizAirDash = false;
 		hasUsedVertAirDash = false;
-		hasUsedWallDash = false;
 	}
 
 	// called by PlayerPhysics when grounded
@@ -296,7 +280,7 @@ public class PlayerController : MonoBehaviour {
 			}
 		}
 		// Apply reduced "gravity" if wall clinging		
-		else if (pPhysics.wallClinging && !isWallDashing) {
+		else if (pPhysics.wallClinging) {
 			vertVelocity = wallSlideSpeed * -1;
 		}
 
@@ -362,8 +346,6 @@ public class PlayerController : MonoBehaviour {
 				Jump();
 			}
 			else if (pPhysics.wallClinging) {
-				if (isWallDashing)
-					KillWallDash();
 				if (Input.GetButton("Trick"))
 					WallJump(true);
 				else
@@ -390,6 +372,9 @@ public class PlayerController : MonoBehaviour {
 			}
 			else if (!killJumpOnButtonUp) {
 				killJumpOnButtonUp = true;
+			}
+			else if (inWallJump) {
+				KillWallJump();
 			}
 			else
 				KillJump();
@@ -435,14 +420,6 @@ public class PlayerController : MonoBehaviour {
 				VertAirDash(-1);
 			else
 				VertAirDash(1);
-		}
-
-		// start wall dash
-		if ((Input.GetButtonDown ("Trick")) && vertInput != 0 && !hasUsedWallDash && pPhysics.wallClinging && !isKnocked && !isSwinging) {
-			if (vertInput < 0)
-				WallDash(-1);
-			else
-				WallDash(1);
 		}
 
 		// Update trick behavior based on time passed
@@ -509,11 +486,6 @@ public class PlayerController : MonoBehaviour {
 				else
 					vertVelocity = wallJumpSpeedVert;
 			}
-		}
-		else if (isWallDashing) {
-			dashTimer -= Time.deltaTime;
-			if (dashTimer <= 0)
-				KillWallDash();
 		}
 
 		animator.SetFloat("Vertical Speed", (vertVelocity));
