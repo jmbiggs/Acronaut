@@ -3,18 +3,22 @@ using System.Collections;
 
 public class RabbitHat : MonoBehaviour {
 
-	public Transform exitPoint;
 	public RabbitHat matchPoint;
 	PlayerController pc;
 
+	[HideInInspector]
+	public Transform exitPoint;
+	[HideInInspector]
 	public bool justTeleported = false;
-
+	[HideInInspector]
 	public float timer;
+	[HideInInspector]
 	public bool jumpedOut;
 
 	// Use this for initialization
 	void Start () {
 		pc = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+		exitPoint = matchPoint.gameObject.transform;
 		timer = 1f;
 	}
 	
@@ -33,6 +37,7 @@ public class RabbitHat : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D coll){
 		if (!justTeleported) {
+			pc.isTeleporting = true;
 			matchPoint.justTeleported = true;
 			pc.transform.position = exitPoint.position;
 
@@ -41,6 +46,7 @@ public class RabbitHat : MonoBehaviour {
 
 	void OnTriggerExit2D(Collider2D coll) {
 		if (justTeleported == true) {
+			pc.isTeleporting = false;
 			justTeleported = false;
 			timer = 1f;
 			jumpedOut = false;

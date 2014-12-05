@@ -74,6 +74,8 @@ public class PlayerController : MonoBehaviour {
 	public bool paused = false;
 	[HideInInspector]
 	public bool killJumpOnButtonUp = true;
+	[HideInInspector]
+	public bool isTeleporting = false;
 
 	private bool hasUsedDoubleJump = false;
 	private bool hasUsedHorizAirDash = false;
@@ -82,7 +84,14 @@ public class PlayerController : MonoBehaviour {
 	private SpriteRenderer sprite;
 	private Animator animator;
 
+	[HideInInspector]
 	public GameObject pausePanel;
+
+	public ParticleSystem left;
+	public ParticleSystem right;
+	public ParticleSystem up;
+	public ParticleSystem down;
+	public ParticleSystem hover;
 
 	public void Jump(){
 		vertVelocity += jumpSpeed;
@@ -96,11 +105,15 @@ public class PlayerController : MonoBehaviour {
 		isHovering = true;
 		vertVelocity = hoverSpeed;
 		gravityVelocity = 0f;	
+		hover.enableEmission = true;
+		hover.Play ();
 	}
 
 	public void KillHover() {
 		isHovering = false;
 		gravityVelocity = 0f;	
+		hover.Stop();
+		hover.enableEmission = false;
 	}
 
 	public void AirMurder() {
@@ -145,10 +158,13 @@ public class PlayerController : MonoBehaviour {
 	public void Dash(){
 		isDashing = true;
 		dashTimer = dashLength;
-		if (!facingRight)
+		if (!facingRight) {
 			dashSpeed *= -1;
+			right.Play();
+		} else left.Play();
 		horizVelocity = dashSpeed;	
 	}
+
 	public void KillDash(){
 		isDashing = false;
 		horizVelocity = 0f;
@@ -163,6 +179,10 @@ public class PlayerController : MonoBehaviour {
 		if (isDashing)
 			KillDash ();
 		isHorizAirDashing = true;
+		if (direction > 0) {
+			left.Play();
+		}
+		else right.Play();
 		vertVelocity = 0f;
 		gravityVelocity = 0f;
 		dashTimer = horizAirDashLength;
@@ -174,6 +194,7 @@ public class PlayerController : MonoBehaviour {
 		isHorizAirDashing = false;
 		horizVelocity = 0f;
 		horizAirDashSpeed = Mathf.Abs(horizAirDashSpeed); // reset dash speed to its absolute value
+		dashTimer = 0f;
 	}
 
 	// vertical air dash in given direction
@@ -187,6 +208,10 @@ public class PlayerController : MonoBehaviour {
 		if (!inSpotlight)
 			hasUsedVertAirDash = true;
 		isVertAirDashing = true;
+		if (direction > 0) 
+			down.Play ();
+		else
+			up.Play ();
 		gravityVelocity = 0f;
 		dashTimer = vertAirDashLength;
 		vertAirDashSpeed *= direction;
@@ -235,8 +260,9 @@ public class PlayerController : MonoBehaviour {
 	public void SetGrounded(){
 		if (pPhysics.grounded) {
 			RefreshAirMoves();
-			KillDash();
+			if (isDashing) KillDash();
 			if (isHovering) KillHover ();
+			if (isHorizAirDashing) KillHorizAirDash();
 			gravityVelocity = 0f;
 			vertVelocity = 0f;
 			horizVelocity = 0f;
@@ -247,6 +273,7 @@ public class PlayerController : MonoBehaviour {
 		pPhysics = GetComponent<PlayerPhysics> ();
 		animator = GetComponent<Animator>();
 		sprite = GetComponent<SpriteRenderer>();
+		pausePanel = GameObject.FindGameObjectWithTag("PausePanel");
 	}
 
 	void Update () {
@@ -340,7 +367,7 @@ public class PlayerController : MonoBehaviour {
 		var vertInput = Input.GetAxis ("Vertical");
 
 		// Handle the jump button
-		if (Input.GetButtonDown ("Jump") && !isKnocked && !isSwinging) {
+		if (Input.GetButtonDown ("Jump") && !isKnocked && !isTeleporting && !isSwinging) {
 
 			if (pPhysics.grounded){
 				Jump();
@@ -362,7 +389,7 @@ public class PlayerController : MonoBehaviour {
 				Hover();
 			}
 		}
-		if (Input.GetButtonUp ("Jump")) {
+		if (Input.GetButtonUp ("Jump") && !isKnocked && !isTeleporting && !isSwinging) {
 			if (isHovering) {
 				KillHover ();
 			}
@@ -385,14 +412,13 @@ public class PlayerController : MonoBehaviour {
 		// Handle the trick button
 
 		// start ground dash
-		if ((Input.GetButtonDown ("Trick")) && pPhysics.grounded 
-		    && !isKnocked && !isSwinging) {
+		if ((Input.GetButtonDown ("Trick")) && pPhysics.grounded && !isTeleporting && !isKnocked && !isSwinging) {
 			Dash ();
 		}
 
 
 		// start horiz air dash
-		else if ((Input.GetButtonDown ("Trick")) && vertInput == 0 && !pPhysics.grounded && !hasUsedHorizAirDash && !pPhysics.wallClinging && !isKnocked && !isSwinging) {
+		else if ((Input.GetButtonDown ("Trick")) && vertInput == 0 && !pPhysics.grounded && !hasUsedHorizAirDash && !isTeleporting && !pPhysics.wallClinging && !isKnocked && !isSwinging) {
 			if (isHovering)
 				KillHover ();			
 			else if (isVertAirDashing)
@@ -411,7 +437,7 @@ public class PlayerController : MonoBehaviour {
 			swingTrick = false;
 
 		// start vert air dash
-		if ((Input.GetButtonDown ("Trick")) && vertInput != 0 && !pPhysics.grounded && !hasUsedVertAirDash && !pPhysics.wallClinging && !isKnocked && !isSwinging) {
+		if ((Input.GetButtonDown ("Trick")) && vertInput != 0 && !pPhysics.grounded && !isTeleporting && !hasUsedVertAirDash && !pPhysics.wallClinging && !isKnocked && !isSwinging) {
 			if (isHovering)
 				KillHover ();
 			else if (isHorizAirDashing)
