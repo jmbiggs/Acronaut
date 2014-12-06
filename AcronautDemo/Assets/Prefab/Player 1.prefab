@@ -113,7 +113,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.87230003, y: -4.69990015, z: 0}
+  m_LocalPosition: {x: -41.223999, y: -8.61629963, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400010}
@@ -237,7 +237,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gravity: 3
   groundResistance: 50
-  airResistance: 5
+  airResistance: 0
   speed: 5.5
   jumpSpeed: 9
   dashLength: .25
@@ -247,11 +247,9 @@ MonoBehaviour:
   vertAirDashLength: .25
   vertAirDashSpeed: 8
   wallSlideSpeed: 3.5
-  wallJumpSpeedVert: 9
-  wallJumpSpeedHoriz: 7
-  wallTrickJumpSpeedVert: 11
-  wallTrickJumpSpeedHoriz: 9
-  wallJumpLength: .075000003
+  wallJumpAngle: 36
+  wallJumpSpeed: 20
+  wallTrickJumpSpeed: 23
   hoverSpeed: -1
   knockbackDist: 2
   knockbackSpeed: 15
@@ -268,7 +266,6 @@ MonoBehaviour:
   isDashing: 0
   isHorizAirDashing: 0
   isVertAirDashing: 0
-  inWallJump: 0
   isHovering: 0
   isKnocked: 0
   isSwinging: 0

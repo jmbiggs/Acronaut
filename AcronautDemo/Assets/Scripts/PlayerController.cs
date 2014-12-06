@@ -17,11 +17,9 @@ public class PlayerController : MonoBehaviour {
 	public float vertAirDashSpeed;
 
 	public float wallSlideSpeed; // like a gravity value when wall sliding
-	public float wallJumpSpeedVert;
-	public float wallJumpSpeedHoriz;
-	public float wallTrickJumpSpeedVert;
-	public float wallTrickJumpSpeedHoriz;
-	public float wallJumpLength; // amount of time to move horizontally in wall jump
+	public float wallJumpAngle;
+	public float wallJumpSpeed;
+	public float wallTrickJumpSpeed;
 	public float hoverSpeed;
 	public float knockbackDist;
 	public float knockbackSpeed;
@@ -45,14 +43,12 @@ public class PlayerController : MonoBehaviour {
 	public bool facingRight = true;
 
 	private float dashTimer;
-	private float wallJumpTimer;
 
 	private float knockbackToTravel;
 	private int knockbackDir;
 
 	private bool swingTrick; // whether or not the trick button is held during swing
 	public float swingPauseTimer;
-	private bool wallJumpTricked = false; // whether or not trick button is held during wall jump
 
 	[HideInInspector]
 	public bool isDashing = false;
@@ -60,8 +56,6 @@ public class PlayerController : MonoBehaviour {
 	public bool isHorizAirDashing = false;
 	[HideInInspector]
 	public bool isVertAirDashing = false;
-	[HideInInspector]
-	public bool inWallJump = false;
 	[HideInInspector]
 	public bool isHovering = false;
 	[HideInInspector]
@@ -126,24 +120,15 @@ public class PlayerController : MonoBehaviour {
 
 	// if tricked is true, jump further out
 	public void WallJump(bool tricked){
-		inWallJump = true;
-		vertVelocity = 0f;
 		gravityVelocity = 0f;
 		if (tricked) {
-			horizVelocity += wallTrickJumpSpeedHoriz * -pPhysics.wallClingingDir;
-			wallJumpTricked = true;
+			horizVelocity += wallTrickJumpSpeed * Mathf.Sin(wallJumpAngle*Mathf.Deg2Rad) * -pPhysics.wallClingingDir;
+			vertVelocity += wallTrickJumpSpeed * Mathf.Cos(wallJumpAngle*Mathf.Deg2Rad);
 		} 
 		else {
-			horizVelocity += wallJumpSpeedHoriz * -pPhysics.wallClingingDir;
-			wallJumpTricked = false;
+			horizVelocity += 0.9f * wallJumpSpeed * Mathf.Sin(wallJumpAngle*Mathf.Deg2Rad) * -pPhysics.wallClingingDir;
+			vertVelocity += wallJumpSpeed * Mathf.Cos(wallJumpAngle*Mathf.Deg2Rad);
 		}
-
-		wallJumpTimer = wallJumpLength;
-	}
-
-	public void KillWallJump(){
-		inWallJump = false;
-		horizVelocity = 0f;	
 	}
 
 
@@ -264,7 +249,7 @@ public class PlayerController : MonoBehaviour {
 
 	// called by PlayerPhysics when grounded
 	public void SetGrounded(){
-		if (pPhysics.grounded) {
+		//if (pPhysics.grounded) {
 			RefreshAirMoves();
 			if (isDashing) KillDash();
 			if (isHovering) KillHover ();
@@ -272,7 +257,7 @@ public class PlayerController : MonoBehaviour {
 			gravityVelocity = 0f;
 			vertVelocity = 0f;
 			horizVelocity = 0f;
-		}
+		//}
 	}
 
 	void Start() {
@@ -300,8 +285,8 @@ public class PlayerController : MonoBehaviour {
 		if (paused)
 			return;
 
-		// apply gravity unless grounded, wall clinging, air dashing, swinging or in a wall jump
-		if (!pPhysics.grounded && !pPhysics.wallClinging && !isHorizAirDashing && !isVertAirDashing && !inWallJump && !isHovering && !isSwinging) {
+		// apply gravity unless grounded, wall clinging, air dashing, swinging
+		if (!pPhysics.grounded && !pPhysics.wallClinging && !isHorizAirDashing && !isVertAirDashing && !isHovering && !isSwinging) {
 			if (vertVelocity >= terminalVelocity) {
 				gravityVelocity += gravity * Time.deltaTime;
 				vertVelocity -= gravityVelocity;
@@ -351,16 +336,23 @@ public class PlayerController : MonoBehaviour {
 		
 		// right direction
 		if (horizInput > 0 && !isHorizAirDashing 
-		    && !inWallJump && !isKnocked && !isSwinging) {
+		    && !isKnocked && !isSwinging) {
 			if (!isDashing)
-				horizTranslation += horizInput * speed * Time.deltaTime;
+				if (horizVelocity < 0) // if horiz velocity is going in opposite direction, subtract from that
+					horizVelocity += speed;
+				else
+					horizTranslation += horizInput * speed * Time.deltaTime;
 			transform.localScale = new Vector3(1, 1, 1); // face right
 			facingRight = true;
 		}
 		// left direction
 		else if (horizInput < 0 && !isHorizAirDashing 
-		         && !inWallJump && !isKnocked && !isSwinging) {
+		         && !isKnocked && !isSwinging) {
 			if (!isDashing){
+				if (horizVelocity > 0){ // if horiz velocity is going in opposite direction, subtract from that
+					horizVelocity -= speed;
+				}
+				else
 				horizTranslation += horizInput * speed * Time.deltaTime;
 			}
 			//animator.SetFloat("Speed", Mathf.Abs(horizInput));
@@ -380,9 +372,9 @@ public class PlayerController : MonoBehaviour {
 			}
 			else if (pPhysics.wallClinging) {
 				if (Input.GetButton("Trick"))
-					WallJump(true);
+					WallJump(true); // tricked wall jump
 				else
-				    WallJump(false);
+				    WallJump(false); // plain wall jump
 			}
 			else if (!hasUsedDoubleJump) {
 				if (isHorizAirDashing)
@@ -405,9 +397,6 @@ public class PlayerController : MonoBehaviour {
 			}
 			else if (!killJumpOnButtonUp) {
 				killJumpOnButtonUp = true;
-			}
-			else if (inWallJump) {
-				KillWallJump();
 			}
 			else
 				KillJump();
@@ -508,17 +497,6 @@ public class PlayerController : MonoBehaviour {
 			if (dashTimer <= 0)
 				KillVertAirDash ();
 		} 
-		else if (inWallJump) {
-			wallJumpTimer -= Time.deltaTime;
-			if (wallJumpTimer <= 0) {
-				inWallJump = false;
-				horizVelocity = 0f;
-				if (wallJumpTricked)
-					vertVelocity = wallTrickJumpSpeedVert;
-				else
-					vertVelocity = wallJumpSpeedVert;
-			}
-		}
 
 		animator.SetFloat("Vertical Speed", (vertVelocity));
 		animator.SetFloat("Speed", Mathf.Abs(horizInput));

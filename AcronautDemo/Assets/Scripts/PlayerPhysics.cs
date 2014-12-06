@@ -159,6 +159,10 @@ public class PlayerPhysics : MonoBehaviour {
 						pc.horizVelocity = 0f;
 						break;
 					}
+					else if (pc.vertVelocity >= 0) {
+						pc.SetGrounded();
+						break;
+					}
 				}
 
 				// adjust y coordinate for each iteration of the loop
