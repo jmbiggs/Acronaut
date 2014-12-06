@@ -163,12 +163,14 @@ public class PlayerController : MonoBehaviour {
 			right.Play();
 		} else left.Play();
 		horizVelocity = dashSpeed;	
+		animator.SetBool("isHorizDashing", true);
 	}
 
 	public void KillDash(){
 		isDashing = false;
 		horizVelocity = 0f;
 		dashSpeed = Mathf.Abs(dashSpeed); // reset dash speed to its absolute value
+		animator.SetBool("isHorizDashing", false);
 	}
 
 	// horizontal air dash in direction player is facing
@@ -188,6 +190,7 @@ public class PlayerController : MonoBehaviour {
 		dashTimer = horizAirDashLength;
 		horizAirDashSpeed *= direction;
 		horizVelocity = horizAirDashSpeed;
+		animator.SetBool("isHorizDashing", true);
 	}
 
 	public void KillHorizAirDash(){
@@ -195,6 +198,7 @@ public class PlayerController : MonoBehaviour {
 		horizVelocity = 0f;
 		horizAirDashSpeed = Mathf.Abs(horizAirDashSpeed); // reset dash speed to its absolute value
 		dashTimer = 0f;
+		animator.SetBool("isHorizDashing", false);
 	}
 
 	// vertical air dash in given direction
@@ -216,6 +220,7 @@ public class PlayerController : MonoBehaviour {
 		dashTimer = vertAirDashLength;
 		vertAirDashSpeed *= direction;
 		vertVelocity = vertAirDashSpeed;
+		animator.SetBool("isVertAirDashing", true);
 	}
 
 	public void KillVertAirDash(){
@@ -223,6 +228,7 @@ public class PlayerController : MonoBehaviour {
 		if (vertVelocity > 0f)
 			vertVelocity = 0f;
 		vertAirDashSpeed = Mathf.Abs(vertAirDashSpeed); // reset dash speed to its absolute value
+		animator.SetBool("isVertAirDashing", false);
 	}
 
 	// temporarily disables controls and knocks the player in the given direction
@@ -517,6 +523,9 @@ public class PlayerController : MonoBehaviour {
 		animator.SetFloat("Vertical Speed", (vertVelocity));
 		animator.SetFloat("Speed", Mathf.Abs(horizInput));
 		animator.SetBool("Grounded", pPhysics.grounded);
+		animator.SetBool("isClinging", pPhysics.wallClinging);
+		animator.SetBool("isHorizDashing", isDashing);
+		animator.SetBool("isHorizAirDashing", isHorizAirDashing);
 
 		// call move
 		pPhysics.Move (horizVelocity*Time.deltaTime + horizTranslation, vertVelocity*Time.deltaTime);

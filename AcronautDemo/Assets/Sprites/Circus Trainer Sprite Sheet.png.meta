@@ -20,6 +20,10 @@ TextureImporter:
     21300030: Circus Trainer Sprite Sheet_15
     21300032: Circus Trainer Sprite Sheet_16
     21300034: Circus Trainer Sprite Sheet_17
+    21300036: Circus Trainer Sprite Sheet_18
+    21300038: Circus Trainer Sprite Sheet_19
+    21300040: Circus Trainer Sprite Sheet_20
+    21300042: Circus Trainer Sprite Sheet_21
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -238,6 +242,46 @@ TextureImporter:
         y: 423
         width: 22
         height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Circus Trainer Sprite Sheet_18
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 370
+        width: 36
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Circus Trainer Sprite Sheet_19
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 313
+        width: 25
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Circus Trainer Sprite Sheet_20
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 267
+        width: 20
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Circus Trainer Sprite Sheet_21
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 218
+        width: 19
+        height: 40
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
